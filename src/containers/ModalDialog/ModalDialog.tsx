@@ -2,11 +2,15 @@ import StyledDialog from "components/Dialog/Dialog.styled";
 import StyledModal from "components/Modal/Modal.styled";
 import Portal from "components/Portal/Portal";
 
-const ModalDialog = () => {
+type modalDialog = {
+  children: React.ReactNode;
+};
+
+const ModalDialog = ({ children }: modalDialog) => {
   return (
     <Portal>
       <StyledModal>
-        <StyledDialog>내용</StyledDialog>
+        <StyledDialog>{children}</StyledDialog>
       </StyledModal>
     </Portal>
   );

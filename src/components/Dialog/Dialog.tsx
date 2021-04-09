@@ -9,7 +9,7 @@ const Dialog = ({ children, className }: dialogProps) => {
   return (
     <section className={className}>
       {children}
-      <StyledButton children="x" />
+      <StyledButton children="X" />
     </section>
   );
 };
