@@ -11,11 +11,11 @@ const initialState: postsList = [];
 const READ_LIST = "read-list";
 
 
+//TODO: fireStore를 사용하여 postsList 데이터 통신
 const getAllPost = () => (dispatch:Dispatch<action>) => {
   dispatch({
     type: READ_LIST,
     // dummu data
-    //TODO: fireStore를 사용하여 postsList 데이터 통신
     payload: [
       {
         id: "1",
