@@ -1,7 +1,7 @@
+import Welcome from "pages/Welcome";
+
 function App() {
-  return (
-    null
-  );
+  return <Welcome />;
 }
 
 export default App;
