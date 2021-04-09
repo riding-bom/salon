@@ -1,3 +1,5 @@
+import StyledButton from "components/Button/Button.styled";
+
 type dialogProps = {
   children: React.ReactNode;
   className?: string;
@@ -6,8 +8,8 @@ type dialogProps = {
 const Dialog = ({ children, className }: dialogProps) => {
   return (
     <section className={className}>
-      <button>x</button>
       {children}
+      <StyledButton children="x" />
     </section>
   );
 };

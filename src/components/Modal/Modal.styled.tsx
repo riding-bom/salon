@@ -1,9 +1,5 @@
-import React from "react";
 import styled from "styled-components";
-
-const Modal = ({ children }: { children: React.ReactNode }) => {
-  return <div>{children}</div>;
-};
+import Modal from "./Modal";
 
 const StyledModal = styled(Modal)`
   width: 100vw;
@@ -17,4 +13,3 @@ const StyledModal = styled(Modal)`
 `;
 
 export default StyledModal;
-export { Modal };
