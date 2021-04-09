@@ -1,7 +1,12 @@
 import Welcome from "pages/Welcome";
+import StoreProvider from "redux/store";
 
 function App() {
-  return <Welcome />;
+  return (
+    <StoreProvider>
+      <Welcome />;
+    </StoreProvider>
+  );
 }
 
 export default App;
