@@ -1,3 +1,5 @@
+import { CombinedState } from "redux";
+
 type post = {
   id: string;
   title: string;
@@ -10,4 +12,9 @@ type post = {
 
 type postsList = post[];
 
-export type { post, postsList };
+type combinedState = CombinedState<{
+  postsList: post[];
+  openModal: Boolean;
+}>;
+
+export type { post, postsList, combinedState };
