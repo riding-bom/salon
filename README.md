@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+# 네이밍 규칙
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. 폴더/파일 네이밍
 
-## Available Scripts
+   - 컴포넌트 파일은 파스칼 케이스(PascalCase)
+   - 그 외 케밥 케이스(kebob-case)
+   - 스타일드 컴포넌트의 파일 이름은 Name.styled.tsx
 
-In the project directory, you can run:
+2. 함수(이벤트 핸들러) 및 변수 네이밍
 
-### `yarn start`
+   - 컴포넌트는 파스칼 케이스(PascalCase)
+   - 상수는 스네이크 케이스(SNAKE_CASE)
+   - 변수는 카멜 케이스(camelCase)
+   - 함수(이벤트 핸들러)는 동사로 시작(ex. createAction, increaseNumber)
+   - 변수는 명사로 시작(ex. number, counter, increasement)
+   - 커스텀 훅은 접두사 use 사용
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# 컴포넌트 작성
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. 컴포넌트 -> 컨테이너 -> 페이지
+2. 함수형 컴포넌트, 훅 사용
+3. 유틸 등은 모듈로 파일 구분
 
-### `yarn test`
+# 함수 작성
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. 기본적으로 화살표 함수
 
-### `yarn build`
+# export, import
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. export는 파일 맨 아래 한꺼번에 기명
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 선언 순서
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. 상수 -> 변수 -> 함수 -> 컴포넌트
 
-### `yarn eject`
+# payload
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. 액션 객체의 payload 이름은 payload로 통일
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# 상태 관리
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. 상태 관리는 기본적으로 Redux 사용 (지역적으로 국한되는 상태의 경우, 논의 후 Context API 사용)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# 그 외
 
-## Learn More
+1. 그외 컨벤션은 CRA의 기본 설정된 eslint, prettier에 따름
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# 커밋
+
+1. 접두사 [추가], [수정], [삭제] (ex. [추가] 헤더 네비게이션)
+2. 커밋 타이틀 뿐만 아니라 내용도 자세하게 작성
+
+# 풀 리퀘
+
+1. closed #이슈번호 로 이슈 자동 닫기
+2. 컨플릭트는 각자 해결 후 풀 리퀘
+3. 각 풀 리퀘는 코드 리뷰 후 머지
