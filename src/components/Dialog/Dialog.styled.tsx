@@ -10,13 +10,33 @@ const StyledDialog = styled(Dialog)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 20px;
+  padding: 50px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  & * {
+    margin: 10px 0;
+    font-size: 1.2rem;
+  }
+
+  & > h1 {
+    font-size: 2rem;
+  }
+
+  & > button {
+    width: 100%;
+    height: 25px;
+  }
 
   & button:last-child {
     box-shadow: none;
     position: absolute;
     top: 20px;
     right: 20px;
+    width: 20px;
+    height: 20px;
   }
 `;
 

@@ -6,6 +6,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: 10px;
   }
+  body * {
+    box-sizing: border-box;
+  }
 `;
 
 export default GlobalStyle;
