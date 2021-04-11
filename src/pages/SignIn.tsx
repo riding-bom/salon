@@ -9,7 +9,7 @@ const SignIn = () => {
 
   return isOpenModal.isOpenSignIn ? (
     <ModalDialog>
-      <h1>salog</h1>
+      <h1>salon</h1>
       <StyledInputText id="email" name="email" />
       <StyledInputText type="password" id="password" name="password" />
       <StyledButton>SIGNIN</StyledButton>
