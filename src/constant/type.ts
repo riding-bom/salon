@@ -14,7 +14,10 @@ type postsList = post[];
 
 type combinedState = CombinedState<{
   postsList: post[];
-  openModal: Boolean;
+  isOpenModal: {
+    isOpenSignIn: Boolean;
+    isOpenSignUp: Boolean;
+  };
 }>;
 
 export type { post, postsList, combinedState };

@@ -8,7 +8,7 @@ const middleware = [thunk];
 
 const rootReducer = combineReducers({
   postsList: postsReducer,
-  openModal: openModal,
+  isOpenModal: openModal,
 });
 
 const store = createStore(rootReducer, applyMiddleware(...middleware));
