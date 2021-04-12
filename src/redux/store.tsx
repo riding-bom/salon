@@ -1,14 +1,17 @@
-import { Provider } from 'react-redux';
-import { applyMiddleware, combineReducers, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import openModal from './reducers/openModal';
-import postsReducer from './reducers/postsList';
+import { Provider } from "react-redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import thunk from "redux-thunk";
+import postsReducer from "./reducers/postsList";
+import {newPostReducer} from "./reducers/newPost"
 import { salonInfoReducer } from './reducers/salonInfo';
+import openModal from './reducers/openModal';
+
 
 const middleware = [thunk];
 
 const rootReducer = combineReducers({
   postsList: postsReducer,
+  newPost: newPostReducer,
   isOpenModal: openModal,
   salonInfo: salonInfoReducer
 });
