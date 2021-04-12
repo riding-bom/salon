@@ -2,16 +2,11 @@ import styled from "styled-components";
 import Button from "./Button";
 
 const StyledButton = styled(Button)`
-  box-sizing: border-box;
-  background-color: ${(props) =>
-    props.children === "WRITE" ? "ligtpink" : "white"};
+  width: ${(props) => (props.width ? props.width + "px" : "20px")};
+  height: ${(props) => (props.height ? props.height + "px" : "20px")};
+  background-color: white;
+  box-shadow: 0 4px 3px 0px gray;
   border: none;
-  border-radius: 5px;
-  padding: 20px;
-  width: ${(props) => (props.width ? props.width + "px" : "150px")};
-  height: 50px;
-  box-shadow: 0 10px 10px 3px rgba(110, 109, 110, 0.24);
-  cursor: pointer;
 `;
 
 export default StyledButton;

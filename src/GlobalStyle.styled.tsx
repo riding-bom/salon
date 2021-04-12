@@ -1,10 +1,14 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-  body {
+  html {
     font-size: 10px;
+    background-color: #ccc;
+  }
+  body * {
+    box-sizing: border-box;
   }
 `;
 

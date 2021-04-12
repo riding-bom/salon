@@ -1,9 +1,12 @@
 import StyledHeader from "containers/Header/Header.styled";
 
+
 const Welcome = () => {
   return (
-  <StyledHeader />
-  )
+    <>
+      <StyledHeader />;
+    </>
+  );
 };
 
 export default Welcome;
