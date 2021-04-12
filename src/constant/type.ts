@@ -1,7 +1,7 @@
 type post = {
   id: string;
   title: string;
-  subTitle: string | null;
+  subTitle: string;
   date: Date;
   content: string;
   category: string;

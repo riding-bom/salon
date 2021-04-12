@@ -20,7 +20,7 @@ const getAllPost = () => (dispatch:Dispatch<action>) => {
       {
         id: "1",
         title: "게시물1",
-        subTitle: null,
+        subTitle: '',
         date: new Date(),
         content: "내용1",
         category: "전체",
@@ -30,7 +30,7 @@ const getAllPost = () => (dispatch:Dispatch<action>) => {
       {
         id: "2",
         title: "게시물2",
-        subTitle: null,
+        subTitle: '',
         date: new Date(),
         content: "내용2",
         category: "전체",
