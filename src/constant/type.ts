@@ -12,12 +12,23 @@ type post = {
 
 type postsList = post[];
 
+type user = {
+  uid: string;
+  displayName: string;
+  email: string;
+  photoURL: string;
+};
+
 type combinedState = CombinedState<{
   postsList: post[];
   isOpenModal: {
     isOpenSignIn: Boolean;
     isOpenSignUp: Boolean;
   };
+  currentUser: {
+    userInfo: user | null;
+    isAuthed: Boolean;
+  };
 }>;
 
-export type { post, postsList, combinedState };
+export type { post, postsList, combinedState, user };

@@ -1,36 +1,27 @@
-import { useDispatch, useSelector } from "react-redux";
 import StyledButton from "components/Button/Button.styled";
 import StyledInputText from "components/InputText/InputText.styled";
 import { combinedState } from "constant/type";
 import ModalDialog from "containers/ModalDialog/ModalDialog";
-import {
-  updateUserAction,
-  updateUserWithGoogle,
-} from "redux/reducers/currentUser";
-import { signinCloseAction, signupOpenAction } from "redux/reducers/openModal";
+import { setUser } from "fb/API";
+import { signUpWithEmail } from "fb/firebase";
 import { useState } from "react";
-import {
-  signInWithEmail,
-  signInWithGoogle,
-  usersCollectionRef,
-} from "fb/firebase";
-import { getUser, setUser } from "fb/API";
+import { useSelector } from "react-redux";
 
-const SignIn = () => {
+const SignUp = () => {
   const isOpenModal = useSelector((state: combinedState) => state.isOpenModal);
+
   const [state, setState] = useState({
     email: "",
     password: "",
+    displayName: "",
   });
-  const { email, password } = state;
+  const { email, password, displayName } = state;
 
-  const dispatch = useDispatch();
-
-  return isOpenModal.isOpenSignIn ? (
+  return isOpenModal.isOpenSignUp ? (
     <ModalDialog>
       <h1>salon</h1>
       <StyledInputText
-        id="email"
+        id="signUpEmail"
         name="email"
         value={email}
         onChange={(e: any) => {
@@ -44,7 +35,7 @@ const SignIn = () => {
       />
       <StyledInputText
         type="password"
-        id="password"
+        id="signUpPassword"
         name="password"
         value={password}
         onChange={(e: any) => {
@@ -56,29 +47,23 @@ const SignIn = () => {
           });
         }}
       />
+      <StyledInputText
+        id="signUpDisplayName"
+        name="displayName"
+        value={displayName}
+        onChange={(e: any) => {
+          setState(() => {
+            return {
+              ...state,
+              displayName: e.target.value,
+            };
+          });
+        }}
+      />
       <StyledButton
         onClick={async () => {
-          await signInWithEmail(email, password);
-          dispatch(signinCloseAction);
-        }}
-      >
-        SIGNIN
-      </StyledButton>
-      <StyledButton
-        onClick={async () => {
-          const res = await signInWithGoogle();
-          if (res.user !== null) {
-            setUser(res.user);
-          }
-          dispatch(signinCloseAction);
-        }}
-      >
-        GOOGLE
-      </StyledButton>
-      <StyledButton
-        onClick={() => {
-          dispatch(signinCloseAction);
-          dispatch(signupOpenAction);
+          const res = await signUpWithEmail(email, password);
+          console.log(res.user);
         }}
       >
         SIGNUP
@@ -87,4 +72,4 @@ const SignIn = () => {
   ) : null;
 };
 
-export default SignIn;
+export default SignUp;
