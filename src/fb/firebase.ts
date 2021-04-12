@@ -42,8 +42,6 @@ const signOut = async () => {
   return res;
 };
 
-const isAuthed = () => !!auth.currentUser;
-
 export {
   firestore,
   usersCollectionRef,
@@ -52,5 +50,4 @@ export {
   signUpWithEmail,
   signInWithEmail,
   signOut,
-  isAuthed,
 };

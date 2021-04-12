@@ -11,7 +11,6 @@ const setUser = async (user: any) => {
 
 const getUser = async (uid: string) => {
   const res = await usersCollectionRef.doc(uid).get();
-  console.log(res.data());
   return res.data();
 };
 

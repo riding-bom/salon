@@ -3,18 +3,10 @@ import StyledButton from "components/Button/Button.styled";
 import StyledInputText from "components/InputText/InputText.styled";
 import { combinedState } from "constant/type";
 import ModalDialog from "containers/ModalDialog/ModalDialog";
-import {
-  updateUserAction,
-  updateUserWithGoogle,
-} from "redux/reducers/currentUser";
 import { signinCloseAction, signupOpenAction } from "redux/reducers/openModal";
 import { useState } from "react";
-import {
-  signInWithEmail,
-  signInWithGoogle,
-  usersCollectionRef,
-} from "fb/firebase";
-import { getUser, setUser } from "fb/API";
+import { signInWithEmail, signInWithGoogle } from "fb/firebase";
+import { setUser } from "fb/API";
 
 const SignIn = () => {
   const isOpenModal = useSelector((state: combinedState) => state.isOpenModal);
@@ -30,8 +22,8 @@ const SignIn = () => {
     <ModalDialog>
       <h1>salon</h1>
       <StyledInputText
-        id="email"
-        name="email"
+        id="signInEmail"
+        name="signInEmail"
         value={email}
         onChange={(e: any) => {
           setState(() => {
@@ -44,8 +36,8 @@ const SignIn = () => {
       />
       <StyledInputText
         type="password"
-        id="password"
-        name="password"
+        id="signInPassword"
+        name="signInPassword"
         value={password}
         onChange={(e: any) => {
           setState(() => {

@@ -63,7 +63,10 @@ const SignUp = () => {
       <StyledButton
         onClick={async () => {
           const res = await signUpWithEmail(email, password);
-          console.log(res.user);
+          if (res.user !== null) {
+            const { uid, email } = res.user;
+            setUser({ uid, email, displayName, photoURL: "" });
+          }
         }}
       >
         SIGNUP

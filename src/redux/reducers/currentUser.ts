@@ -1,7 +1,4 @@
 import { user } from "constant/type";
-import { signInWithGoogle } from "fb/firebase";
-import { Dispatch } from "react";
-import { getUser, setUser } from "fb/API";
 
 const UPDATE_CURRENT_USER = "update-current-user";
 const REMOVE_CURRENT_USER = "remove-current-user";
@@ -11,14 +8,14 @@ type state = {
   isAuthed: Boolean;
 };
 
-const initialState: state = {
-  userInfo: null,
-  isAuthed: false,
-};
-
 type action = {
   type: string;
   payload: user | null;
+};
+
+const initialState: state = {
+  userInfo: null,
+  isAuthed: false,
 };
 
 const updateUserAction = (user: any) => {
@@ -33,19 +30,9 @@ const updateUserAction = (user: any) => {
   };
 };
 
-const updateUserWithGoogle = () => async (dispatch: Dispatch<action>) => {
-  try {
-    const res = await signInWithGoogle();
-    const user = res.user;
-    if (user !== null) {
-      await setUser(user);
-      const user2 = await getUser(user.uid);
-      dispatch(updateUserAction(user2));
-    }
-  } catch (e) {
-    console.error(e);
-  }
-};
+const removeUserAction = () => ({
+  type: REMOVE_CURRENT_USER,
+});
 
 const currentUserReducer = (state = initialState, action: action) => {
   switch (action.type) {
@@ -67,7 +54,7 @@ const currentUserReducer = (state = initialState, action: action) => {
 export default currentUserReducer;
 export {
   updateUserAction,
-  updateUserWithGoogle,
+  removeUserAction,
   UPDATE_CURRENT_USER,
   REMOVE_CURRENT_USER,
 };

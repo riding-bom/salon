@@ -1,33 +1,12 @@
-import { combinedState, user } from "constant/type";
-import { signOut, auth } from "fb/firebase";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  REMOVE_CURRENT_USER,
-  updateUserAction,
-} from "redux/reducers/currentUser";
+import useAuthStateObserver from "customHook/useAuthStateObserver";
+import { signOut } from "fb/firebase";
+import { useDispatch } from "react-redux";
 import { signinOpenAction } from "redux/reducers/openModal";
 
 const LoginTestButton = () => {
-  const currentUser = useSelector((state: combinedState) => state.currentUser);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        dispatch(updateUserAction(user));
-        console.log("login", user);
-      } else {
-        console.log("logOut");
-        dispatch({ type: REMOVE_CURRENT_USER });
-      }
-    });
-
-    return () => {
-      unsubscribe();
-      console.log("unsuscribe");
-    };
-  }, [dispatch]);
+  const currentUser = useAuthStateObserver();
 
   return currentUser.isAuthed ? (
     <>
