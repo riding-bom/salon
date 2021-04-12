@@ -1,11 +1,11 @@
-const SIGNIN_OPEN = "signin-open";
-const SIGNIN_CLOSE = "signin-close";
-const SIGNUP_OPEN = "singnup-open";
-const SIGNUP_CLOSE = "singnup-close";
+const SIGNIN_OPEN = 'signin-open';
+const SIGNIN_CLOSE = 'signin-close';
+const SIGNUP_OPEN = 'singnup-open';
+const SIGNUP_CLOSE = 'singnup-close';
 
 const initialState = {
-  isOpenSignIn: true,
-  isOpenSignUp: false,
+  isOpenSignIn: false,
+  isOpenSignUp: false
 };
 
 type action = {
@@ -22,22 +22,22 @@ const openModal = (state = initialState, action: action) => {
     case SIGNIN_OPEN:
       return {
         ...state,
-        isOpenSignin: true,
+        isOpenSignin: true
       };
     case SIGNIN_CLOSE:
       return {
         ...state,
-        isOpenSignin: false,
+        isOpenSignin: false
       };
     case SIGNUP_OPEN:
       return {
         ...state,
-        isOpenSignup: true,
+        isOpenSignup: true
       };
     case SIGNUP_CLOSE:
       return {
         ...state,
-        isOpenSignup: false,
+        isOpenSignup: false
       };
     default:
       return state;
@@ -45,9 +45,4 @@ const openModal = (state = initialState, action: action) => {
 };
 
 export default openModal;
-export {
-  signinOpenAction,
-  signinCloswAction,
-  signupOpenAction,
-  signupCloseAction,
-};
+export { signinOpenAction, signinCloswAction, signupOpenAction, signupCloseAction };
