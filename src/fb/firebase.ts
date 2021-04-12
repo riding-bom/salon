@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCa1LZW0o-mjNVo0J2AOKo-M2BZxaoxlLU",
@@ -12,6 +13,8 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+const storage = firebase.storage();
 
 const firestore = firebase.firestore();
 const usersCollectionRef = firestore.collection("users");
@@ -43,6 +46,7 @@ const signOut = async () => {
 };
 
 export {
+  storage,
   firestore,
   usersCollectionRef,
   auth,

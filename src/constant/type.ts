@@ -3,6 +3,7 @@ import { CombinedState } from "redux";
 type post = {
   id: string;
   title: string;
+  subTitle: string;
   date: Date;
   content: string;
   category: string;
