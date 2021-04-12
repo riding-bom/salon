@@ -1,4 +1,6 @@
-import Test from "components/Test/Test";
+import StyledHostName from 'components/SalonInfo/HostName/HostName.styled';
+import StyledSalonInfo from 'components/SalonInfo/SalonIntro/SalonInfo.styled';
+import StyledThumbnail from 'components/SalonInfo/Thumbnail/Thumbnail.styled';
 
 type HeaderProps = {
   className?: string;
@@ -7,7 +9,13 @@ type HeaderProps = {
 const Header = ({ className }: HeaderProps) => {
   return (
     <header className={className}>
-      <Test />
+      <div>
+        <StyledThumbnail />
+        <div>
+          <StyledHostName />
+          <StyledSalonInfo />
+        </div>
+      </div>
     </header>
   );
 };
