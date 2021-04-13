@@ -2,20 +2,7 @@ import { usersCollectionRef } from "./firebase";
 import { post } from "../constant/type";
 import { firestore } from "./firebase";
 
-const setUser = async (user: any) => {
-  await usersCollectionRef.doc(user.uid).set({
-    uid: user.uid,
-    displayName: user.displayName,
-    photoURL: user.photoURL,
-    email: user.email,
-  });
-};
-
-const getUser = async (uid: string) => {
-  const res = await usersCollectionRef.doc(uid).get();
-  return res.data();
-};
-
+/* posts API-------------------------------------------------------------------------- */
 const postsCollectionRef = firestore.collection("posts");
 const postsDocRef = (id: string) => postsCollectionRef.doc(id);
 
@@ -32,4 +19,19 @@ const getAllPost = async () => {
   return list;
 };
 
-export { setUser, getUser, addPost, getAllPost };
+/* users API-------------------------------------------------------------------------- */
+const setUser = async (user: any) => {
+  await usersCollectionRef.doc(user.uid).set({
+    uid: user.uid,
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+    email: user.email,
+  });
+};
+
+const getUser = async (uid: string) => {
+  const res = await usersCollectionRef.doc(uid).get();
+  return res.data();
+};
+
+export { getAllPost, addPost, setUser, getUser, };
