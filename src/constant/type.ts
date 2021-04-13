@@ -7,8 +7,8 @@ type post = {
   date: Date;
   content: string;
   category: string;
-  backgroundImage: string | null;
-  backgroundColor: string | null;
+  backgroundImage: string;
+  backgroundColor: string;
 };
 
 type postsList = post[];
@@ -21,7 +21,8 @@ type user = {
 };
 
 type combinedState = CombinedState<{
-  postsList: post[];
+  postsList: postsList;
+  newPost: post;
   isOpenModal: {
     isOpenSignIn: Boolean;
     isOpenSignUp: Boolean;

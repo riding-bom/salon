@@ -5,7 +5,7 @@ import { storage } from "fb/firebase";
 
 /* Draft.js-------------------------------------------------------------------------- */
 // 에디터의 현재 콘텐츠 정보를 추출하는 함수 import
-import { convertToRaw } from "draft-js";
+import { convertToRaw, EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 // draftjs 콘텐츠를 html로 변환하는 함수 import
@@ -22,12 +22,11 @@ const TextEditor = ({ className }: TextEditorProps) => {
   const dispatch = useDispatch();
 
   /* Draft.js-------------------------------------------------------------------------- */
-  const TextToHtml = (editorState: any) =>
+  const TextToHtml = (editorState: EditorState) =>
     draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
-  const onEditorStateChange = (editorState: any) => {
-    // dispatch(contentAction(TextToHtml(editorState)));
-    console.log(TextToHtml(editorState));
+  const onEditorStateChange = (editorState: EditorState) => {
+    dispatch(contentAction(TextToHtml(editorState)));
   };
 
   const uploadImageCallBack = (file: any) => {
