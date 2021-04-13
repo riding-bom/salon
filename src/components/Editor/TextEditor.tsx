@@ -1,7 +1,7 @@
 /* Redux-------------------------------------------------------------------------- */
 import { useDispatch } from "react-redux";
 import { contentAction } from "../../redux/reducers/newPost";
-import { storage } from "fb/firebase";
+import firebaseUpload from 'modules/firebaseUpload'
 
 /* Draft.js-------------------------------------------------------------------------- */
 // 에디터의 현재 콘텐츠 정보를 추출하는 함수 import
@@ -34,7 +34,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
       console.log("Uploading image...");
       console.log(file);
 
-      firebaseUpload(file)
+      firebaseUpload('images', file)
         .then((link) => {
           resolve({
             data: {
@@ -45,30 +45,6 @@ const TextEditor = ({ className }: TextEditorProps) => {
         .catch((error) => {
           reject(error);
         });
-    });
-  };
-
-  const firebaseUpload = (file: any) => {
-    return new Promise((resolve, reject) => {
-      if (!file) {
-        reject("Invalid file.");
-      }
-
-      const uploadTask = storage.ref(`images/${file.name}`).put(file);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          console.log(snapshot);
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          //Gets link back
-          uploadTask.snapshot.ref.getDownloadURL().then((url) => resolve(url));
-        }
-      );
     });
   };
 

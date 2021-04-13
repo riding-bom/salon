@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from "react";
 
-type InputProps = {
+type inputProps = {
   className: string;
   id: string;
   value: string;
@@ -9,7 +9,7 @@ type InputProps = {
   width?: string;
 };
 
-const Input = ({ className, id, value, placeHolder, onChange }: InputProps) => {
+const Input = ({ className, id, value, placeHolder, onChange }: inputProps) => {
   return (
     <div className={className}>
       <input

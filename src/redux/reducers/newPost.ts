@@ -9,6 +9,7 @@ const UPDATE_CONTENT = "update-content";
 const UPDATE_DATE = "update-date";
 const UPDATE_CATEGORY = "update-category";
 const UPDATE_BACKGROUND_COLOR = "update-background-color";
+const UPDATE_BACKGROUND_IMAGE = "update-background-image";
 const RESET_STATE = "reset-state";
 
 const initialState: post = {
@@ -63,6 +64,11 @@ export const backgroundColorAction = (backgroundColor: string) => ({
   payload: backgroundColor,
 });
 
+export const backgroundImageAction = (backgroundImage: unknown) => ({
+  type: UPDATE_BACKGROUND_IMAGE,
+  payload: backgroundImage,
+});
+
 export const resetState = () => ({
   type: RESET_STATE,
 });
@@ -88,8 +94,10 @@ export const newPostReducer = (state = initialState, action: action) => {
       return { ...state, category: action.payload };
     case UPDATE_BACKGROUND_COLOR:
       return { ...state, backgroundColor: action.payload };
+    case UPDATE_BACKGROUND_IMAGE:
+      return { ...state, backgroundImage: action.payload };
     case RESET_STATE:
-      return { ...state, title: "", subTitle: "", content: "", backgroundColor: "", };
+      return { ...state, title: "", subTitle: "", content: "", backgroundColor: "", backgroundImage: "", };
     default:
       return state;
   }

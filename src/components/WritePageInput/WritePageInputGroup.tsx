@@ -1,6 +1,7 @@
 import StyledColorPicker from "components/ColorPicker/ColorPicker.styled";
 import StyledTitleInput from "./TitleInput.styled"
 import StyledSubInput from "./SubInput.styled";
+import StyledBackgroundImageUploader from "components/BackgroundImageUploader/BackgroundImageUploader.styled";
 
 import { useDispatch, useSelector } from "react-redux";
 import { combinedState } from "../../constant/type";
@@ -9,6 +10,7 @@ import { titleAction, subTitleAction } from "../../redux/reducers/newPost";
 type inputGroupProps = {
   className: string;
   backgroundColor: string;
+  backgroundImage: string;
 }
 
 const WritePageInputGroup = ({ className }: inputGroupProps) => {
@@ -31,15 +33,16 @@ const WritePageInputGroup = ({ className }: inputGroupProps) => {
   return (
     <div className={className}>
       <StyledColorPicker className="color-picker" presentColor={newPost.backgroundColor} />
+      <StyledBackgroundImageUploader className="background-image-uploader" />
       <StyledTitleInput
-        className=""
+        className="main-title"
         id="title"
         value={newPost.title}
         placeHolder="제목을 입력하세요"
         onChange={onChangeTitle}
       />
       <StyledSubInput
-        className=""
+        className="sub-title"
         id="SubTitle"
         value={newPost.subTitle}
         placeHolder="소제목을 입력하세요"

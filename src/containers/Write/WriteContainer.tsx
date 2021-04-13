@@ -37,7 +37,7 @@ const WriteContainer = ({ className }: writeProps) => {
   return (
     <section className={className}>
       <StyledSelect className="" />
-      <StyledWritePageInputGroup className="" backgroundColor={newPost.backgroundColor} />
+      <StyledWritePageInputGroup className="" backgroundColor={newPost.backgroundColor} backgroundImage={newPost.backgroundImage}/>
       <StyledTextEditor className="" />
       <StyledButton
         width="600"

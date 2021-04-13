@@ -20,6 +20,7 @@ const StyledColorPicker = styled(ColorPicker)`
 
   .popover {
     position: absolute;
+    right: 0px;
     z-index: 2;
   }
 

@@ -5,7 +5,7 @@ import { backgroundColorAction } from 'redux/reducers/newPost';
 
 type colorPickerProps = {
   className: string;
-  presentColor: string;
+  presentColor?: string;
 }
 
 const ColorPicker = ({ className }:colorPickerProps) => {
