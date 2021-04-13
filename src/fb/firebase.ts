@@ -1,15 +1,15 @@
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
-import "firebase/storage";
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCa1LZW0o-mjNVo0J2AOKo-M2BZxaoxlLU",
-  authDomain: "salon-riding-bom.firebaseapp.com",
-  projectId: "salon-riding-bom",
-  storageBucket: "salon-riding-bom.appspot.com",
-  messagingSenderId: "52085397565",
-  appId: "1:52085397565:web:dcd2a0a121541d7739b254",
+  apiKey: 'AIzaSyCa1LZW0o-mjNVo0J2AOKo-M2BZxaoxlLU',
+  authDomain: 'salon-riding-bom.firebaseapp.com',
+  projectId: 'salon-riding-bom',
+  storageBucket: 'salon-riding-bom.appspot.com',
+  messagingSenderId: '52085397565',
+  appId: '1:52085397565:web:dcd2a0a121541d7739b254'
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -17,13 +17,14 @@ firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 
 const firestore = firebase.firestore();
-const usersCollectionRef = firestore.collection("users");
+const usersCollectionRef = firestore.collection('users');
+const salonInfoCollectionRef = firestore.collection('salonInfo');
 
 const auth = firebase.auth();
 auth.useDeviceLanguage();
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-googleAuthProvider.setCustomParameters({ prompt: "select_account" });
+googleAuthProvider.setCustomParameters({ prompt: 'select_account' });
 
 const signInWithGoogle = async () => {
   const res = await auth.signInWithPopup(googleAuthProvider);
@@ -49,9 +50,10 @@ export {
   storage,
   firestore,
   usersCollectionRef,
+  salonInfoCollectionRef,
   auth,
   signInWithGoogle,
   signUpWithEmail,
   signInWithEmail,
-  signOut,
+  signOut
 };
