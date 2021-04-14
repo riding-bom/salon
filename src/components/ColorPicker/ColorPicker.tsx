@@ -26,13 +26,13 @@ const ColorPicker = ({ className }:colorPickerProps) => {
   };
 
   return (
-    <div className={className}>
+    <div className={className} title="배경색 선택">
         <div className="swatch" onClick={handleClick}>
           <div className="color" />
         </div>
         { displayColorPicker ? <div className="popover">
           <div className="cover" onClick={handleClose}/>
-          <ChromePicker color='#fff' onChange={onColorChange} />
+          <ChromePicker color='#fff' disableAlpha={true} onChangeComplete={onColorChange} />
         </div> : null }
     </div>
   )

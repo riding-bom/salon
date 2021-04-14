@@ -1,25 +1,34 @@
 import firebaseUpload from 'modules/firebaseUpload'
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useRef } from 'react';
 
 import ImageUploader from 'components/ImageUploader/ImageUploader'
 import Button from 'components/Button/Button';
 import { useDispatch } from 'react-redux';
 import { backgroundImageAction } from 'redux/reducers/newPost';
+import ImageIcon from 'essets/Icons/ImageIcon'
 
 type backgroundImageUploaderProps = {
   className?: string;
+  color: string;
 }
 
-const BackgroundImageUploader = ({ className }:backgroundImageUploaderProps) => {
+const BackgroundImageUploader = ({ className, color="#000" }:backgroundImageUploaderProps) => {
   const dispatch = useDispatch();
-
-  const [file, setFile] = useState(null)
-  
   const fileInput = useRef<HTMLInputElement>(null);
   
   const fileSelectedHandler = (e: ChangeEvent<any>) => {
-    console.log(e.target.files[0]);
-    setFile(e.target.files[0])
+    return new Promise((resolve, reject) => {
+      console.log("Uploading image...");
+      firebaseUpload('backgroundImages', e.target.files[0])
+        .then((link) => {
+          resolve(
+            dispatch(backgroundImageAction(link))
+          );
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    })
   }
   
   const onSelectHandler = () => {
@@ -29,32 +38,10 @@ const BackgroundImageUploader = ({ className }:backgroundImageUploaderProps) => 
     fileInput.current.click();
   };
 
-  const fileUploadHandler = () => {
-    return new Promise((resolve, reject) => {
-      console.log("Uploading image...");
-      console.log(file);
-
-      firebaseUpload('backgroundImages', file)
-        .then((link) => {
-          resolve(
-            dispatch(backgroundImageAction(link))
-          );
-        })
-        .catch((error) => {
-          reject(error);
-        });
-
-      setFile(null)
-    })
-  };
-
   return (
-    <div className={className}>
+    <div className={className} title="배경 이미지 선택">
       <ImageUploader className="image-uploader" onChange={fileSelectedHandler} ref={fileInput} />
-      {file ?
-        <Button className='upload-button' onClick={fileUploadHandler} children='upload' />
-        :
-        <Button className='select-button' onClick={onSelectHandler} children='select' />}
+      <Button className='select-button' label="image-select" onClick={onSelectHandler} children={<ImageIcon color={color}/>} />
     </div>
   )
 };

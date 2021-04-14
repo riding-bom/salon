@@ -4,6 +4,7 @@ type buttonProps = {
   width?: string;
   height?: string;
   className?: string;
+  label?: string
   onClick?: any;
   onSubmit?: () => void;
 };
@@ -12,6 +13,7 @@ const Button = ({
   children,
   className,
   type,
+  label,
   onClick,
   onSubmit,
 }: buttonProps) => {
@@ -19,6 +21,7 @@ const Button = ({
     <button
       className={className}
       type={type}
+      aria-label={label}
       onClick={onClick}
       onSubmit={onSubmit}
     >

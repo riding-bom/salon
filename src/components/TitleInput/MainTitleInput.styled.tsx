@@ -1,31 +1,31 @@
 import styled from "styled-components";
-import Input from "./Input";
+import TitleInput from "./TitleInput";
 
-const StyledTitleInput = styled(Input)`
+const StyledMainTitleInput = styled(TitleInput)`
   position: relative;
-  margin: 0 2rem;
+  width: 80vw;
 
   & input:focus {
     outline: none;
   }
 
   & input {
-    padding: 1rem;
     background-color: transparent;
     box-sizing: border-box;
     width: ${(props) => (props.width ? props.width + "px" : "100%")};
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: 3.8rem;
+    font-weight: 500;
     border: 0px;
+    color: ${(props) => props.color ? props.color : "black"}
   }
 
   & label {
     position: absolute;
     top: 1rem;
-    left: 1rem;
-    font-size: 1.8rem;
+    left: 0;
+    font-size: 3.8rem;
     color: lightgrey;
   }
 `;
 
-export default StyledTitleInput;
+export default StyledMainTitleInput;
