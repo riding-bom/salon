@@ -15,28 +15,38 @@ const StyledDialog = styled(Dialog)`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-
-  & * {
-    margin: 10px 0;
-    font-size: 1.2rem;
-  }
+  font-size: 1.4rem;
 
   & > h1 {
-    font-size: 2rem;
+    font-size: 2.4rem;
+    margin: 20px 0;
+  }
+
+  & > form {
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 5px;
   }
 
   & > button {
     width: 100%;
     height: 25px;
+    margin: 10px 0;
   }
 
-  & button:last-child {
+  & .close-button {
     box-shadow: none;
     position: absolute;
     top: 20px;
     right: 20px;
     width: 20px;
     height: 20px;
+    padding: 0;
+    margin: 0;
+
+    & > svg {
+      margin: 0;
+    }
   }
 `;
 

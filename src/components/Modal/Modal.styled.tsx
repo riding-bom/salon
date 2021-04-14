@@ -10,6 +10,7 @@ const StyledModal = styled(Modal)`
   bottom: 0;
   left: 0;
   right: 0;
+  backdrop-filter: blur(5px);
 `;
 
 export default StyledModal;

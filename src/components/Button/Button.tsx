@@ -1,11 +1,14 @@
+import { FormEventHandler, MouseEventHandler } from "react";
+
 type buttonProps = {
   children: React.ReactNode;
   type: "button" | "submit" | "reset" | undefined;
   width?: string;
   height?: string;
   className?: string;
-  onClick?: any;
-  onSubmit?: () => void;
+  onClick?: MouseEventHandler;
+  onSubmit?: FormEventHandler;
+  disabled?: boolean;
 };
 
 const Button = ({
@@ -14,6 +17,7 @@ const Button = ({
   type,
   onClick,
   onSubmit,
+  disabled,
 }: buttonProps) => {
   return (
     <button
@@ -21,6 +25,7 @@ const Button = ({
       type={type}
       onClick={onClick}
       onSubmit={onSubmit}
+      disabled={disabled}
     >
       {children}
     </button>

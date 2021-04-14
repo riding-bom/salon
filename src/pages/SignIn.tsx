@@ -1,12 +1,15 @@
+import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { signInWithEmail, signInWithGoogle } from "fb/firebase";
+import { signinCloseAction, signupOpenAction } from "redux/reducers/openModal";
+import { setUser } from "fb/API";
+import { combinedState } from "constant/type";
 import StyledButton from "components/Button/Button.styled";
 import StyledInputText from "components/InputText/InputText.styled";
-import { combinedState } from "constant/type";
+import StyledValidationText from "components/ValidationText/ValidationText.styled";
 import ModalDialog from "containers/ModalDialog/ModalDialog";
-import { signinCloseAction, signupOpenAction } from "redux/reducers/openModal";
-import { useState } from "react";
-import { signInWithEmail, signInWithGoogle } from "fb/firebase";
-import { setUser } from "fb/API";
+import validateEmail from "utills/validateEmail";
+import StyledPasswordInput from "containers/PasswordInput/PasswordInput.styled";
 
 const SignIn = () => {
   const isOpenModal = useSelector((state: combinedState) => state.isOpenModal);
@@ -18,51 +21,80 @@ const SignIn = () => {
 
   const dispatch = useDispatch();
 
+  const setEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    setState(() => {
+      return {
+        ...state,
+        email: e.target.value,
+      };
+    });
+  };
+
+  const setPassword = (e: ChangeEvent<HTMLInputElement>) => {
+    setState(() => {
+      return {
+        ...state,
+        password: e.target.value,
+      };
+    });
+  };
+
+  const setInitialState = () => {
+    setState(() => {
+      return {
+        email: "",
+        password: "",
+      };
+    });
+  };
+
+  const updateUserWithGoogle = async () => {
+    const res = await signInWithGoogle();
+    if (res.user !== null) {
+      setUser(res.user);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      isOpenModal.isOpenSignIn && setInitialState();
+    };
+  }, [isOpenModal]);
+
   return isOpenModal.isOpenSignIn ? (
     <ModalDialog>
       <h1>salon</h1>
       <StyledInputText
         id="signInEmail"
-        name="signInEmail"
+        name="Email"
         value={email}
-        onChange={(e: any) => {
-          setState(() => {
-            return {
-              ...state,
-              email: e.target.value,
-            };
-          });
-        }}
+        onChange={setEmail}
       />
-      <StyledInputText
-        type="password"
+      {validateEmail(email) || (
+        <StyledValidationText>
+          이메일 형식이 맞지 않습니다.
+        </StyledValidationText>
+      )}
+      <StyledPasswordInput
         id="signInPassword"
-        name="signInPassword"
         value={password}
-        onChange={(e: any) => {
-          setState(() => {
-            return {
-              ...state,
-              password: e.target.value,
-            };
-          });
-        }}
+        onChange={setPassword}
       />
       <StyledButton
         onClick={async () => {
           await signInWithEmail(email, password);
           dispatch(signinCloseAction);
+          setInitialState();
         }}
+        disabled={!(validateEmail(email) && password !== "")}
       >
         SIGNIN
       </StyledButton>
       <StyledButton
         onClick={async () => {
-          const res = await signInWithGoogle();
-          if (res.user !== null) {
-            setUser(res.user);
-          }
+          await updateUserWithGoogle();
           dispatch(signinCloseAction);
+          setInitialState();
         }}
       >
         GOOGLE
@@ -71,6 +103,7 @@ const SignIn = () => {
         onClick={() => {
           dispatch(signinCloseAction);
           dispatch(signupOpenAction);
+          setInitialState();
         }}
       >
         SIGNUP
