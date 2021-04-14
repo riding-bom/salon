@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { combinedState } from "constant/type";
 import { idAction, dateAction, resetState } from "redux/reducers/newPost";
 import { addPost } from "fb/API";
-import StyledSelect from "components/Select/Select.styled";
+import StyledWriteHeader from "components/WriteHeader/WriteHeader.styled";
 import StyledTextEditor from "components/Editor/TextEditor.styled";
 import StyledButton from "components/Button/Button.styled";
-import StyledWritePageInputGroup from "components/WritePageInput/WritePageInputGroup.styled";
 
 type writeProps = {
   className: string;
@@ -36,11 +35,11 @@ const WriteContainer = ({ className }: writeProps) => {
 
   return (
     <section className={className}>
-      <StyledSelect className="" />
-      <StyledWritePageInputGroup className="" backgroundColor={newPost.backgroundColor} backgroundImage={newPost.backgroundImage}/>
+      <StyledWriteHeader className="" backgroundColor={newPost.backgroundColor} backgroundImage={newPost.backgroundImage}/>
       <StyledTextEditor className="" />
       <StyledButton
-        width="600"
+        width="300"
+        height="30"
         className="write-submit"
         children="UPLOAD"
         type="button"
