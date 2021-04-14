@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import WriteContainer from './WriteContainer';
 
 const StyledWriteContainer = styled(WriteContainer)`
+  background-color: #fff;
   display: flex;
   flex-flow: column nowrap;
   width: 960px;
@@ -10,6 +11,10 @@ const StyledWriteContainer = styled(WriteContainer)`
 
   & > * {
     margin: 10px 0;
+  }
+  
+  & > button {
+    margin: 0 auto;
   }
 `;
 

@@ -8,7 +8,9 @@ const UPDATE_SUB_TITLE = "update-sub-title";
 const UPDATE_CONTENT = "update-content";
 const UPDATE_DATE = "update-date";
 const UPDATE_CATEGORY = "update-category";
-const RESET_TITLE = "reset-Title";
+const UPDATE_BACKGROUND_COLOR = "update-background-color";
+const UPDATE_BACKGROUND_IMAGE = "update-background-image";
+const RESET_STATE = "reset-state";
 
 const initialState: post = {
   id: "0",
@@ -57,8 +59,18 @@ export const categoryAction = (
   payload: category,
 });
 
-export const resetTitleAction = () => ({
-  type: RESET_TITLE,
+export const backgroundColorAction = (backgroundColor: string) => ({
+  type: UPDATE_BACKGROUND_COLOR,
+  payload: backgroundColor,
+});
+
+export const backgroundImageAction = (backgroundImage: unknown) => ({
+  type: UPDATE_BACKGROUND_IMAGE,
+  payload: backgroundImage,
+});
+
+export const resetState = () => ({
+  type: RESET_STATE,
 });
 
 type action = {
@@ -80,8 +92,12 @@ export const newPostReducer = (state = initialState, action: action) => {
       return { ...state, date: action.payload };
     case UPDATE_CATEGORY:
       return { ...state, category: action.payload };
-    case RESET_TITLE:
-      return { ...state, title: "" };
+    case UPDATE_BACKGROUND_COLOR:
+      return { ...state, backgroundColor: action.payload };
+    case UPDATE_BACKGROUND_IMAGE:
+      return { ...state, backgroundImage: action.payload };
+    case RESET_STATE:
+      return { ...state, title: "", subTitle: "", content: "", backgroundColor: "", backgroundImage: "", };
     default:
       return state;
   }

@@ -27,14 +27,9 @@ const Select = ({ className }: selectProps) => {
 
   return (
     <select name="category" id="categorySelect" onChange={onChangeCategory}>
-      {/* <option value="poem">POEM</option>
-      <option value="novel">NOVEL</option>
-      <option value="essay">ESSAY</option> */}
-      {category.map((v, i) => {
-          return (
-            <option value={v} key={i}>{v}</option>
-          )
-        })}
+      {category
+        .map((v, i) => <option value={v} key={i}>{v}</option>)
+      }
     </select>
   );
 };
