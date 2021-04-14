@@ -23,12 +23,12 @@ type user = {
 type combinedState = CombinedState<{
   postsList: post[];
   isOpenModal: {
-    isOpenSignIn: Boolean;
-    isOpenSignUp: Boolean;
+    isOpenSignIn: boolean;
+    isOpenSignUp: boolean;
   };
   currentUser: {
     userInfo: user | null;
-    isAuthed: Boolean;
+    isAuthed: boolean;
   };
 }>;
 

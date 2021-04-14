@@ -7,6 +7,15 @@ const StyledButton = styled(Button)`
   background-color: white;
   box-shadow: 0 4px 3px 0px gray;
   border: none;
+
+  &:hover {
+    background-color: #76ecf5;
+  }
+
+  &:disabled {
+    background-color: #808080;
+    cursor: not-allowed;
+  }
 `;
 
 export default StyledButton;

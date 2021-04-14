@@ -16,9 +16,11 @@ const StyledInputText = styled(InputText)`
 
   & > label {
     position: absolute;
-    top: -10px;
+    top: 3px;
     left: 5px;
     color: gray;
+    padding: 0;
+    margin: 0;
   }
 `;
 
