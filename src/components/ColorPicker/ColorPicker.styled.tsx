@@ -3,7 +3,7 @@ import ColorPicker from './ColorPicker'
 
 const StyledColorPicker = styled(ColorPicker)`
   .color {
-    width: 36px;
+    width: 28px;
     height: 14px;
     border-radius: 2px;
     background: ${(props) => (props.presentColor ? props.presentColor : '#fff')};
@@ -21,7 +21,6 @@ const StyledColorPicker = styled(ColorPicker)`
   .popover {
     position: absolute;
     right: 0px;
-    z-index: 2;
   }
 
   .cover {

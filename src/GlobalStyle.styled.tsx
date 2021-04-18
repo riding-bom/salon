@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
   html {
     font-size: 10px;
-    background-color: #ccc;
+    background-color: #fff;
   }
   body * {
     box-sizing: border-box;

@@ -1,6 +1,7 @@
 import { CombinedState } from "redux";
 
 type post = {
+  access: string;
   id: string;
   title: string;
   subTitle: string;

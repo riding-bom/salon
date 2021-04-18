@@ -9,12 +9,14 @@ type buttonProps = {
   onClick?: MouseEventHandler;
   onSubmit?: FormEventHandler;
   disabled?: boolean;
+  label?: string;
 };
 
 const Button = ({
   children,
   className,
   type,
+  label,
   onClick,
   onSubmit,
   disabled,
@@ -23,6 +25,7 @@ const Button = ({
     <button
       className={className}
       type={type}
+      aria-label={label}
       onClick={onClick}
       onSubmit={onSubmit}
       disabled={disabled}

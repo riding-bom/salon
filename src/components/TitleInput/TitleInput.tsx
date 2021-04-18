@@ -1,15 +1,16 @@
 import { ChangeEventHandler } from "react";
 
-type inputProps = {
+type titleInputProps = {
   className: string;
   id: string;
   value: string;
   placeHolder: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
   width?: string;
+  color?: string;
 };
 
-const Input = ({ className, id, value, placeHolder, onChange }: inputProps) => {
+const TitleInput = ({ className, id, value, placeHolder, onChange }: titleInputProps) => {
   return (
     <div className={className}>
       <input
@@ -25,8 +26,4 @@ const Input = ({ className, id, value, placeHolder, onChange }: inputProps) => {
   );
 };
 
-Input.defaultProps = {
-  width: "100%",
-};
-
-export default Input;
+export default TitleInput;

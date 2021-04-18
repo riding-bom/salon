@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import Input from "./Input";
+import TitleInput from "./TitleInput";
 
-const StyledSubInput = styled(Input)`
+const StyledSubTitleInput = styled(TitleInput)`
   position: relative;
-  margin: 0 2rem;
-  border-bottom: 1px solid black;
+  width: 80vw;
 
   & input:focus {
     outline: none;
@@ -14,16 +13,17 @@ const StyledSubInput = styled(Input)`
     background-color: transparent;
     box-sizing: border-box;
     width: ${(props) => (props.width ? props.width + "px" : "100%")};
-    font-size: 1.4rem;
+    font-size: 2.4rem;
     border: 0px;
+    color: ${(props) => props.color ? props.color : "black"}
   }
 
   & label {
     position: absolute;
-    left: 1rem;
-    font-size: 1.4rem;
+    left: 0;
+    font-size: 2.4rem;
     color: lightgrey;
   }
 `;
 
-export default StyledSubInput;
+export default StyledSubTitleInput;
