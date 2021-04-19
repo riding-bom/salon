@@ -4,12 +4,13 @@ import { signInWithEmail, signInWithGoogle } from "fb/firebase";
 import { signinCloseAction, signupOpenAction } from "redux/reducers/openModal";
 import { setUser } from "fb/API";
 import { combinedState } from "constant/type";
+import StyledPasswordInput from "containers/PasswordInput/PasswordInput.styled";
 import StyledButton from "components/Button/Button.styled";
 import StyledInputText from "components/InputText/InputText.styled";
 import StyledValidationText from "components/ValidationText/ValidationText.styled";
 import ModalDialog from "containers/ModalDialog/ModalDialog";
+import Title from "components/Title/Title";
 import validateEmail from "utills/validateEmail";
-import StyledPasswordInput from "containers/PasswordInput/PasswordInput.styled";
 
 const SignIn = () => {
   const isOpenModal = useSelector((state: combinedState) => state.isOpenModal);
@@ -63,14 +64,14 @@ const SignIn = () => {
 
   return isOpenModal.isOpenSignIn ? (
     <ModalDialog>
-      <h1>salon</h1>
+      <Title level={1}>salon</Title>
       <StyledInputText
         id="signInEmail"
         name="Email"
         value={email}
         onChange={setEmail}
       />
-      {validateEmail(email) || (
+      {validateEmail(email) || email === "" || (
         <StyledValidationText>
           이메일 형식이 맞지 않습니다.
         </StyledValidationText>
