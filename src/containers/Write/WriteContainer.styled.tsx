@@ -2,14 +2,18 @@ import styled from 'styled-components';
 import WriteContainer from './WriteContainer';
 
 const StyledWriteContainer = styled(WriteContainer)`
+  position: relative;
+  background-color: #fff;
   display: flex;
   flex-flow: column nowrap;
-  width: 960px;
+  align-items: center;
   margin: 0 auto;
-  padding: 20px;
-
-  & > * {
-    margin: 10px 0;
+  
+  & > button {
+    position: fixed;
+    bottom: 10px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
   }
 `;
 

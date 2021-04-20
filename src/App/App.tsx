@@ -3,6 +3,7 @@ import StoreProvider from "redux/store";
 import SignIn from "pages/SignIn";
 import LoginTestButton from "components/LoginTestButton/LoginTestButton";
 import SignUp from "pages/SignUp";
+import Pagination from "containers/Pagination/Pagination";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <SignIn />
       <SignUp />
       <LoginTestButton />
+      <Pagination />
     </StoreProvider>
   );
 }

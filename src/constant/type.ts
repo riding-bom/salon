@@ -1,14 +1,15 @@
 import { CombinedState } from "redux";
 
 type post = {
+  access: string;
   id: string;
   title: string;
   subTitle: string;
   date: Date;
   content: string;
   category: string;
-  backgroundImage: string | null;
-  backgroundColor: string | null;
+  backgroundImage: string;
+  backgroundColor: string;
 };
 
 type postsList = post[];
@@ -21,15 +22,17 @@ type user = {
 };
 
 type combinedState = CombinedState<{
-  postsList: post[];
+  postsList: postsList;
+  newPost: post;
   isOpenModal: {
-    isOpenSignIn: Boolean;
-    isOpenSignUp: Boolean;
+    isOpenSignIn: boolean;
+    isOpenSignUp: boolean;
   };
   currentUser: {
     userInfo: user | null;
-    isAuthed: Boolean;
+    isAuthed: boolean;
   };
+  renderList: postsList;
 }>;
 
 export type { post, postsList, combinedState, user };

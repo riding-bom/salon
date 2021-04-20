@@ -1,3 +1,5 @@
+import { ChangeEventHandler } from "react";
+
 type inputTextProps = {
   id: string;
   name: string;
@@ -5,7 +7,7 @@ type inputTextProps = {
   type?: string;
   className?: string;
   value?: string;
-  onChange?: any;
+  onChange?: ChangeEventHandler;
 };
 
 const InputText = ({
@@ -27,7 +29,7 @@ const InputText = ({
         value={value}
         onChange={onChange}
       ></input>
-      <label htmlFor={id}>{name}</label>
+      <label htmlFor={id}>{value ? "" : name}</label>
     </form>
   );
 };

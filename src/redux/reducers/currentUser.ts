@@ -5,7 +5,7 @@ const REMOVE_CURRENT_USER = "remove-current-user";
 
 type state = {
   userInfo: user | null;
-  isAuthed: Boolean;
+  isAuthed: boolean;
 };
 
 type action = {

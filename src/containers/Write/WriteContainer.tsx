@@ -1,9 +1,9 @@
-import { FormEvent, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { idAction } from "redux/reducers/newPost";
-import StyledSelect from "components/Select/Select.styled";
-import StyledTitleInput from "components/TitleInput/TitleInput.styled";
-import StyledSubInput from "components/TitleInput/SubInput.styled";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { combinedState } from "constant/type";
+import { idAction, dateAction, resetState } from "redux/reducers/newPost";
+import { addPost } from "fb/API";
+import StyledWriteHeader from "components/WriteHeader/WriteHeader.styled";
 import StyledTextEditor from "components/Editor/TextEditor.styled";
 import StyledButton from "components/Button/Button.styled";
 
@@ -12,37 +12,40 @@ type writeProps = {
 };
 
 const WriteContainer = ({ className }: writeProps) => {
+  const newPost = useSelector(
+    (state: combinedState) => state.newPost
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(idAction());
   }, []);
 
-  const uploadPost = (e: FormEvent) => {
-    e.preventDefault();
+  const onChangeIdAndDate = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (newPost.title === '' || newPost.content === '') {
+      return;
+    } else {
+      dispatch(dateAction(new Date()));
+      await addPost(newPost);
+      //TODO: newPost 상태 reset 함수 content 관련 reset 오류 처리
+      dispatch(resetState());
+    }
   };
 
   return (
-    <form className={className} onSubmit={uploadPost}>
-      <StyledSelect className="" />
-      <StyledTitleInput
-        className=""
-        label="title"
-        placeHolder="제목을 입력하세요"
-      />
-      <StyledSubInput
-        className=""
-        label="SubTitle"
-        placeHolder="소제목을 입력하세요"
-      />
+    <section className={className}>
+      <StyledWriteHeader className="" backgroundColor={newPost.backgroundColor} backgroundImage={newPost.backgroundImage}/>
       <StyledTextEditor className="" />
       <StyledButton
-        width="960"
+        width="300"
+        height="30"
         className="write-submit"
         children="UPLOAD"
-        type="submit"
+        type="button"
+        onClick={onChangeIdAndDate}
       />
-    </form>
+    </section>
   );
 };
 
