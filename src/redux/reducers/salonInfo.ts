@@ -1,6 +1,6 @@
-const CHANGE_NAME = 'CHANGE_NAME';
-const SALON_INTRO = 'SALON_INTRO';
-const THUMBNAIL = 'THUMBNAIL';
+const CHANGE_NAME = "CHANGE_NAME";
+const SALON_INTRO = "SALON_INTRO";
+const THUMBNAIL = "THUMBNAIL";
 
 type salonAction = {
   type: string;
@@ -8,9 +8,9 @@ type salonAction = {
 };
 
 const initialState = {
-  hostName: '',
-  salonIntro: '',
-  thumbnail: 'http://file2.nocutnews.co.kr/newsroom/image/2013/08/24/20130824110338109792.jpg'
+  hostName: "",
+  salonIntro: "",
+  thumbnail: "http://file2.nocutnews.co.kr/newsroom/image/2013/08/24/20130824110338109792.jpg"
 };
 
 const changeNameAction = (newName: string) => ({
