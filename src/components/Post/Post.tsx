@@ -1,5 +1,5 @@
-import Title from "components/Title/Title"
-import { htmlToText } from 'html-to-text'
+import Title from "components/Title/Title";
+import { htmlToText } from "html-to-text";
 
 type postProps = {
   className?: string;
@@ -11,13 +11,19 @@ type postProps = {
   date?: string;
   likeCount?: number;
   commentCount?: number;
-}
+};
 //TODO: access에 따른 render 여부 접근 여부 설정
 
-const Post = ({ className, access, thumbnail, title, subTitle, summary, date }: postProps ) => {
-  const summaryToText = summary
-    ? htmlToText(summary, {wordwrap: null})
-    : "";
+const Post = ({
+  className,
+  access,
+  thumbnail,
+  title,
+  subTitle,
+  summary,
+  date,
+}: postProps) => {
+  const summaryToText = summary ? htmlToText(summary, { wordwrap: null }) : "";
 
   return (
     <li className={className}>
@@ -27,10 +33,7 @@ const Post = ({ className, access, thumbnail, title, subTitle, summary, date }: 
         <p>{summaryToText}</p>
         <span>{date}</span>
       </div>
-      { thumbnail
-          ? <img src={thumbnail} alt="thumbnail" />
-          : null
-      }
+      {thumbnail ? <img src={thumbnail} alt="thumbnail" /> : null}
       {/*
       access
       thumbnail
@@ -42,7 +45,7 @@ const Post = ({ className, access, thumbnail, title, subTitle, summary, date }: 
       commentCount
        */}
     </li>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;
