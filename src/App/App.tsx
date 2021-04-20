@@ -4,6 +4,7 @@ import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import StyledWriteContainer from "containers/WriteContainer/WriteContainer.styled";
+import Pagination from "containers/Pagination/Pagination";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         
         <SignIn />
         <SignUp />
+        <Pagination />
       </Router>
     </StoreProvider>
   );

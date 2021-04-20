@@ -25,13 +25,14 @@ type combinedState = CombinedState<{
   postsList: postsList;
   newPost: post;
   isOpenModal: {
-    isOpenSignIn: Boolean;
-    isOpenSignUp: Boolean;
+    isOpenSignIn: boolean;
+    isOpenSignUp: boolean;
   };
   currentUser: {
     userInfo: user | null;
-    isAuthed: Boolean;
+    isAuthed: boolean;
   };
+  renderList: postsList;
 }>;
 
 export type { post, postsList, combinedState, user };

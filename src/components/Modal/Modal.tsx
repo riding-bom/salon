@@ -10,7 +10,7 @@ const Modal = ({ children, className }: modalProps) => {
   const dispatch = useDispatch();
 
   const closeModal = (e: any) => {
-    if (!e.target.matches("div")) return;
+    if (!e.target.matches("div, .close-button, .close-button *")) return;
     dispatch(signinCloseAction);
     dispatch(signupCloseAction);
   };
