@@ -35,7 +35,7 @@ const ListContainer = ({ className}: listContainerProps ) => {
             title={post.title}
             subTitle={post.subTitle}
             summary={post.content}
-            date={`${firebase.firestore.Timestamp.now()}`}
+            date={`${firebase.firestore.Timestamp.now().toDate()}`}
           />
         </Link>)
       }
