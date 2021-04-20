@@ -7,8 +7,10 @@ import StyledBackgroundImageUploader from "components/BackgroundImageUploader/Ba
 
 import { useDispatch, useSelector } from "react-redux";
 import { combinedState } from "../../constant/type";
-import { titleAction, subTitleAction } from "../../redux/reducers/newPost";
+import { titleAction, subTitleAction, resetBackground } from "../../redux/reducers/newPost";
 import invertColor from "modules/calOppositeColor";
+import CancelIcon from "essets/Icons/CancelIcon";
+import Button from "components/Button/Button";
 
 type writeHeaderProps = {
   className: string;
@@ -24,6 +26,10 @@ const WriteHeader = ({ className }: writeHeaderProps) => {
   );
 
   const dispatch = useDispatch();
+
+  const onClickResetButton = () => {
+    dispatch(resetBackground())
+  }
 
   const onChangeTitle = ({ target }: { target: HTMLInputElement }) => {
     dispatch(titleAction(target.value));
@@ -42,7 +48,16 @@ const WriteHeader = ({ className }: writeHeaderProps) => {
         <StyledAccessSelector className="access-select" color={oppositeColor} />
       </div>
       <div className="background-group">
-        <StyledBackgroundImageUploader className="background-image-uploader" color={oppositeColor} />
+        {newPost.backgroundImage === ""
+          ? <StyledBackgroundImageUploader className="background-image-uploader" color={oppositeColor} />
+          : <Button
+              className="background-reset"
+              type="button"
+              children={<CancelIcon color={oppositeColor} />}
+              label="background-reset-button"
+              onClick={onClickResetButton}
+            />
+        }
         <StyledColorPicker className="color-picker" presentColor={newPost.backgroundColor} />
       </div>
       <div className="title-group">

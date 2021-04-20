@@ -21,6 +21,7 @@ const BackgroundImageUploader = ({ className, color="#000" }:backgroundImageUplo
       console.log("Uploading image...");
       firebaseUpload('backgroundImages', e.target.files[0])
         .then((link) => {
+          console.log(link);
           resolve(
             dispatch(backgroundImageAction(link))
           );

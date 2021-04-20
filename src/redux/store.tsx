@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
 import currentUserReducer from "./reducers/currentUser";
-import postsReducer from "./reducers/postsList";
+import { postsReducer } from "./reducers/postsList";
 import { newPostReducer } from "./reducers/newPost";
 import { salonInfoReducer } from "./reducers/salonInfo";
 import openModal from "./reducers/openModal";

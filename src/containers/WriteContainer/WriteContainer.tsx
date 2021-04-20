@@ -7,11 +7,11 @@ import StyledWriteHeader from "components/WriteHeader/WriteHeader.styled";
 import StyledTextEditor from "components/Editor/TextEditor.styled";
 import StyledButton from "components/Button/Button.styled";
 
-type writeProps = {
-  className: string;
+type writeContainerProps = {
+  className?: string;
 };
 
-const WriteContainer = ({ className }: writeProps) => {
+const WriteContainer = ({ className }: writeContainerProps) => {
   const newPost = useSelector(
     (state: combinedState) => state.newPost
   );

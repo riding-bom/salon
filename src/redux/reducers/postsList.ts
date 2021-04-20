@@ -25,5 +25,4 @@ const postsReducer = (state = initialState, action: action) => {
   }
 };
 
-export default postsReducer;
-export { getAllPostAsync };
+export { getAllPostAsync, postsReducer };

@@ -6,8 +6,9 @@ const firebaseUpload = (dir: string, file: any) => {
     if (!file) {
       reject("Invalid file.");
     }
-
-    const uploadTask = storage.ref(`${dir}/${file.name}`).put(file);
+    console.log(file);
+    
+    const uploadTask = storage.ref(`${dir}/${new Date() + ' ' + file.name}`).put(file);
 
     uploadTask.on(
       "state_changed",
@@ -19,7 +20,7 @@ const firebaseUpload = (dir: string, file: any) => {
       },
       () => {
         //Gets link back
-        uploadTask.snapshot.ref.getDownloadURL().then((url) => resolve(url));
+        return uploadTask.snapshot.ref.getDownloadURL().then((url) => resolve(url));
       }
     );
   });
