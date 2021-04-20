@@ -4,6 +4,7 @@ import StyledHostName from "components/SalonInfo/HostName/HostName.styled";
 import Nav from "containers/Nav/Nav";
 import StyledSalonInfo from "components/SalonInfo/SalonIntro/SalonInfo.styled";
 import StyledThumbnail from "components/SalonInfo/Thumbnail/Thumbnail.styled";
+import InputSalonInfo from "containers/InputSalonInfo/InputSalonInfo";
 
 type HeaderProps = {
   className?: string;
@@ -27,6 +28,9 @@ const Header = ({ className }: HeaderProps) => {
           <Nav id="4" type="Search" />
           <Nav id="5" type="Setting" />
         </ul>
+        <div>
+          <InputSalonInfo />
+        </div>
       </div>
     </header>
   );
