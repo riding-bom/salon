@@ -32,6 +32,7 @@ type combinedState = CombinedState<{
     userInfo: user | null;
     isAuthed: boolean;
   };
+  renderList: postsList;
 }>;
 
 export type { post, postsList, combinedState, user };
