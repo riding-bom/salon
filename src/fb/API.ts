@@ -2,7 +2,7 @@ import { usersCollectionRef, salonInfoCollectionRef, firestore } from './firebas
 import { post } from '../constant/type';
 
 /* posts API-------------------------------------------------------------------------- */
-const postsCollectionRef = firestore.collection("posts");
+const postsCollectionRef = firestore.collection('posts');
 const postsDocRef = (id: string) => postsCollectionRef.doc(id);
 
 const addPost = async (newPost: post) => {
@@ -22,7 +22,7 @@ const setUser = async (user: any) => {
     uid: user.uid,
     displayName: user.displayName,
     photoURL: user.photoURL,
-    email: user.email,
+    email: user.email
   });
 };
 
@@ -32,11 +32,16 @@ const getUser = async (uid: string) => {
 };
 
 const setSalonInfo = async (salonInfo: any) => {
-  await salonInfoCollectionRef.doc().set({
+  await salonInfoCollectionRef.doc('salonInfoSample').set({
     hostName: salonInfo.hostName,
     salonIntro: salonInfo.salonIntro,
     thumbnail: salonInfo.thumbnail
   });
 };
 
-export { getAllPost, addPost, setUser, getUser, setSalonInfo, };
+const getSalonInfo = async () => {
+  const res = await salonInfoCollectionRef.doc('salonInfoSample').get();
+  return res;
+};
+
+export { setUser, getUser, setSalonInfo, getSalonInfo, addPost, getAllPost };
