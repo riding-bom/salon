@@ -11,8 +11,14 @@ const StyledHeader = styled(Header)`
   /* background-color: pink; */
 
   & > div {
-    margin-left: 215px;
+    /* margin-left: 215px; */
     display: flex;
+    margin: 0 auto;
+    max-width: 850px;
+
+    ul {
+      display: flex;
+    }
 
     & > div {
       display: flex;

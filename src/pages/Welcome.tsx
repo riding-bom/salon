@@ -1,5 +1,4 @@
-import StyledHeader from "containers/Header/Header.styled";
-
+import StyledHeader from 'containers/Header/Header.styled';
 
 const Welcome = () => {
   return (
