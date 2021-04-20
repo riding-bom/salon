@@ -1,18 +1,22 @@
+import { useSelector } from "react-redux";
+import { combinedState } from "constant/type";
 import StyledHostName from "components/SalonInfo/HostName/HostName.styled";
+import Nav from "containers/Nav/Nav";
 import StyledSalonInfo from "components/SalonInfo/SalonIntro/SalonInfo.styled";
 import StyledThumbnail from "components/SalonInfo/Thumbnail/Thumbnail.styled";
 import InputSalonInfo from "containers/InputSalonInfo/InputSalonInfo";
-import Nav from "containers/Nav/Nav";
 
 type HeaderProps = {
   className?: string;
 };
 
 const Header = ({ className }: HeaderProps) => {
+  const { thumbnail } = useSelector((state: combinedState) => state.salonInfo);
+
   return (
     <header className={className}>
       <div>
-        <StyledThumbnail />
+        <StyledThumbnail thumbnail={thumbnail} alt="Salon Thumbnail" />
         <div>
           <StyledHostName />
           <StyledSalonInfo />

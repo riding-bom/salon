@@ -76,7 +76,7 @@ const SignUp = () => {
     const res = await signUpWithEmail(email, password);
     if (res.user !== null) {
       const { uid, email } = res.user;
-      setUser({ uid, email, displayName, photoURL: "" });
+      email && setUser({ uid, email, displayName, photoURL: "" });
     }
   };
 

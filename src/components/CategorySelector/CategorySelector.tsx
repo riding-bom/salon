@@ -1,6 +1,7 @@
-import Select from '../Select/Select'
+import Select from "../Select/Select";
 import { useDispatch } from "react-redux";
 import { categoryAction } from "../../redux/reducers/newPost";
+import { ChangeEventHandler } from "react";
 
 type CategorySelectProps = {
   className: string;
@@ -9,11 +10,13 @@ type CategorySelectProps = {
 
 const CategorySelector = ({ className }: CategorySelectProps) => {
   //TODO: 작가별 카테고리 배열을 가져와야함
-  const category = ['All', 'Novel', 'Poem', 'Essay']
+  const category = ["All", "Novel", "Poem", "Essay"];
 
   const dispatch = useDispatch();
 
-  const onChangeCategory = ({ target }: { target: HTMLSelectElement }) => {
+  const onChangeCategory: ChangeEventHandler<HTMLSelectElement> = ({
+    target,
+  }) => {
     dispatch(
       categoryAction(
         target.value === "All"
@@ -28,7 +31,13 @@ const CategorySelector = ({ className }: CategorySelectProps) => {
   };
 
   return (
-    <Select className={className} id="categorySelect" name="category" onChange={onChangeCategory} optionArray={category}/>
+    <Select
+      className={className}
+      id="categorySelect"
+      name="category"
+      onChange={onChangeCategory}
+      optionArray={category}
+    />
   );
 };
 

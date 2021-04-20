@@ -21,6 +21,12 @@ type user = {
   photoURL: string;
 };
 
+type salonInfo = {
+  hostName: string;
+  salonIntro: string;
+  thumbnail: string;
+};
+
 type combinedState = CombinedState<{
   postsList: postsList;
   newPost: post;
@@ -33,6 +39,7 @@ type combinedState = CombinedState<{
     isAuthed: boolean;
   };
   renderList: postsList;
+  salonInfo: salonInfo;
 }>;
 
 export type { post, postsList, combinedState, user };

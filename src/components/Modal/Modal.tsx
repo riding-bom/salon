@@ -1,3 +1,4 @@
+import React, { MouseEventHandler } from "react";
 import { useDispatch } from "react-redux";
 import { signinCloseAction, signupCloseAction } from "redux/reducers/openModal";
 
@@ -9,8 +10,8 @@ type modalProps = {
 const Modal = ({ children, className }: modalProps) => {
   const dispatch = useDispatch();
 
-  const closeModal = (e: any) => {
-    if (!e.target.matches("div, .close-button, .close-button *")) return;
+  const closeModal: MouseEventHandler = (e) => {
+    if (!e.currentTarget.matches("div, .close-button, .close-button *")) return;
     dispatch(signinCloseAction);
     dispatch(signupCloseAction);
   };

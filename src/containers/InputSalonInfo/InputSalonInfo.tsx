@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { changeNameAction, changeSalonIntroAction } from "redux/reducers/salonInfo";
 import { setSalonInfo, getSalonInfo } from "../../fb/API";
 import { ChangeEventHandler } from "react";
+import { combinedState } from "constant/type";
 
 const InputSalonInfo = () => {
-  const salonInfo = useSelector((state: any) => state.salonInfo);
+  const salonInfo = useSelector((state: combinedState) => state.salonInfo);
 
   const dispatch = useDispatch();
 

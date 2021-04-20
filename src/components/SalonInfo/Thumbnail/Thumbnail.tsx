@@ -1,12 +1,11 @@
-import { useSelector } from 'react-redux';
-
 type ThumbnailProps = {
   className?: string;
+  thumbnail: string;
+  alt: string;
 };
 
-const Thumbnail = ({ className }: ThumbnailProps) => {
-  const { thumbnail } = useSelector((state: any) => state.salonInfo);
-  return <img className={className} src={thumbnail} alt='avatar' />;
+const Thumbnail = ({ thumbnail, className, alt }: ThumbnailProps) => {
+  return <img className={className} src={thumbnail} alt={alt} />;
 };
 
 export default Thumbnail;

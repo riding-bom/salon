@@ -1,13 +1,14 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { getSalonInfo } from '../../../fb/API';
+import { combinedState } from "constant/type";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { getSalonInfo } from "../../../fb/API";
 
 type HostNameProps = {
   className?: string;
 };
 
 const HostName = ({ className }: HostNameProps) => {
-  const { hostName } = useSelector((state: any) => state.salonInfo);
+  const { hostName } = useSelector((state: combinedState) => state.salonInfo);
 
   const getSalonInfoHostName = async () => {
     const res = await getSalonInfo();

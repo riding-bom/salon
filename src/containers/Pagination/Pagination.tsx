@@ -1,5 +1,6 @@
 import StyledButton from "components/Button/Button.styled";
 import { combinedState, postsList } from "constant/type";
+import useAuthStateObserver from "customHook/useAuthStateObserver";
 import { getAllPost } from "fb/API";
 import {
   ChangeEventHandler,
