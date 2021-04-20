@@ -1,29 +1,20 @@
 import { storage } from "fb/firebase";
 
 // 1. Storage directory name, 2. upload file, return <Promise>
-const firebaseUpload = (dir: string, file: any) => {
-  return new Promise((resolve, reject) => {
-    if (!file) {
-      reject("Invalid file.");
-    }
-    console.log(file);
-    
-    const uploadTask = storage.ref(`${dir}/${new Date() + ' ' + file.name}`).put(file);
+const firebaseUpload = async (dir: string, file: any) => {
+  console.log(file);
 
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        console.log(snapshot);
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        //Gets link back
-        return uploadTask.snapshot.ref.getDownloadURL().then((url) => resolve(url));
-      }
-    );
-  });
+  try {
+    const uploadTask = await storage.ref(`${dir}/${new Date() + ' ' + file.name}`).put(file);
+
+    console.log(uploadTask);
+
+    const url = await uploadTask.ref.getDownloadURL();
+
+    return url;
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 export default firebaseUpload;

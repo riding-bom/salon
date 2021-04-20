@@ -28,7 +28,6 @@ const WriteContainer = ({ className }: writeContainerProps) => {
     } else {
       dispatch(dateAction(new Date()));
       await addPost(newPost);
-      //TODO: newPost 상태 reset 함수 content 관련 reset 오류 처리
       dispatch(resetState());
     }
   };
