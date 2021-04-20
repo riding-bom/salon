@@ -10,7 +10,7 @@ const Select = ({ className, id, name, onChange, optionArray=[] }: selectProps) 
   return (
     <select className={className} id={id} name={name} onChange={onChange}>
       {optionArray
-        .map((v: string, i: number) => <option value={v} key={i}>{v}</option>)
+        .map((optionValue: string, index: number) => <option value={optionValue} key={index}>{optionValue}</option>)
       }
     </select>
   );

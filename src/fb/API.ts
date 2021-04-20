@@ -1,6 +1,5 @@
-import { usersCollectionRef, salonInfoCollectionRef } from './firebase';
+import { usersCollectionRef, salonInfoCollectionRef, firestore } from './firebase';
 import { post } from '../constant/type';
-import { firestore } from './firebase';
 
 /* posts API-------------------------------------------------------------------------- */
 const postsCollectionRef = firestore.collection("posts");

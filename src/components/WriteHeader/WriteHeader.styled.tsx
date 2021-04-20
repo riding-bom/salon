@@ -9,7 +9,7 @@ const StyledWriteHeader = styled(WriteHeader) `
   width: 100vw;
   height: 400px;
   background-color: ${(props)=>(props.backgroundColor ? props.backgroundColor : '#fff')};
-  background-image: url(${(props) => props.backgroundImage});
+  background-image: url('${(props) => props.backgroundImage}');
   background-size: cover;
   background-position: 50% 50%;
   border-bottom: 1px solid black;
@@ -27,15 +27,22 @@ const StyledWriteHeader = styled(WriteHeader) `
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
-    text-align: center;
+    align-items: center;
 
     .background-image-uploader {
       z-index: 2;
     }
 
-    .color-picker {
-      margin-top: 1rem;
+    .background-reset {
       z-index: 2;
+      border: 0;
+      background-color: transparent;
+      outline: none;
+    }
+
+    .color-picker {
+      z-index: 2;
+      margin-top: 1rem;
     }
   }
 
