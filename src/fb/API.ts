@@ -17,11 +17,16 @@ const getUser = async (uid: string) => {
 };
 
 const setSalonInfo = async (salonInfo: any) => {
-  await salonInfoCollectionRef.doc().set({
+  await salonInfoCollectionRef.doc('salonInfoSample').set({
     hostName: salonInfo.hostName,
     salonIntro: salonInfo.salonIntro,
     thumbnail: salonInfo.thumbnail
   });
+};
+
+const getSalonInfo = async () => {
+  const res = await salonInfoCollectionRef.doc('salonInfoSample').get();
+  return res;
 };
 
 const postsCollectionRef = firestore.collection('posts');
@@ -38,4 +43,4 @@ const getAllPost = async () => {
   return list;
 };
 
-export { setUser, getUser, setSalonInfo, addPost, getAllPost };
+export { setUser, getUser, setSalonInfo, getSalonInfo, addPost, getAllPost };
