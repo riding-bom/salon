@@ -1,6 +1,7 @@
-import Select from '../Select/Select'
+import Select from "../Select/Select";
 import { useDispatch } from "react-redux";
 import { accessAction } from "../../redux/reducers/newPost";
+import { ChangeEventHandler } from "react";
 
 type AccessSelectProps = {
   className: string;
@@ -8,11 +9,13 @@ type AccessSelectProps = {
 };
 
 const AccessSelector = ({ className }: AccessSelectProps) => {
-  const access = ['public', 'charged', 'private']
+  const access = ["public", "charged", "private"];
 
   const dispatch = useDispatch();
 
-  const onChangeCategory = ({ target }: { target: HTMLSelectElement }) => {
+  const onChangeCategory: ChangeEventHandler<HTMLSelectElement> = ({
+    target,
+  }) => {
     dispatch(
       accessAction(
         target.value === "public"
@@ -25,7 +28,13 @@ const AccessSelector = ({ className }: AccessSelectProps) => {
   };
 
   return (
-    <Select className={className} id="accessSelect" name="access" onChange={onChangeCategory} optionArray={access}/>
+    <Select
+      className={className}
+      id="accessSelect"
+      name="access"
+      onChange={onChangeCategory}
+      optionArray={access}
+    />
   );
 };
 

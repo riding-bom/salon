@@ -1,12 +1,13 @@
-import { forwardRef } from "react";
+import { ChangeEventHandler, forwardRef } from "react";
 
 type imageUploaderProps = {
   className?: string;
-  onChange?: any;
-}
+  onChange?: ChangeEventHandler;
+};
 
-const ImageUploader = forwardRef<HTMLInputElement, imageUploaderProps>(({ className, onChange }, ref) => {
-  return (
+const ImageUploader = forwardRef<HTMLInputElement, imageUploaderProps>(
+  ({ className, onChange }, ref) => {
+    return (
       <input
         className={className}
         type="file"
@@ -14,7 +15,8 @@ const ImageUploader = forwardRef<HTMLInputElement, imageUploaderProps>(({ classN
         onChange={onChange}
         ref={ref}
       />
-  )
-});
+    );
+  }
+);
 
 export default ImageUploader;

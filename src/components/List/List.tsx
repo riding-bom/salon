@@ -6,7 +6,7 @@ type ListProps = {
 
 const List = ({ id, className, children }: ListProps) => {
   return (
-    <li className={className} id={id}>
+    <li className={className} id={id} key={id}>
       {children}
     </li>
   );
