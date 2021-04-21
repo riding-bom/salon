@@ -7,11 +7,11 @@ import StyledWriteHeader from "containers/WriteHeader/WriteHeader.styled";
 import StyledTextEditor from "containers/Editor/TextEditor.styled";
 import StyledButton from "components/Button/Button.styled";
 
-type writeContainerProps = {
+type writePageProps = {
   className?: string;
 };
 
-const WriteContainer = ({ className }: writeContainerProps) => {
+const WritePage = ({ className }: writePageProps) => {
   const newPost = useSelector((state: combinedState) => state.newPost);
 
   const dispatch = useDispatch();
@@ -50,4 +50,4 @@ const WriteContainer = ({ className }: writeContainerProps) => {
   );
 };
 
-export default WriteContainer;
+export default WritePage;
