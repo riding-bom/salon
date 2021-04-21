@@ -24,9 +24,6 @@ const ReadPost = ({ className }: readPostProps) => {
 
   const { htmlToText } = require("html-to-text");
   const html = post.content;
-  const text = htmlToText(html);
-
-  console.log(post.backgroundColor);
 
   return (
     <main className={className}>
@@ -48,7 +45,11 @@ const ReadPost = ({ className }: readPostProps) => {
           </Title>
         </div>
       </header>
-      <main>{text}</main>
+      <main>
+        {html.split(/<\/p>/).map((p) => (
+          <p>{htmlToText(p)}</p>
+        ))}
+      </main>
     </main>
   );
 };
