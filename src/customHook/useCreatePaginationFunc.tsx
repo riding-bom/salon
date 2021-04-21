@@ -39,9 +39,10 @@ const useCreatePaginationFunc = () => {
 
   const renderNextPage: MouseEventHandler<HTMLButtonElement> = () => {
     if (
-      renderingList.currentPage > postsList.length % POSTS_PER_PAGE
+      renderingList.currentPage + 1 >
+      (postsList.length % POSTS_PER_PAGE
         ? Math.floor(postsList.length / POSTS_PER_PAGE) + 1
-        : postsList.length / POSTS_PER_PAGE
+        : postsList.length / POSTS_PER_PAGE)
     )
       return;
     const curPage = renderingList.currentPage;
