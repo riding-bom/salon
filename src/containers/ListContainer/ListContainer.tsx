@@ -24,7 +24,7 @@ const ListContainer = ({ className }: listContainerProps) => {
 
   return (
     <ul className={className}>
-      {postList.map((post) => (
+      {postList.map(post => (
         <Link to={`/${post.id}`} key={post.id}>
           <StyledPost
             access={post.access}

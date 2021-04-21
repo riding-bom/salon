@@ -1,9 +1,5 @@
-import {
-  usersCollectionRef,
-  salonInfoCollectionRef,
-  firestore,
-} from "./firebase";
-import { post, user } from "../constant/type";
+import { usersCollectionRef, salonInfoCollectionRef, firestore } from "./firebase";
+import { post, user, salonInfo } from "../constant/type";
 
 /* posts API-------------------------------------------------------------------------- */
 const postsCollectionRef = firestore.collection("posts");
@@ -16,9 +12,7 @@ const addPost = async (newPost: post) => {
 
 const getAllPost = async () => {
   const snapshot = await postsCollectionRef.get();
-  const list = snapshot.docs
-    .map((post) => post.data())
-    .sort((a, b) => (a.id > b.id ? -1 : 1));
+  const list = snapshot.docs.map(post => post.data()).sort((a, b) => (a.id > b.id ? -1 : 1));
   return list;
 };
 
@@ -28,7 +22,7 @@ const setUser = async (user: user) => {
     uid: user.uid,
     displayName: user.displayName,
     photoURL: user.photoURL,
-    email: user.email,
+    email: user.email
   });
 };
 
@@ -37,17 +31,17 @@ const getUser = async (uid: string) => {
   return res.data();
 };
 
-const setSalonInfo = async (salonInfo: any) => {
+const setSalonInfo = async (salonInfo: salonInfo) => {
   await salonInfoCollectionRef.doc("salonInfoSample").set({
     hostName: salonInfo.hostName,
     salonIntro: salonInfo.salonIntro,
-    thumbnail: salonInfo.thumbnail,
+    thumbnail: salonInfo.thumbnail
   });
 };
 
 const getSalonInfo = async () => {
-  const res = await salonInfoCollectionRef.doc("salonInfoSample").get();
-  return res;
+  const snapshot = await salonInfoCollectionRef.doc("salonInfoSample").get();
+  return snapshot;
 };
 
 export { setUser, getUser, setSalonInfo, getSalonInfo, addPost, getAllPost };

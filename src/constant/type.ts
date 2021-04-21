@@ -42,4 +42,4 @@ type combinedState = CombinedState<{
   salonInfo: salonInfo;
 }>;
 
-export type { post, postsList, combinedState, user };
+export type { post, postsList, combinedState, user, salonInfo };

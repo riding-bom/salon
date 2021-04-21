@@ -5,12 +5,18 @@ import Nav from "containers/Nav/Nav";
 import StyledSalonInfo from "components/SalonInfo/SalonIntro/SalonInfo.styled";
 import StyledThumbnail from "components/SalonInfo/Thumbnail/Thumbnail.styled";
 import InputSalonInfo from "containers/InputSalonInfo/InputSalonInfo";
+import useAuthStateObserver from "customHook/useAuthStateObserver";
+import LoginTestButton from "components/LoginTestButton/LoginTestButton";
 
 type HeaderProps = {
   className?: string;
 };
 
 const Header = ({ className }: HeaderProps) => {
+  const currentUser = useAuthStateObserver();
+  console.log(currentUser);
+  console.log(currentUser.isAuthed);
+
   const { thumbnail } = useSelector((state: combinedState) => state.salonInfo);
 
   return (
@@ -30,6 +36,7 @@ const Header = ({ className }: HeaderProps) => {
         </ul>
         <div>
           <InputSalonInfo />
+          <LoginTestButton />
         </div>
       </div>
     </header>
