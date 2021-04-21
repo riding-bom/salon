@@ -1,6 +1,7 @@
 import {
   usersCollectionRef,
   salonInfoCollectionRef,
+  mainPostCollectionRef,
   firestore,
 } from "./firebase";
 import { post, user } from "../constant/type";
@@ -19,6 +20,12 @@ const getAllPost = async () => {
   const list = snapshot.docs
     .map((post) => post.data())
     .sort((a, b) => b.id - a.id);
+  return list;
+};
+
+const getMainPost = async () => {
+  const snapshot = await mainPostCollectionRef.get();
+  const list = snapshot.docs.map((post) => post.data());
   return list;
 };
 
@@ -50,4 +57,12 @@ const getSalonInfo = async () => {
   return res;
 };
 
-export { setUser, getUser, setSalonInfo, getSalonInfo, addPost, getAllPost };
+export {
+  setUser,
+  getUser,
+  setSalonInfo,
+  getSalonInfo,
+  addPost,
+  getAllPost,
+  getMainPost,
+};
