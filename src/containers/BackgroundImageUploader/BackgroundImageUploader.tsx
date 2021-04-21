@@ -1,5 +1,5 @@
 import firebaseUpload from "modules/firebaseUpload";
-import { ChangeEvent, ChangeEventHandler, useRef } from "react";
+import { ChangeEventHandler, useRef } from "react";
 
 import ImageUploader from "components/ImageUploader/ImageUploader";
 import Button from "components/Button/Button";

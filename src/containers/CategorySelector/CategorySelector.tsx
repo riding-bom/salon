@@ -1,4 +1,4 @@
-import Select from "../Select/Select";
+import Select from "../../components/Select/Select";
 import { useDispatch } from "react-redux";
 import { categoryAction } from "../../redux/reducers/newPost";
 import { ChangeEventHandler } from "react";
