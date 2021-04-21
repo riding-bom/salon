@@ -6,12 +6,11 @@ const StyledPost = styled(Post)`
   color: black;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 700px;
   height: 200px;
   font-size: 1.4rem;
-  text-decoration: none;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   margin: 10px 0;
@@ -23,32 +22,34 @@ const StyledPost = styled(Post)`
     cursor: pointer;
   }
 
-  & > .post-summary {
+  .post-summary {
     display: flex;
     flex-flow: column nowrap;
     align-items: flex-start;
+    justify-content: space-around;
+    height: 200px;
 
-    * {
-      margin-top: 2rem;
+    & > * {
+      /* margin-top: 2rem; */
       width: 464px;
     }
 
-    h2,
-    h3 {
+    .title,
+    .subTitle {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    h2 {
+    .title {
       font-size: 2.4rem;
     }
 
-    h3 {
+    .subTitle {
       font-size: 1.8rem;
     }
 
-    p {
+    .summary {
       height: 4.2em;
       line-height: 1.4;
       overflow: hidden;
@@ -56,11 +57,23 @@ const StyledPost = styled(Post)`
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
     }
+
+    .post-info {
+      display: flex;
+      flex-flow: row nowrap;
+
+      & > * {
+        margin-right: 10px;
+      }
+    }
   }
 
-  img {
+  .thumbnail {
     width: 160px;
     height: 160px;
+    background-image: url("${(props) => props.thumbnail}");
+    background-size: cover;
+    background-position: center;
   }
 `;
 

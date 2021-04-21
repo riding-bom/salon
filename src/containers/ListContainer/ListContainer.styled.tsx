@@ -6,6 +6,10 @@ const StyledListContainer = styled(ListContainer)`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+
+  & > a {
+    text-decoration: none;
+  }
 `;
 
 export default StyledListContainer;
