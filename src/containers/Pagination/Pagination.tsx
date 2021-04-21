@@ -31,7 +31,11 @@ const Pagination = ({ className }: paginationProps) => {
 
       setPages(() => listNum);
       dispatch(setAllPost(list as postsList));
-      dispatch(setRenderingListAction((list as postsList).slice(0, 5)));
+
+      const start = renderingList.currentPage * POSTS_PER_PAGE - POSTS_PER_PAGE;
+      const end = renderingList.currentPage * POSTS_PER_PAGE;
+
+      dispatch(setRenderingListAction((list as postsList).slice(start, end)));
     };
     getAllpost();
   }, []);
