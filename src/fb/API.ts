@@ -18,7 +18,7 @@ const getAllPost = async () => {
   const snapshot = await postsCollectionRef.get();
   const list = snapshot.docs
     .map((post) => post.data())
-    .sort((a, b) => (a.id > b.id ? -1 : 1));
+    .sort((a, b) => b.id - a.id);
   return list;
 };
 
