@@ -40,7 +40,9 @@ const Carousel = ({ className }: carouselProps) => {
               className="carousel-container"
               style={
                 post.backgroundImage !== ""
-                  ? { backgroundImage: `url("${post.backgroundImage}")` }
+                  ? {
+                      backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}")`,
+                    }
                   : { backgroundColor: post.backgroundColor }
               }
             >

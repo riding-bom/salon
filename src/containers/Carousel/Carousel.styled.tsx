@@ -15,7 +15,7 @@ const StyledCarousel = styled(Carousel)`
     height: 400px;
     background-position: center;
     background-size: cover;
-    color: black;
+    color: white;
     font-weight: 100;
     display: flex;
     flex-flow: column nowrap;
