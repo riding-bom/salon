@@ -11,7 +11,8 @@ const Modal = ({ children, className }: modalProps) => {
   const dispatch = useDispatch();
 
   const closeModal: MouseEventHandler = (e) => {
-    if (!e.currentTarget.matches("div, .close-button, .close-button *")) return;
+    const target = e.target as HTMLElement;
+    if (!target.matches("div, .close-button, .close-button *")) return;
     dispatch(signinCloseAction);
     dispatch(signupCloseAction);
   };
