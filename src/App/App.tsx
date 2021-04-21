@@ -4,7 +4,7 @@ import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import StyledWriteContainer from "containers/WriteContainer/WriteContainer.styled";
-import StyledPagination from "containers/Pagination/Pagination.styled";
+import StyledReadPost from "pages/ReadPost";
 
 function App() {
   return (
@@ -16,10 +16,12 @@ function App() {
         <Route path="/write">
           <StyledWriteContainer />
         </Route>
+        <Route path="/:postId">
+          <StyledReadPost />
+        </Route>
 
         <SignIn />
         <SignUp />
-        <StyledPagination />
       </Router>
     </StoreProvider>
   );

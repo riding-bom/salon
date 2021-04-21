@@ -1,4 +1,5 @@
 import { CombinedState } from "redux";
+import firebase from "firebase/app";
 
 type post = {
   access: string;
@@ -27,6 +28,18 @@ type salonInfo = {
   thumbnail: string;
 };
 
+type postFromFirestore = {
+  access: string;
+  id: number;
+  title: string;
+  subTitle: string;
+  date: firebase.firestore.Timestamp;
+  content: string;
+  category: string;
+  backgroundImage: string;
+  backgroundColor: string;
+};
+
 type combinedState = CombinedState<{
   postsList: postsList;
   newPost: post;
@@ -45,4 +58,4 @@ type combinedState = CombinedState<{
   salonInfo: salonInfo;
 }>;
 
-export type { post, postsList, combinedState, user };
+export type { post, postsList, combinedState, user, postFromFirestore };
