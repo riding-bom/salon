@@ -9,7 +9,7 @@ const StyledPagination = styled(Pagination)`
   font-size: 1.4rem;
 
   & > li {
-    margin: 5px;
+    margin: 0 5px;
   }
 `;
 
