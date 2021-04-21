@@ -38,7 +38,7 @@ type combinedState = CombinedState<{
     userInfo: user | null;
     isAuthed: boolean;
   };
-  renderList: postsList;
+  renderingList: postsList;
   salonInfo: salonInfo;
 }>;
 
