@@ -3,7 +3,7 @@ import StoreProvider from "redux/store";
 import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import StyledWritePage from "pages/WritePage/WritePage.styled";
+import StyledWritePage from "pages/WritePage";
 import StyledReadPost from "pages/ReadPost";
 
 function App() {
