@@ -56,6 +56,7 @@ type combinedState = CombinedState<{
     currentPage: number;
   };
   salonInfo: salonInfo;
+  mainPost: postsList;
 }>;
 
 export type { post, postsList, combinedState, user, postFromFirestore };
