@@ -4,9 +4,17 @@ import { ReactComponent as LogOut } from "essets/Icons/logout.svg";
 import { ReactComponent as Search } from "essets/Icons/search.svg";
 import { ReactComponent as Setting } from "essets/Icons/setting.svg";
 import { ReactComponent as Write } from "essets/Icons/write.svg";
+import { ReactComponent as LogIn } from "essets/Icons/login.svg";
 
 type LogoProps = {
-  type: "LightMode" | "DarkMode" | "LogOut" | "Search" | "Setting" | "Write";
+  type:
+    | "LightMode"
+    | "DarkMode"
+    | "LogOut"
+    | "Search"
+    | "Setting"
+    | "Write"
+    | "LogIn";
 };
 
 const Logo = (props: LogoProps) => {
@@ -23,6 +31,8 @@ const Logo = (props: LogoProps) => {
       return <Setting />;
     case "Write":
       return <Write />;
+    case "LogIn":
+      return <LogIn />;
     default:
       return <LightMode />;
   }

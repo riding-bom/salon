@@ -2,28 +2,29 @@ import styled from "styled-components";
 import Header from "./Header";
 
 const StyledHeader = styled(Header)`
-  display: block;
-  display: flex;
-  align-items: center;
   width: 100%;
   height: 200px;
   border-bottom: 1px solid #e0e3da;
-  /* background-color: pink; */
+  padding: 20px 0;
 
   & > div {
-    /* margin-left: 215px; */
+    position: relative;
     display: flex;
     margin: 0 auto;
-    max-width: 850px;
+    width: 800px;
 
     ul {
       display: flex;
+      position: absolute;
+      right: 0;
+      top: 20px;
     }
 
     & > div {
       display: flex;
       flex-flow: column;
-      margin: 86px 0 0 25px;
+      margin-left: 20px;
+      align-self: flex-end;
 
       & > h1 {
         margin-bottom: 19px;
