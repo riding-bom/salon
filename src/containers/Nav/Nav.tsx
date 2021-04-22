@@ -3,7 +3,7 @@ import List from "components/List/List";
 import Logo from "components/Logo/Logo";
 
 type NavProps = {
-  type: "LightMode" | "DarkMode" | "LogOut" | "Search" | "Setting";
+  type: "LightMode" | "DarkMode" | "LogOut" | "Search" | "Setting" | "Write";
   id: string;
 };
 

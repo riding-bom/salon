@@ -13,18 +13,18 @@ type listContainerProps = {
 };
 
 const ListContainer = ({ className }: listContainerProps) => {
-  const postList = useSelector((state: combinedState) => state.postsList);
+  const renderingList = useSelector((state: combinedState) => state.renderingList);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllPostAsync());
-    console.log(postList);
+    console.log(renderingList);
   }, []);
 
   return (
     <ul className={className}>
-      {postList.map(post => (
+      {renderingList.renderingList.map(post => (
         <Link to={`/${post.id}`} key={post.id}>
           <StyledPost
             access={post.access}

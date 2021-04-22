@@ -1,70 +1,63 @@
 import StyledButton from "components/Button/Button.styled";
+import { POSTS_PER_PAGE } from "constant/constant";
 import { combinedState, postsList } from "constant/type";
-import useAuthStateObserver from "customHook/useAuthStateObserver";
+import useCreatePaginationFunc from "customHook/useCreatePaginationFunc";
 import { getAllPost } from "fb/API";
-import {
-  ChangeEventHandler,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPostAsync } from "redux/reducers/postsList";
+import { setAllPost } from "redux/reducers/postsList";
 import { setRenderingListAction } from "redux/reducers/renderingList";
 
-const Pagination = () => {
+type paginationProps = {
+  className?: string;
+};
+
+const Pagination = ({ className }: paginationProps) => {
   const [pages, setPages] = useState(0);
-  const [seperatedList, setSeperatedList] = useState([] as postsList[]);
 
-  const renderList = useSelector((state: combinedState) => state.renderList);
+  const renderingList = useSelector(
+    (state: combinedState) => state.renderingList
+  );
+
   const dispatch = useDispatch();
-
-  let emptyList: any[] = [];
 
   useEffect(() => {
     const getAllpost = async () => {
       const list = await getAllPost();
       const listNum =
-        list.length % 10 ? Math.floor(list.length / 10) + 1 : list.length / 10;
+        list.length % POSTS_PER_PAGE
+          ? Math.floor(list.length / POSTS_PER_PAGE) + 1
+          : list.length / POSTS_PER_PAGE;
 
       setPages(() => listNum);
+      dispatch(setAllPost(list as postsList));
 
-      emptyList = [...Array.from({ length: listNum }, () => [])];
+      const start = renderingList.currentPage * POSTS_PER_PAGE - POSTS_PER_PAGE;
+      const end = renderingList.currentPage * POSTS_PER_PAGE;
 
-      list
-        .sort((a, b) => a.id - b.id)
-        .forEach((post, index) => {
-          emptyList[Math.floor(index / 10)].push(post);
-        });
-
-      console.log(emptyList);
-      // setSeperatedList(() => emptyList);
+      dispatch(setRenderingListAction((list as postsList).slice(start, end)));
     };
     getAllpost();
   }, []);
 
-  useEffect(() => {
-    console.log(renderList);
-  }, [renderList]);
-
-  const renderPage: MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.currentTarget.textContent &&
-      // console.log(+e.currentTarget.textContent - 1);
-      // console.log(emptyList[+e.currentTarget.textContent - 1]);
-      dispatch(
-        setRenderingListAction(emptyList[+e.currentTarget.textContent - 1])
-      );
-  };
+  const [renderPage, renderPrePage, renderNextPage] = useCreatePaginationFunc();
 
   return (
-    <ul>
+    <ul className={className}>
+      <StyledButton onClick={renderPrePage}>{"<"}</StyledButton>
       {Array.from({ length: pages }, (v, i) => {
         return (
           <li key={i} id={i + ""}>
-            <StyledButton onClick={renderPage}>{i + 1}</StyledButton>
+            <StyledButton
+              onClick={renderPage}
+              disabled={i + 1 === renderingList.currentPage}
+            >
+              {i + 1}
+            </StyledButton>
           </li>
         );
       })}
+      <StyledButton onClick={renderNextPage}>{">"}</StyledButton>
     </ul>
   );
 };

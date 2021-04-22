@@ -3,10 +3,10 @@ import { ReactComponent as DarkMode } from "essets/Icons/dark-mode.svg";
 import { ReactComponent as LogOut } from "essets/Icons/logout.svg";
 import { ReactComponent as Search } from "essets/Icons/search.svg";
 import { ReactComponent as Setting } from "essets/Icons/setting.svg";
-import { ReactComponent as Comment } from "essets/Icons/Comment.svg";
+import { ReactComponent as Write } from "essets/Icons/write.svg";
 
 type LogoProps = {
-  type: "LightMode" | "DarkMode" | "LogOut" | "Search" | "Setting" | "Comment";
+  type: "LightMode" | "DarkMode" | "LogOut" | "Search" | "Setting" | "Write";
 };
 
 const Logo = (props: LogoProps) => {
@@ -21,8 +21,8 @@ const Logo = (props: LogoProps) => {
       return <Search />;
     case "Setting":
       return <Setting />;
-    case "Comment":
-      return <Comment />;
+    case "Write":
+      return <Write />;
     default:
       return <LightMode />;
   }
