@@ -7,6 +7,7 @@ import { newPostReducer } from "./reducers/newPost";
 import { salonInfoReducer } from "./reducers/salonInfo";
 import openModal from "./reducers/openModal";
 import renderListReducer from "./reducers/renderingList";
+import mainPostReducer from "./reducers/mainPost";
 
 const middleware = [thunk];
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   salonInfo: salonInfoReducer,
   currentUser: currentUserReducer,
   renderingList: renderListReducer,
+  mainPost: mainPostReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(...middleware));

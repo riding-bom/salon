@@ -2,10 +2,13 @@ const SIGNIN_OPEN = "signin-open";
 const SIGNIN_CLOSE = "signin-close";
 const SIGNUP_OPEN = "singnup-open";
 const SIGNUP_CLOSE = "singnup-close";
+const ALERT_DELETE_POST_OPEN = "alert-delete-post-open";
+const ALERT_DELETE_POST_CLOSE = "alert-delete-post-close";
 
 const initialState = {
   isOpenSignIn: false,
   isOpenSignUp: false,
+  isOpenAlertDeletePost: false
 };
 
 type action = {
@@ -16,28 +19,40 @@ const signinOpenAction = { type: SIGNIN_OPEN };
 const signinCloseAction = { type: SIGNIN_CLOSE };
 const signupOpenAction = { type: SIGNUP_OPEN };
 const signupCloseAction = { type: SIGNUP_CLOSE };
+const alertDeletePostOpenAction = { type: ALERT_DELETE_POST_OPEN };
+const alertDeletePostCloseAction = { type: ALERT_DELETE_POST_CLOSE };
 
 const openModal = (state = initialState, action: action) => {
   switch (action.type) {
     case SIGNIN_OPEN:
       return {
         ...state,
-        isOpenSignIn: true,
+        isOpenSignIn: true
       };
     case SIGNIN_CLOSE:
       return {
         ...state,
-        isOpenSignIn: false,
+        isOpenSignIn: false
       };
     case SIGNUP_OPEN:
       return {
         ...state,
-        isOpenSignUp: true,
+        isOpenSignUp: true
       };
     case SIGNUP_CLOSE:
       return {
         ...state,
-        isOpenSignUp: false,
+        isOpenSignUp: false
+      };
+    case ALERT_DELETE_POST_OPEN:
+      return {
+        ...state,
+        isOpenAlertDeletePost: true
+      };
+    case ALERT_DELETE_POST_CLOSE:
+      return {
+        ...state,
+        isOpenAlertDeletePost: false
       };
     default:
       return state;
@@ -50,4 +65,6 @@ export {
   signinCloseAction,
   signupOpenAction,
   signupCloseAction,
+  alertDeletePostOpenAction,
+  alertDeletePostCloseAction
 };

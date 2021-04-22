@@ -5,6 +5,7 @@ import SignUp from "pages/SignUp";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import StyledWriteContainer from "containers/WriteContainer/WriteContainer.styled";
 import StyledReadPost from "pages/ReadPost";
+import AlertDeletePost from "pages/AlertDeletePost";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Link to="/write">쓰기</Link>
         <SignIn />
         <SignUp />
+        <AlertDeletePost />
       </Router>
     </StoreProvider>
   );

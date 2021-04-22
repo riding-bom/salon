@@ -46,6 +46,7 @@ type combinedState = CombinedState<{
   isOpenModal: {
     isOpenSignIn: boolean;
     isOpenSignUp: boolean;
+    isOpenAlertDeletePost: boolean;
   };
   currentUser: {
     userInfo: user | null;
@@ -56,6 +57,7 @@ type combinedState = CombinedState<{
     currentPage: number;
   };
   salonInfo: salonInfo;
+  mainPost: postsList;
 }>;
 
 export type { post, postsList, combinedState, user, salonInfo, postFromFirestore };
