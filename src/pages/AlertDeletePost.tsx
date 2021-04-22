@@ -5,7 +5,7 @@ import ModalDialog from "containers/ModalDialog/ModalDialog";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost as deletePostAsync } from "fb/API";
 import { MouseEventHandler } from "react";
-import { useHistory, useLocation, useRouteMatch } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { alertDeletePostCloseAction } from "redux/reducers/openModal";
 
 const AlertDeletePost = () => {
