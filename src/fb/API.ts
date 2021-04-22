@@ -1,6 +1,7 @@
 import {
   usersCollectionRef,
   salonInfoCollectionRef,
+  mainPostCollectionRef,
   firestore,
 } from "./firebase";
 import { post, user } from "../constant/type";
@@ -11,7 +12,10 @@ const postsDocRef = (id: string) => postsCollectionRef.doc(id);
 
 const addPost = async (newPost: post) => {
   await postsDocRef(newPost.id + "").set(newPost);
-  console.log("addPost", newPost);
+};
+
+const deletePost = async (postId: number) => {
+  await postsDocRef(postId + "").delete();
 };
 
 const getAllPost = async () => {
@@ -19,6 +23,12 @@ const getAllPost = async () => {
   const list = snapshot.docs
     .map((post) => post.data())
     .sort((a, b) => b.id - a.id);
+  return list;
+};
+
+const getMainPost = async () => {
+  const snapshot = await mainPostCollectionRef.get();
+  const list = snapshot.docs.map((post) => post.data());
   return list;
 };
 
@@ -50,4 +60,13 @@ const getSalonInfo = async () => {
   return res;
 };
 
-export { setUser, getUser, setSalonInfo, getSalonInfo, addPost, getAllPost };
+export {
+  setUser,
+  getUser,
+  setSalonInfo,
+  getSalonInfo,
+  addPost,
+  deletePost,
+  getAllPost,
+  getMainPost,
+};

@@ -5,6 +5,7 @@ import SignUp from "pages/SignUp";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import StyledWritePage from "pages/WritePage";
 import StyledReadPost from "pages/ReadPost";
+import AlertDeletePost from "pages/AlertDeletePost";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
 
         <SignIn />
         <SignUp />
+        <AlertDeletePost />
       </Router>
     </StoreProvider>
   );
