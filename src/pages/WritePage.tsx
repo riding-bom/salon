@@ -23,6 +23,7 @@ const WritePage = ({ className }: writePageProps) => {
 
   const onChangeIdAndDate = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (newPost.title === "" || newPost.content === "") {
+      window.alert("제목과 내용은 필수 입력 사항입니다.");
       return;
     } else {
       dispatch(dateAction(new Date()));
