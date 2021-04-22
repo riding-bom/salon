@@ -5,6 +5,7 @@ const StyledCarousel = styled(Carousel)`
   width: 700px;
   height: 400px;
   margin: 20px auto;
+  display: relative;
 
   & a {
     text-decoration: none;
@@ -42,7 +43,7 @@ const StyledCarousel = styled(Carousel)`
 
   & .slick-prev {
     left: 10px;
-    z-index: 1000;
+    z-index: 99;
   }
 
   & .slick-next {

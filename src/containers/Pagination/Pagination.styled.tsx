@@ -11,6 +11,10 @@ const StyledPagination = styled(Pagination)`
   & > li {
     margin: 0 5px;
   }
+
+  & button:hover {
+    background-color: transparent;
+  }
 `;
 
 export default StyledPagination;

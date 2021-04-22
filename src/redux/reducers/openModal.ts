@@ -4,6 +4,7 @@ const SIGNUP_OPEN = "singnup-open";
 const SIGNUP_CLOSE = "singnup-close";
 const ALERT_DELETE_POST_OPEN = "alert-delete-post-open";
 const ALERT_DELETE_POST_CLOSE = "alert-delete-post-close";
+const EVERY_MODAL_CLOSE = "every-modal-close";
 
 const initialState = {
   isOpenSignIn: false,
@@ -21,6 +22,7 @@ const signupOpenAction = { type: SIGNUP_OPEN };
 const signupCloseAction = { type: SIGNUP_CLOSE };
 const alertDeletePostOpenAction = { type: ALERT_DELETE_POST_OPEN };
 const alertDeletePostCloseAction = { type: ALERT_DELETE_POST_CLOSE };
+const everyModalCloseAction = { type: EVERY_MODAL_CLOSE };
 
 const openModal = (state = initialState, action: action) => {
   switch (action.type) {
@@ -54,6 +56,10 @@ const openModal = (state = initialState, action: action) => {
         ...state,
         isOpenAlertDeletePost: false,
       };
+    case EVERY_MODAL_CLOSE:
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }
@@ -67,4 +73,5 @@ export {
   signupCloseAction,
   alertDeletePostOpenAction,
   alertDeletePostCloseAction,
+  everyModalCloseAction,
 };

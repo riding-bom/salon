@@ -19,7 +19,7 @@ function App() {
             <StyledReadPost />
           </Route>
           <Route path="/" exact>
-            <StyledWelcome />
+            <Welcome />
           </Route>
         </Switch>
         <Link to="/write">쓰기</Link>
