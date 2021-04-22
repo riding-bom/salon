@@ -11,12 +11,7 @@ type passwordInputProps = {
   className?: string;
 };
 
-const PasswordInput = ({
-  id,
-  value,
-  onChange,
-  className,
-}: passwordInputProps) => {
+const PasswordInput = ({ id, value, onChange, className }: passwordInputProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (

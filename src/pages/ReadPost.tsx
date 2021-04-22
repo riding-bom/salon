@@ -6,6 +6,7 @@ import { ReactComponent as DeleteIcon } from "essets/Icons/delete.svg";
 import Button from "components/Button/Button";
 import { alertDeletePostOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch } from "react-router";
+import StyledComment from "containers/Comment/Comment.styled";
 
 type readPostProps = {
   className?: string;
@@ -18,9 +19,11 @@ const ReadPost = ({ className }: readPostProps) => {
   const postsList = useSelector((state: combinedState) => state.postsList);
   const salonInfo = useSelector((state: combinedState) => state.salonInfo);
 
+
   const dispatch = useDispatch();
 
   const post = postsList.find((post) => post.id + "" === postId) as post;
+  
   const date = post.date
     .toString()
     .slice(18)
@@ -64,6 +67,9 @@ const ReadPost = ({ className }: readPostProps) => {
           <p key={i}>{htmlToText(p)}</p>
         ))}
       </main>
+      <footer>
+        <StyledComment />
+      </footer>
     </main>
   );
 };
@@ -109,6 +115,11 @@ const StyledReadPost = styled(ReadPost)`
     font-size: 1.4rem;
     text-indent: 1em;
     line-height: 1.6em;
+  }
+
+  & > footer {
+    display: flex;
+    justify-content: center;
   }
 `;
 
