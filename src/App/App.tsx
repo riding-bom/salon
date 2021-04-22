@@ -2,7 +2,7 @@ import Welcome from "pages/Welcome";
 import StoreProvider from "redux/store";
 import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import StyledWriteContainer from "containers/WriteContainer/WriteContainer.styled";
 import StyledReadPost from "pages/ReadPost";
 import AlertDeletePost from "pages/AlertDeletePost";
@@ -22,7 +22,6 @@ function App() {
             <Welcome />
           </Route>
         </Switch>
-        <Link to="/write">쓰기</Link>
 
         <SignIn />
         <SignUp />

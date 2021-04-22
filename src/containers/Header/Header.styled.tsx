@@ -16,8 +16,11 @@ const StyledHeader = styled(Header)`
     ul {
       display: flex;
       position: absolute;
-      right: 0;
-      top: 20px;
+      right: 20px;
+
+      & > li {
+        margin-left: 10px;
+      }
     }
 
     & > div {

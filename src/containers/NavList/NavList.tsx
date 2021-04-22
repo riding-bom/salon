@@ -36,6 +36,11 @@ const NavList = () => {
           <Logo type="Setting" />
         </Link>
       </li>
+      <li>
+        <Link to="/favorite-list">
+          <Logo type="FillHeart" />
+        </Link>
+      </li>
       <Nav id="welcomPageLogIn" type="LogIn" onClick={openSignInModal} />
     </>
   );

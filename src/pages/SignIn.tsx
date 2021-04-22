@@ -16,7 +16,7 @@ const SignIn = () => {
   const isOpenModal = useSelector((state: combinedState) => state.isOpenModal);
   const [state, setState] = useState({
     email: "",
-    password: ""
+    password: "",
   });
   const { email, password } = state;
 
@@ -26,7 +26,7 @@ const SignIn = () => {
     setState(() => {
       return {
         ...state,
-        email: e.target.value
+        email: e.target.value,
       };
     });
   };
@@ -35,7 +35,7 @@ const SignIn = () => {
     setState(() => {
       return {
         ...state,
-        password: e.target.value
+        password: e.target.value,
       };
     });
   };
@@ -44,7 +44,7 @@ const SignIn = () => {
     setState(() => {
       return {
         email: "",
-        password: ""
+        password: "",
       };
     });
   };
@@ -65,11 +65,22 @@ const SignIn = () => {
   return isOpenModal.isOpenSignIn ? (
     <ModalDialog>
       <Title level={1}>salon</Title>
-      <StyledInputText id="signInEmail" name="Email" value={email} onChange={setEmail} />
+      <StyledInputText
+        id="signInEmail"
+        name="Email"
+        value={email}
+        onChange={setEmail}
+      />
       {validateEmail(email) || email === "" || (
-        <StyledValidationText>이메일 형식이 맞지 않습니다.</StyledValidationText>
+        <StyledValidationText>
+          이메일 형식이 맞지 않습니다.
+        </StyledValidationText>
       )}
-      <StyledPasswordInput id="signInPassword" value={password} onChange={setPassword} />
+      <StyledPasswordInput
+        id="signInPassword"
+        value={password}
+        onChange={setPassword}
+      />
       <StyledButton
         onClick={async () => {
           await signInWithEmail(email, password);

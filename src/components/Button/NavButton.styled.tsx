@@ -5,7 +5,6 @@ const StyledNavButton = styled(Button)`
   background-color: white;
   border: none;
   cursor: pointer;
-  margin-left: 10px;
   padding: 0;
 `;
 

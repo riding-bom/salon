@@ -20,7 +20,9 @@ const deletePost = async (postId: number) => {
 
 const getAllPost = async () => {
   const snapshot = await postsCollectionRef.get();
-  const list = snapshot.docs.map(post => post.data()).sort((a, b) => b.id - a.id);
+  const list = snapshot.docs
+    .map((post) => post.data())
+    .sort((a, b) => b.id - a.id);
   return list;
 };
 
@@ -36,7 +38,7 @@ const setUser = async (user: user) => {
     uid: user.uid,
     displayName: user.displayName,
     photoURL: user.photoURL,
-    email: user.email
+    email: user.email,
   });
 };
 
@@ -45,17 +47,26 @@ const getUser = async (uid: string) => {
   return res.data();
 };
 
+/* SalonInfo API-------------------------------------------------------------------------- */
 const setSalonInfo = async (salonInfo: salonInfo) => {
   await salonInfoCollectionRef.doc("salonInfoSample").set({
     hostName: salonInfo.hostName,
     salonIntro: salonInfo.salonIntro,
-    thumbnail: salonInfo.thumbnail
+    thumbnail: salonInfo.thumbnail,
   });
 };
 
 const getSalonInfo = async () => {
   const snapshot = await salonInfoCollectionRef.doc("salonInfoSample").get();
   return snapshot;
+};
+
+/* like API-------------------------------------------------------------------------- */
+const setLikePost = async (uid: string, post: post) => {
+  const likePostRef = usersCollectionRef.doc(uid).collection("likePost");
+  console.log(post.id);
+  console.log(post);
+  await likePostRef.doc(post.id + "").set(post);
 };
 
 export {
@@ -67,4 +78,5 @@ export {
   deletePost,
   getAllPost,
   getMainPost,
+  setLikePost,
 };
