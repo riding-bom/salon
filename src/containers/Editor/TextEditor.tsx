@@ -10,15 +10,19 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 // draftjs 콘텐츠를 html로 변환하는 함수 import
 import draftToHtml from "draftjs-to-html";
+import { useState } from "react";
 
 type TextEditorProps = {
   className: string;
   width?: string;
   height?: string;
+  postId: string;
 };
 
-const TextEditor = ({ className }: TextEditorProps) => {
-  // Redux dispatch
+const TextEditor = ({ className, postId }: TextEditorProps) => {
+  const [imgNum, setImgNum] = useState(1);
+
+  // Redux
   const dispatch = useDispatch();
 
   /* Draft.js-------------------------------------------------------------------------- */
@@ -32,9 +36,8 @@ const TextEditor = ({ className }: TextEditorProps) => {
   const uploadImageCallBack = (file: any) => {
     return new Promise((resolve, reject) => {
       console.log("Uploading image...");
-      console.log(file);
 
-      firebaseUpload("images", file)
+      firebaseUpload("images", `${postId}_${imgNum}`, file)
         .then((link) => {
           resolve({
             data: {
@@ -45,6 +48,7 @@ const TextEditor = ({ className }: TextEditorProps) => {
         .catch((error) => {
           reject(error);
         });
+      setImgNum(imgNum + 1);
     });
   };
 

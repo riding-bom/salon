@@ -5,8 +5,8 @@ import StyledMainTitleInput from "../../components/TitleInput/MainTitleInput.sty
 import StyledSubTitleInput from "../../components/TitleInput/SubTitleInput.styled";
 import StyledBackgroundImageUploader from "containers/BackgroundImageUploader/BackgroundImageUploader.styled";
 
-import { useDispatch, useSelector } from "react-redux";
-import { combinedState } from "../../constant/type";
+import { useDispatch } from "react-redux";
+import { post } from "../../constant/type";
 import {
   titleAction,
   subTitleAction,
@@ -18,14 +18,12 @@ import Button from "components/Button/Button";
 
 type writeHeaderProps = {
   className: string;
-  backgroundColor: string;
-  backgroundImage: string;
+  newPost: post;
 };
 
-const WriteHeader = ({ className }: writeHeaderProps) => {
-  const newPost = useSelector((store: combinedState) => store.newPost);
-
+const WriteHeader = ({ className, newPost }: writeHeaderProps) => {
   const dispatch = useDispatch();
+  const oppositeColor = invertColor(newPost.backgroundColor);
 
   const onClickResetButton = () => {
     dispatch(resetBackground());
@@ -38,8 +36,6 @@ const WriteHeader = ({ className }: writeHeaderProps) => {
   const onChangeSubTitle = ({ target }: { target: HTMLInputElement }) => {
     dispatch(subTitleAction(target.value));
   };
-
-  const oppositeColor = invertColor(newPost.backgroundColor);
 
   return (
     <div className={className}>
@@ -55,6 +51,7 @@ const WriteHeader = ({ className }: writeHeaderProps) => {
           <StyledBackgroundImageUploader
             className="background-image-uploader"
             color={oppositeColor}
+            postId={newPost.id}
           />
         ) : (
           <Button
