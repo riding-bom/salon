@@ -16,7 +16,7 @@ const HostName = ({ className }: HostNameProps) => {
   };
   useEffect(() => {
     getSalonInfoHostName();
-  });
+  }, []);
 
   return <h1 className={className}>{hostName} 님의 살롱</h1>;
 };
