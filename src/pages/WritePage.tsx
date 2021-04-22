@@ -7,6 +7,7 @@ import styled from "styled-components";
 import StyledWriteHeader from "containers/WriteHeader/WriteHeader.styled";
 import StyledTextEditor from "containers/Editor/TextEditor.styled";
 import StyledButton from "components/Button/Button.styled";
+import { alertWritePostOpenAction } from "redux/reducers/openModal";
 
 type writePageProps = {
   className?: string;
@@ -21,10 +22,11 @@ const WritePage = ({ className }: writePageProps) => {
     dispatch(idAction());
   }, []);
 
-  const onChangeIdAndDate = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (newPost.title === "" || newPost.content === "") {
-      window.alert("제목과 내용은 필수 입력 사항입니다.");
-      return;
+      console.log("필수입력");
+
+      dispatch(alertWritePostOpenAction);
     } else {
       dispatch(dateAction(new Date()));
       await addPost(newPost);
@@ -46,7 +48,7 @@ const WritePage = ({ className }: writePageProps) => {
         className="write-submit"
         children="UPLOAD"
         type="button"
-        onClick={onChangeIdAndDate}
+        onClick={onClickSubmit}
       />
     </section>
   );

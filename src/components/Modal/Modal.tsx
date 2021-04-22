@@ -2,6 +2,7 @@ import React, { MouseEventHandler } from "react";
 import { useDispatch } from "react-redux";
 import {
   alertDeletePostCloseAction,
+  alertWritePostCloseAction,
   signinCloseAction,
   signupCloseAction,
 } from "redux/reducers/openModal";
@@ -20,6 +21,7 @@ const Modal = ({ children, className }: modalProps) => {
     dispatch(signinCloseAction);
     dispatch(signupCloseAction);
     dispatch(alertDeletePostCloseAction);
+    dispatch(alertWritePostCloseAction);
   };
 
   return (
