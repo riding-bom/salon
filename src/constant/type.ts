@@ -46,6 +46,7 @@ type combinedState = CombinedState<{
   isOpenModal: {
     isOpenSignIn: boolean;
     isOpenSignUp: boolean;
+    isOpenAlertDeletePost: boolean;
   };
   currentUser: {
     userInfo: user | null;

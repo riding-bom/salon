@@ -12,7 +12,10 @@ const postsDocRef = (id: string) => postsCollectionRef.doc(id);
 
 const addPost = async (newPost: post) => {
   await postsDocRef(newPost.id + "").set(newPost);
-  console.log("addPost", newPost);
+};
+
+const deletePost = async (postId: number) => {
+  await postsDocRef(postId + "").delete();
 };
 
 const getAllPost = async () => {
@@ -63,6 +66,7 @@ export {
   setSalonInfo,
   getSalonInfo,
   addPost,
+  deletePost,
   getAllPost,
   getMainPost,
 };

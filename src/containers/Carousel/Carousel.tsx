@@ -29,7 +29,8 @@ const Carousel = ({ className }: carouselProps) => {
 
   useEffect(() => {
     dispatch(createSetMainPostActionAsync());
-  });
+    console.log("test");
+  }, []);
 
   return (
     <Slider {...settings} className={className}>
