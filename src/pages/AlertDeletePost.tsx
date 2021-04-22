@@ -5,14 +5,13 @@ import ModalDialog from "containers/ModalDialog/ModalDialog";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost as deletePostAsync } from "fb/API";
 import { MouseEventHandler } from "react";
-import { useHistory, useRouteMatch } from "react-router";
+import { useHistory, useLocation, useRouteMatch } from "react-router";
 import { alertDeletePostCloseAction } from "redux/reducers/openModal";
 
 const AlertDeletePost = () => {
   const history = useHistory();
-  const match = useRouteMatch();
-  const { postId } = match.params as { postId: string };
-  console.log(postId);
+  const location = useLocation();
+  const postId = location.pathname.match(/[0-9]+/)?.toString();
 
   const dispatch = useDispatch();
 
@@ -21,7 +20,7 @@ const AlertDeletePost = () => {
   );
 
   const deletePost: MouseEventHandler = async () => {
-    await deletePostAsync(+postId);
+    postId && (await deletePostAsync(+postId));
     dispatch(alertDeletePostCloseAction);
     history.replace("/");
   };

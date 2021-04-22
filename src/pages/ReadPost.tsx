@@ -60,8 +60,8 @@ const ReadPost = ({ className }: readPostProps) => {
         </div>
       </header>
       <main>
-        {html.split(/<\/p>/).map((p) => (
-          <p>{htmlToText(p)}</p>
+        {html.split(/<\/p>/).map((p, i) => (
+          <p key={i}>{htmlToText(p)}</p>
         ))}
       </main>
     </main>

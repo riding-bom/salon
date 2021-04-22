@@ -29,14 +29,13 @@ const Carousel = ({ className }: carouselProps) => {
 
   useEffect(() => {
     dispatch(createSetMainPostActionAsync());
-    console.log("test");
   }, []);
 
   return (
     <Slider {...settings} className={className}>
       {mainPost.map((post) => {
         return (
-          <Link to={`/${post.id}`}>
+          <Link to={`/${post.id}`} key={post.id}>
             <div
               className="carousel-container"
               style={
