@@ -15,10 +15,11 @@ type TextEditorProps = {
   className: string;
   width?: string;
   height?: string;
+  postId: string;
 };
 
-const TextEditor = ({ className }: TextEditorProps) => {
-  // Redux dispatch
+const TextEditor = ({ className, postId }: TextEditorProps) => {
+  // Redux
   const dispatch = useDispatch();
 
   /* Draft.js-------------------------------------------------------------------------- */
@@ -29,12 +30,11 @@ const TextEditor = ({ className }: TextEditorProps) => {
     dispatch(contentAction(TextToHtml(editorState)));
   };
 
-  const uploadImageCallBack = (file: any) => {
+  const uploadImageCallBack = (file: object) => {
     return new Promise((resolve, reject) => {
       console.log("Uploading image...");
-      console.log(file);
 
-      firebaseUpload("images", file)
+      firebaseUpload("images", `${Date.now()}`, file)
         .then((link) => {
           resolve({
             data: {

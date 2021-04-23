@@ -15,17 +15,15 @@ type writePageProps = {
 
 const WritePage = ({ className }: writePageProps) => {
   const newPost = useSelector((state: combinedState) => state.newPost);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(idAction());
+    console.log(newPost);
   }, []);
 
   const onClickSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (newPost.title === "" || newPost.content === "") {
-      console.log("필수입력");
-
       dispatch(alertWritePostOpenAction);
     } else {
       dispatch(dateAction(new Date()));
@@ -36,12 +34,8 @@ const WritePage = ({ className }: writePageProps) => {
 
   return (
     <section className={className}>
-      <StyledWriteHeader
-        className=""
-        backgroundColor={newPost.backgroundColor}
-        backgroundImage={newPost.backgroundImage}
-      />
-      <StyledTextEditor className="" />
+      <StyledWriteHeader className="" newPost={newPost} />
+      <StyledTextEditor className="" postId={newPost.id} />
       <StyledButton
         width="300"
         height="30"

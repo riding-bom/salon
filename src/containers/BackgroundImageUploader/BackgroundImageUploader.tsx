@@ -10,11 +10,13 @@ import ImageIcon from "essets/Icons/ImageIcon";
 type backgroundImageUploaderProps = {
   className?: string;
   color: string;
+  postId: string;
 };
 
 const BackgroundImageUploader = ({
   className,
   color = "#000",
+  postId,
 }: backgroundImageUploaderProps) => {
   const dispatch = useDispatch();
   const fileInput = useRef<HTMLInputElement>(null);
@@ -23,7 +25,7 @@ const BackgroundImageUploader = ({
     return new Promise((resolve, reject) => {
       console.log("Uploading image...");
       e.target.files &&
-        firebaseUpload("backgroundImages", e.target.files[0])
+        firebaseUpload("backgroundImages", `Post${postId}`, e.target.files[0])
           .then((link) => {
             console.log(link);
             resolve(dispatch(backgroundImageAction(link)));
