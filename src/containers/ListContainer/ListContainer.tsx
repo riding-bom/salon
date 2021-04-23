@@ -10,7 +10,9 @@ type listContainerProps = {
 };
 
 const ListContainer = ({ className }: listContainerProps) => {
-  const renderingList = useSelector((state: combinedState) => state.renderingList);
+  const renderingList = useSelector(
+    (state: combinedState) => state.renderingList
+  );
 
   const dispatch = useDispatch();
 
@@ -34,7 +36,7 @@ const ListContainer = ({ className }: listContainerProps) => {
 
   return (
     <ul className={className}>
-      {renderingList.renderingList.map(post => (
+      {renderingList.renderingList.map((post) => (
         <Link to={`/${post.id}`} key={post.id}>
           <StyledPost
             access={post.access}

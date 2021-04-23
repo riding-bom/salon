@@ -1,19 +1,47 @@
+import Logo from "components/Logo/Logo";
 import Nav from "containers/Nav/Nav";
 import useAuthStateObserver from "customHook/useAuthStateObserver";
+import { MouseEventHandler } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { signinOpenAction } from "redux/reducers/openModal";
+import { signOut } from "fb/firebase";
 
 const NavList = () => {
+  const dispatch = useDispatch();
+
   const currentUser = useAuthStateObserver();
   console.log(currentUser);
-  console.log(currentUser.isAuthed);
 
-  return (
+  const openSignInModal: MouseEventHandler = () => {
+    dispatch(signinOpenAction);
+  };
+  const onSignOut: MouseEventHandler = () => {
+    signOut();
+  };
+
+  return currentUser.isAuthed ? (
     <>
-      <Nav id="1" type="LightMode" />
-      <Nav id="2" type="DarkMode" />
-      {currentUser.isAuthed ? <Nav id="3" type="LogOut" /> : null}
-      {currentUser.isAuthed ? <Nav id="4" type="Write" /> : null}
-      <Nav id="5" type="Search" />
-      <Nav id="6" type="Setting" />
+      <li>
+        <Link to="/write">
+          <Logo type="Write" />
+        </Link>
+      </li>
+      <Nav id="welcomPageLogOut" type="LogOut" onClick={onSignOut} />
+    </>
+  ) : (
+    <>
+      <li>
+        <Link to="/setting">
+          <Logo type="Setting" />
+        </Link>
+      </li>
+      <li>
+        <Link to="/favorite-list">
+          <Logo type="FillHeart" />
+        </Link>
+      </li>
+      <Nav id="welcomPageLogIn" type="LogIn" onClick={openSignInModal} />
     </>
   );
 };

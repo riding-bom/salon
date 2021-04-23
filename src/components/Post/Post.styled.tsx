@@ -14,7 +14,7 @@ const StyledPost = styled(Post)`
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   margin: 10px 0;
-  box-shadow: 0 10px 10px 3px rgba(110, 109, 110, 0.24);
+  /* box-shadow: 0 10px 10px 3px rgba(110, 109, 110, 0.24); */
 
   & > * {
     padding: 5px;

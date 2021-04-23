@@ -8,6 +8,10 @@ import { alertDeletePostOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch } from "react-router";
 import StyledComment from "containers/Comment/Comment.styled";
 import StyledButton from "components/Button/Button.styled";
+import Logo from "components/Logo/Logo";
+import { setLikePost } from "fb/API";
+import useAuthStateObserver from "customHook/useAuthStateObserver";
+import { MouseEventHandler } from "react";
 
 type readPostProps = {
   className?: string;
@@ -36,6 +40,12 @@ const ReadPost = ({ className }: readPostProps) => {
   const openAlertDialog = () => {
     dispatch(alertDeletePostOpenAction);
   };
+
+  const onSetLikePost = (uid: string, thisPost: post) => {
+    setLikePost(uid, thisPost.id);
+  };
+
+  const currentUser = useAuthStateObserver();
 
   return (
     <main className={className}>
@@ -69,6 +79,16 @@ const ReadPost = ({ className }: readPostProps) => {
         {html.split(/<\/p>/).map((p, i) => (
           <p key={i}>{htmlToText(p)}</p>
         ))}
+        {currentUser.isAuthed && (
+          <StyledButton
+            onClick={() =>
+              currentUser.userInfo?.uid &&
+              onSetLikePost(currentUser.userInfo?.uid, post)
+            }
+          >
+            <Logo type="EmptyHeart" />
+          </StyledButton>
+        )}
       </main>
       <footer>
         <StyledComment />
@@ -123,6 +143,17 @@ const StyledReadPost = styled(ReadPost)`
     font-size: 1.4rem;
     text-indent: 1em;
     line-height: 1.6em;
+    display: flex;
+    flex-flow: column nowrap;
+
+    & > button {
+      box-shadow: none;
+      align-self: flex-end;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
   }
 
   & > footer {

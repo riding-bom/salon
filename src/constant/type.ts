@@ -20,6 +20,7 @@ type user = {
   displayName: string;
   email: string;
   photoURL: string;
+  likePost?: post;
 };
 
 type salonInfo = {
@@ -62,4 +63,11 @@ type combinedState = CombinedState<{
   mainPost: postsList;
 }>;
 
-export type { post, postsList, combinedState, user, salonInfo, postFromFirestore };
+export type {
+  post,
+  postsList,
+  combinedState,
+  user,
+  salonInfo,
+  postFromFirestore,
+};
