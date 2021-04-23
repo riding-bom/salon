@@ -1,7 +1,7 @@
 /* Redux-------------------------------------------------------------------------- */
 import { useDispatch } from "react-redux";
 import { contentAction } from "../../redux/reducers/newPost";
-import firebaseUpload from 'modules/firebaseUpload'
+import firebaseUpload from "modules/firebaseUpload";
 
 /* Draft.js-------------------------------------------------------------------------- */
 // 에디터의 현재 콘텐츠 정보를 추출하는 함수 import
@@ -18,7 +18,7 @@ type TextEditorProps = {
 };
 
 const TextEditor = ({ className }: TextEditorProps) => {
-  // Redux dispatch
+  // Redux
   const dispatch = useDispatch();
 
   /* Draft.js-------------------------------------------------------------------------- */
@@ -29,12 +29,11 @@ const TextEditor = ({ className }: TextEditorProps) => {
     dispatch(contentAction(TextToHtml(editorState)));
   };
 
-  const uploadImageCallBack = (file: any) => {
+  const uploadImageCallBack = (file: object) => {
     return new Promise((resolve, reject) => {
       console.log("Uploading image...");
-      console.log(file);
 
-      firebaseUpload('images', file)
+      firebaseUpload("images", `${Date.now()}`, file)
         .then((link) => {
           resolve({
             data: {
