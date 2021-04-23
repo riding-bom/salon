@@ -3,8 +3,6 @@ import { combinedState } from "constant/type";
 import StyledHostName from "components/SalonInfo/HostName/HostName.styled";
 import StyledSalonInfo from "components/SalonInfo/SalonIntro/SalonInfo.styled";
 import StyledThumbnail from "components/SalonInfo/Thumbnail/Thumbnail.styled";
-import InputSalonInfo from "containers/InputSalonInfo/InputSalonInfo";
-import LoginTestButton from "components/LoginTestButton/LoginTestButton";
 import NavList from "containers/NavList/NavList";
 
 type HeaderProps = {
