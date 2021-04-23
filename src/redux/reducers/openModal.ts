@@ -6,7 +6,8 @@ const ALERT_DELETE_POST_OPEN = "alert-delete-post-open";
 const ALERT_DELETE_POST_CLOSE = "alert-delete-post-close";
 const ALERT_WRITE_POST_OPEN = "alert-write-post-open";
 const ALERT_WRITE_POST_CLOSE = "alert-write-post-close";
-
+const ALERT_CANCEL_WRITER_OPEN = "alert-cancel-writer-open"
+const ALERT_CANCEL_WRITER_CLOSE = "alert-cancel-writer-close";
 const EVERY_MODAL_CLOSE = "every-modal-close";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   isOpenSignUp: false,
   isOpenAlertDeletePost: false,
   isOpenAlertWritePost: false,
+  isOpenAlertCancelWriter: false,
 };
 
 type action = {
@@ -28,6 +30,8 @@ const alertDeletePostOpenAction = { type: ALERT_DELETE_POST_OPEN };
 const alertDeletePostCloseAction = { type: ALERT_DELETE_POST_CLOSE };
 const alertWritePostOpenAction = { type: ALERT_WRITE_POST_OPEN };
 const alertWritePostCloseAction = { type: ALERT_WRITE_POST_CLOSE };
+const alertCancelWriterOpenAction = { type: ALERT_CANCEL_WRITER_OPEN };
+const alertCancelWriterCloseAction = { type: ALERT_CANCEL_WRITER_CLOSE };
 const everyModalCloseAction = { type: EVERY_MODAL_CLOSE };
 
 const openModal = (state = initialState, action: action) => {
@@ -72,6 +76,16 @@ const openModal = (state = initialState, action: action) => {
         ...state,
         isOpenAlertWritePost: false,
       };
+    case ALERT_CANCEL_WRITER_OPEN:
+      return {
+        ...state,
+        isOpenAlertCancelWriter: true,
+      };
+    case ALERT_CANCEL_WRITER_CLOSE:
+      return {
+        ...state,
+        isOpenAlertCancelWriter: false,
+      };
     case EVERY_MODAL_CLOSE:
       return {
         ...initialState,
@@ -91,5 +105,7 @@ export {
   alertDeletePostCloseAction,
   alertWritePostOpenAction,
   alertWritePostCloseAction,
+  alertCancelWriterOpenAction,
+  alertCancelWriterCloseAction,
   everyModalCloseAction,
 };

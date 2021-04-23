@@ -7,6 +7,7 @@ import StyledWritePage from "pages/WritePage";
 import StyledReadPost from "pages/ReadPost";
 import AlertDeletePost from "pages/AlertDeletePost";
 import AlertWritePost from "pages/AlertWritePost";
+import AlertCancelWriter from "pages/AlertCancelWriter";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <SignUp />
         <AlertDeletePost />
         <AlertWritePost />
+        <AlertCancelWriter />
       </Router>
     </StoreProvider>
   );

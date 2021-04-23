@@ -7,7 +7,10 @@ import styled from "styled-components";
 import StyledWriteHeader from "containers/WriteHeader/WriteHeader.styled";
 import StyledTextEditor from "containers/Editor/TextEditor.styled";
 import StyledButton from "components/Button/Button.styled";
-import { alertWritePostOpenAction } from "redux/reducers/openModal";
+import {
+  alertCancelWriterOpenAction,
+  alertWritePostOpenAction,
+} from "redux/reducers/openModal";
 
 type writePageProps = {
   className?: string;
@@ -28,22 +31,35 @@ const WritePage = ({ className }: writePageProps) => {
     } else {
       dispatch(dateAction(new Date()));
       await addPost(newPost);
-      dispatch(resetState());
     }
+  };
+
+  const onClickCancel = () => {
+    dispatch(alertCancelWriterOpenAction);
   };
 
   return (
     <section className={className}>
       <StyledWriteHeader className="" newPost={newPost} />
       <StyledTextEditor className="" />
-      <StyledButton
-        width="300"
-        height="30"
-        className="write-submit"
-        children="UPLOAD"
-        type="button"
-        onClick={onClickSubmit}
-      />
+      <div className="btn-group">
+        <StyledButton
+          width="150"
+          height="30"
+          className="write-cancel"
+          children="CANCEL"
+          type="button"
+          onClick={onClickCancel}
+        />
+        <StyledButton
+          width="150"
+          height="30"
+          className="write-submit"
+          children="UPLOAD"
+          type="button"
+          onClick={onClickSubmit}
+        />
+      </div>
     </section>
   );
 };
@@ -55,12 +71,17 @@ const StyledWritePage = styled(WritePage)`
   flex-flow: column nowrap;
   align-items: center;
   margin: 0 auto;
+  overflow-x: hidden;
 
-  & > button {
+  .btn-group {
     position: fixed;
-    bottom: 10px;
-    border-radius: 15px;
-    border: 1px solid #ccc;
+    bottom: 15px;
+
+    & > button {
+      border-radius: 15px;
+      border: 1px solid #ccc;
+      margin: 0 10px;
+    }
   }
 `;
 
