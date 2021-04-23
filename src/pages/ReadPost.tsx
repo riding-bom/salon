@@ -41,7 +41,7 @@ const ReadPost = ({ className }: readPostProps) => {
   };
 
   const onSetLikePost = (uid: string, thisPost: post) => {
-    setLikePost(uid, thisPost);
+    setLikePost(uid, thisPost.id);
   };
 
   const currentUser = useAuthStateObserver();

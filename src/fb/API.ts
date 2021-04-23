@@ -1,3 +1,4 @@
+import firebase from "firebase/app";
 import {
   usersCollectionRef,
   salonInfoCollectionRef,
@@ -62,11 +63,10 @@ const getSalonInfo = async () => {
 };
 
 /* like API-------------------------------------------------------------------------- */
-const setLikePost = async (uid: string, post: post) => {
-  const likePostRef = usersCollectionRef.doc(uid).collection("likePost");
-  console.log(post.id);
-  console.log(post);
-  await likePostRef.doc(post.id + "").set(post);
+const setLikePost = async (uid: string, postId: string) => {
+  await usersCollectionRef
+    .doc(uid)
+    .update({ likePost: firebase.firestore.FieldValue.arrayUnion(postId) });
 };
 
 export {
