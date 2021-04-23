@@ -3,9 +3,11 @@ import StoreProvider from "redux/store";
 import SignIn from "pages/SignIn";
 import SignUp from "pages/SignUp";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import StyledWriteContainer from "containers/WriteContainer/WriteContainer.styled";
+import StyledWritePage from "pages/WritePage";
 import StyledReadPost from "pages/ReadPost";
 import AlertDeletePost from "pages/AlertDeletePost";
+import AlertWritePost from "pages/AlertWritePost";
+import AlertCancelWriter from "pages/AlertCancelWriter";
 
 function App() {
   return (
@@ -13,7 +15,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/write">
-            <StyledWriteContainer />
+            <StyledWritePage />
           </Route>
           <Route path="/:postId">
             <StyledReadPost />
@@ -26,6 +28,8 @@ function App() {
         <SignIn />
         <SignUp />
         <AlertDeletePost />
+        <AlertWritePost />
+        <AlertCancelWriter />
       </Router>
     </StoreProvider>
   );
