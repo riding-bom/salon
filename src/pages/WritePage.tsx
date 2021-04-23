@@ -35,7 +35,7 @@ const WritePage = ({ className }: writePageProps) => {
   return (
     <section className={className}>
       <StyledWriteHeader className="" newPost={newPost} />
-      <StyledTextEditor className="" postId={newPost.id} />
+      <StyledTextEditor className="" />
       <StyledButton
         width="300"
         height="30"

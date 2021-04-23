@@ -15,10 +15,9 @@ type TextEditorProps = {
   className: string;
   width?: string;
   height?: string;
-  postId: string;
 };
 
-const TextEditor = ({ className, postId }: TextEditorProps) => {
+const TextEditor = ({ className }: TextEditorProps) => {
   // Redux
   const dispatch = useDispatch();
 
