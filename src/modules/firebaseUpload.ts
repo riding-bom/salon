@@ -1,11 +1,11 @@
 import { storage } from "fb/firebase";
 
-// 1. Storage directory name, 2. upload file, return <Promise>
-const firebaseUpload = async (dir: string, postId: string, file: any) => {
+// 1. Storage directory name, 2. file id 3. upload file, return <Promise>
+const firebaseUpload = async (dir: string, fileId: string, file: any) => {
   console.log(file);
 
   try {
-    const uploadTask = await storage.ref(`${dir}/Post${postId}_${file.name}`).put(file);
+    const uploadTask = await storage.ref(`${dir}/${fileId}_${file.name}`).put(file);
 
     console.log(uploadTask);
 

@@ -25,7 +25,7 @@ const BackgroundImageUploader = ({
     return new Promise((resolve, reject) => {
       console.log("Uploading image...");
       e.target.files &&
-        firebaseUpload("backgroundImages", postId, e.target.files[0])
+        firebaseUpload("backgroundImages", `Post${postId}`, e.target.files[0])
           .then((link) => {
             console.log(link);
             resolve(dispatch(backgroundImageAction(link)));

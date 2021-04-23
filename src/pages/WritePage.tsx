@@ -24,8 +24,6 @@ const WritePage = ({ className }: writePageProps) => {
 
   const onClickSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (newPost.title === "" || newPost.content === "") {
-      console.log("필수입력");
-
       dispatch(alertWritePostOpenAction);
     } else {
       dispatch(dateAction(new Date()));
