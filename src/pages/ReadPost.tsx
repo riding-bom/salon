@@ -6,6 +6,8 @@ import { ReactComponent as DeleteIcon } from "essets/Icons/delete.svg";
 import Button from "components/Button/Button";
 import { alertDeletePostOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch } from "react-router";
+import StyledComment from "containers/Comment/Comment.styled";
+import StyledButton from "components/Button/Button.styled";
 
 type readPostProps = {
   className?: string;
@@ -21,6 +23,7 @@ const ReadPost = ({ className }: readPostProps) => {
   const dispatch = useDispatch();
 
   const post = postsList.find((post) => post.id + "" === postId) as post;
+
   const date = post.date
     .toString()
     .slice(18)
@@ -48,9 +51,9 @@ const ReadPost = ({ className }: readPostProps) => {
         <div style={{ color: "white" }}>
           <Title level={1}>
             {post?.title}
-            <Button onClick={openAlertDialog}>
+            <StyledButton onClick={openAlertDialog}>
               <DeleteIcon />
-            </Button>
+            </StyledButton>
           </Title>
           <Title level={2}>{post?.subTitle}</Title>
           <Title level={3}>
@@ -64,6 +67,9 @@ const ReadPost = ({ className }: readPostProps) => {
           <p key={i}>{htmlToText(p)}</p>
         ))}
       </main>
+      <footer>
+        <StyledComment />
+      </footer>
     </main>
   );
 };
@@ -93,6 +99,11 @@ const StyledReadPost = styled(ReadPost)`
           background-color: transparent;
           border: none;
           margin: 0 5px;
+          box-shadow: none;
+
+          &:hover {
+            background-color: transparent;
+          }
         }
       }
 
@@ -109,6 +120,11 @@ const StyledReadPost = styled(ReadPost)`
     font-size: 1.4rem;
     text-indent: 1em;
     line-height: 1.6em;
+  }
+
+  & > footer {
+    display: flex;
+    justify-content: center;
   }
 `;
 

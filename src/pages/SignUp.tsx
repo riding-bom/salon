@@ -21,7 +21,7 @@ const SignUp = () => {
     email: "",
     password: "",
     passwordCheck: "",
-    displayName: "",
+    displayName: ""
   });
   const { email, password, displayName, passwordCheck } = state;
 
@@ -29,7 +29,7 @@ const SignUp = () => {
     setState(() => {
       return {
         ...state,
-        email: e.target.value,
+        email: e.target.value
       };
     });
   };
@@ -38,7 +38,7 @@ const SignUp = () => {
     setState(() => {
       return {
         ...state,
-        password: e.target.value,
+        password: e.target.value
       };
     });
   };
@@ -47,7 +47,7 @@ const SignUp = () => {
     setState(() => {
       return {
         ...state,
-        passwordCheck: e.target.value,
+        passwordCheck: e.target.value
       };
     });
   };
@@ -56,7 +56,7 @@ const SignUp = () => {
     setState(() => {
       return {
         ...state,
-        displayName: e.target.value,
+        displayName: e.target.value
       };
     });
   };
@@ -67,7 +67,7 @@ const SignUp = () => {
         email: "",
         password: "",
         passwordCheck: "",
-        displayName: "",
+        displayName: ""
       };
     });
   };
@@ -89,22 +89,11 @@ const SignUp = () => {
   return isOpenModal.isOpenSignUp ? (
     <ModalDialog>
       <Title level={1}>salon</Title>
-      <StyledInputText
-        id="signUpEmail"
-        name="Email"
-        value={email}
-        onChange={setEmail}
-      />
+      <StyledInputText id="signUpEmail" name="Email" value={email} onChange={setEmail} />
       {validateEmail(email) || email === "" || (
-        <StyledValidationText>
-          이메일 형식이 맞지 않습니다.
-        </StyledValidationText>
+        <StyledValidationText>이메일 형식이 맞지 않습니다.</StyledValidationText>
       )}
-      <StyledPasswordInput
-        id="signUpPassword"
-        value={password}
-        onChange={setPassword}
-      />
+      <StyledPasswordInput id="signUpPassword" value={password} onChange={setPassword} />
       {validatePassword(password) || password === "" || (
         <StyledValidationText>
           문자, 숫자, 특수문자 포함 8자 이상이어야 합니다.
@@ -129,13 +118,7 @@ const SignUp = () => {
           updateUserWithEmail();
           dispatch(signupCloseAction);
         }}
-        disabled={
-          !(
-            validateEmail(email) &&
-            validatePassword(password) &&
-            displayName !== ""
-          )
-        }
+        disabled={!(validateEmail(email) && validatePassword(password) && displayName !== "")}
       >
         SIGNUP
       </StyledButton>

@@ -61,4 +61,4 @@ type combinedState = CombinedState<{
   mainPost: postsList;
 }>;
 
-export type { post, postsList, combinedState, user, postFromFirestore };
+export type { post, postsList, combinedState, user, salonInfo, postFromFirestore };

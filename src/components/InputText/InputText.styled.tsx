@@ -1,5 +1,5 @@
+import InputText from "components/InputText/InputText";
 import styled from "styled-components";
-import InputText from "./InputText";
 
 const StyledInputText = styled(InputText)`
   position: relative;

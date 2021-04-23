@@ -1,11 +1,6 @@
 import React, { MouseEventHandler } from "react";
 import { useDispatch } from "react-redux";
-import {
-  alertDeletePostCloseAction,
-  alertWritePostCloseAction,
-  signinCloseAction,
-  signupCloseAction,
-} from "redux/reducers/openModal";
+import { everyModalCloseAction } from "redux/reducers/openModal";
 
 type modalProps = {
   children: React.ReactNode;
@@ -18,10 +13,7 @@ const Modal = ({ children, className }: modalProps) => {
   const closeModal: MouseEventHandler = (e) => {
     const target = e.target as HTMLElement;
     if (!target.matches("div, .close-button, .close-button *")) return;
-    dispatch(signinCloseAction);
-    dispatch(signupCloseAction);
-    dispatch(alertDeletePostCloseAction);
-    dispatch(alertWritePostCloseAction);
+    dispatch(everyModalCloseAction);
   };
 
   return (

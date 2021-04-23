@@ -1,18 +1,18 @@
-import Button from "components/Button/Button";
+import StyledNavButton from "components/Button/NavButton.styled";
 import List from "components/List/List";
 import Logo from "components/Logo/Logo";
 
 type NavProps = {
-  type: "LightMode" | "DarkMode" | "LogOut" | "Search" | "Setting";
+  type: "LightMode" | "DarkMode" | "LogOut" | "Search" | "Setting" | "Write";
   id: string;
 };
 
 const Nav = ({ type, id }: NavProps) => {
   return (
     <List id={id}>
-      <Button type="button">
+      <StyledNavButton type="button">
         <Logo type={type} />
-      </Button>
+      </StyledNavButton>
     </List>
   );
 };
