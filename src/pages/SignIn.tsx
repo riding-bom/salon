@@ -1,8 +1,12 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signInWithEmail, signInWithGoogle } from "fb/firebase";
+import {
+  signInWithEmail,
+  signInWithGoogle,
+  usersCollectionRef,
+} from "fb/firebase";
 import { signinCloseAction, signupOpenAction } from "redux/reducers/openModal";
-import { setUser } from "fb/API";
+import { getUser, setUser } from "fb/API";
 import { combinedState, user } from "constant/type";
 import StyledPasswordInput from "containers/PasswordInput/PasswordInput.styled";
 import StyledButton from "components/Button/Button.styled";
@@ -51,9 +55,9 @@ const SignIn = () => {
 
   const updateUserWithGoogle = async () => {
     const res = await signInWithGoogle();
-    if (res.user !== null) {
-      setUser(res.user as user);
-    }
+    const email = res.user && res.user.email;
+    const snapshot = await usersCollectionRef.where("email", "==", email).get();
+    if (snapshot.empty) setUser(res.user as user);
   };
 
   useEffect(() => {
