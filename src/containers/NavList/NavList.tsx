@@ -26,6 +26,11 @@ const NavList = () => {
           <Logo type="Write" />
         </Link>
       </li>
+      <li>
+        <Link to="/like-posts">
+          <Logo type="FillHeart" />
+        </Link>
+      </li>
       <Nav id="welcomPageLogOut" type="LogOut" onClick={onSignOut} />
     </>
   ) : (
@@ -33,11 +38,6 @@ const NavList = () => {
       <li>
         <Link to="/setting">
           <Logo type="Setting" />
-        </Link>
-      </li>
-      <li>
-        <Link to="/favorite-list">
-          <Logo type="FillHeart" />
         </Link>
       </li>
       <Nav id="welcomPageLogIn" type="LogIn" onClick={openSignInModal} />

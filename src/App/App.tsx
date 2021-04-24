@@ -10,6 +10,7 @@ import AlertWritePost from "pages/AlertWritePost";
 import AlertCancelWriter from "pages/AlertCancelWriter";
 import NeedSignIn from "pages/NeedSignIn";
 import AlertCancelLike from "pages/AlertCancelLike";
+import LikePosts from "pages/LikePosts";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         <Switch>
           <Route path="/write">
             <StyledWritePage />
+          </Route>
+          <Route path="/like-posts">
+            <LikePosts />
           </Route>
           <Route path="/:postId">
             <StyledReadPost />
