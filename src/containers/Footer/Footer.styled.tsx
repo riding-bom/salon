@@ -9,6 +9,10 @@ const StyledFooter = styled(Footer)`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  small {
+    font-size: 1.4rem;
+  }
 `;
 
 export default StyledFooter;

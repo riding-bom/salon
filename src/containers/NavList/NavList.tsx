@@ -11,7 +11,6 @@ const NavList = () => {
   const dispatch = useDispatch();
 
   const currentUser = useAuthStateObserver();
-  console.log(currentUser);
 
   const openSignInModal: MouseEventHandler = () => {
     dispatch(signinOpenAction);

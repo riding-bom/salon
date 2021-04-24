@@ -6,8 +6,12 @@ const ALERT_DELETE_POST_OPEN = "alert-delete-post-open";
 const ALERT_DELETE_POST_CLOSE = "alert-delete-post-close";
 const ALERT_WRITE_POST_OPEN = "alert-write-post-open";
 const ALERT_WRITE_POST_CLOSE = "alert-write-post-close";
-const ALERT_CANCEL_WRITER_OPEN = "alert-cancel-writer-open"
+const ALERT_CANCEL_WRITER_OPEN = "alert-cancel-writer-open";
 const ALERT_CANCEL_WRITER_CLOSE = "alert-cancel-writer-close";
+const NEED_SIGNIN_OPEN = "need-signin-open";
+const NEED_SIGNIN_CLOSE = "need-signin-close";
+const ALERT_CANCEL_LIKE_OPEN = "alert-cancel-like-open";
+const ALERT_CANCEL_LIKE_CLOSE = "alert-cancel-like-close";
 const EVERY_MODAL_CLOSE = "every-modal-close";
 
 const initialState = {
@@ -16,6 +20,8 @@ const initialState = {
   isOpenAlertDeletePost: false,
   isOpenAlertWritePost: false,
   isOpenAlertCancelWriter: false,
+  isOpenNeedSignIn: false,
+  isOpenAlertCancelLike: false,
 };
 
 type action = {
@@ -32,6 +38,10 @@ const alertWritePostOpenAction = { type: ALERT_WRITE_POST_OPEN };
 const alertWritePostCloseAction = { type: ALERT_WRITE_POST_CLOSE };
 const alertCancelWriterOpenAction = { type: ALERT_CANCEL_WRITER_OPEN };
 const alertCancelWriterCloseAction = { type: ALERT_CANCEL_WRITER_CLOSE };
+const needSignInOpenAction = { type: NEED_SIGNIN_OPEN };
+const needSignInCloseAction = { type: NEED_SIGNIN_CLOSE };
+const alertCancelLikeOpenAction = { type: ALERT_CANCEL_LIKE_OPEN };
+const alertCancelLikeCloseAction = { type: ALERT_CANCEL_LIKE_CLOSE };
 const everyModalCloseAction = { type: EVERY_MODAL_CLOSE };
 
 const openModal = (state = initialState, action: action) => {
@@ -86,6 +96,26 @@ const openModal = (state = initialState, action: action) => {
         ...state,
         isOpenAlertCancelWriter: false,
       };
+    case NEED_SIGNIN_OPEN:
+      return {
+        ...state,
+        isOpenNeedSignIn: true,
+      };
+    case NEED_SIGNIN_CLOSE:
+      return {
+        ...state,
+        isOpenNeedSignIn: false,
+      };
+    case ALERT_CANCEL_LIKE_OPEN:
+      return {
+        ...state,
+        isOpenAlertCancelLike: true,
+      };
+    case ALERT_CANCEL_LIKE_CLOSE:
+      return {
+        ...state,
+        isOpenAlertCancelLike: false,
+      };
     case EVERY_MODAL_CLOSE:
       return {
         ...initialState,
@@ -107,5 +137,9 @@ export {
   alertWritePostCloseAction,
   alertCancelWriterOpenAction,
   alertCancelWriterCloseAction,
+  needSignInOpenAction,
+  needSignInCloseAction,
+  alertCancelLikeOpenAction,
+  alertCancelLikeCloseAction,
   everyModalCloseAction,
 };

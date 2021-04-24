@@ -69,6 +69,12 @@ const setLikePost = async (uid: string, postId: string) => {
     .update({ likePost: firebase.firestore.FieldValue.arrayUnion(postId) });
 };
 
+const removeLikePost = async (uid: string, postId: string) => {
+  await usersCollectionRef
+    .doc(uid)
+    .update({ likePost: firebase.firestore.FieldValue.arrayRemove(postId) });
+};
+
 export {
   setUser,
   getUser,
@@ -79,4 +85,5 @@ export {
   getAllPost,
   getMainPost,
   setLikePost,
+  removeLikePost,
 };

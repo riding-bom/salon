@@ -18,7 +18,6 @@ const ListContainer = ({ className }: listContainerProps) => {
 
   useEffect(() => {
     dispatch(getAllPostAsync());
-    console.log(renderingList);
   }, []);
 
   const convertToDate = (timestamp: Date) => {
