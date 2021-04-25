@@ -8,6 +8,8 @@ import { salonInfoReducer } from "./reducers/salonInfo";
 import openModal from "./reducers/openModal";
 import renderListReducer from "./reducers/renderingList";
 import mainPostReducer from "./reducers/mainPost";
+import { commentReducer } from "./reducers/comment";
+import { newCommentReducer } from "./reducers/newComment";
 
 const middleware = [thunk];
 
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
   currentUser: currentUserReducer,
   renderingList: renderListReducer,
   mainPost: mainPostReducer,
+  comment: commentReducer,
+  newComment: newCommentReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(...middleware));

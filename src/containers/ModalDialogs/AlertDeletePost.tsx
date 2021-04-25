@@ -15,9 +15,7 @@ const AlertDeletePost = () => {
 
   const dispatch = useDispatch();
 
-  const { isOpenAlertDeletePost } = useSelector(
-    (state: combinedState) => state.isOpenModal
-  );
+  const { isOpenAlertDeletePost } = useSelector((state: combinedState) => state.isOpenModal);
 
   const deletePost: MouseEventHandler = async () => {
     postId && (await deletePostAsync(+postId));

@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import Button from "./Button";
 
-const StyledNavButton = styled(Button)`
+const StyledCommentMenuButton = styled(Button)`
   background-color: #fff;
   border: none;
-  cursor: pointer;
-  padding: 0;
 `;
 
-export default StyledNavButton;
+export default StyledCommentMenuButton;

@@ -9,7 +9,7 @@ const firebaseConfig = {
   projectId: "salon-riding-bom",
   storageBucket: "salon-riding-bom.appspot.com",
   messagingSenderId: "52085397565",
-  appId: "1:52085397565:web:dcd2a0a121541d7739b254",
+  appId: "1:52085397565:web:dcd2a0a121541d7739b254"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -20,6 +20,7 @@ const firestore = firebase.firestore();
 const usersCollectionRef = firestore.collection("users");
 const salonInfoCollectionRef = firestore.collection("salonInfo");
 const mainPostCollectionRef = firestore.collection("mainPost");
+const commentCollectionRef = firestore.collection("comment");
 
 const auth = firebase.auth();
 auth.useDeviceLanguage();
@@ -58,4 +59,5 @@ export {
   signUpWithEmail,
   signInWithEmail,
   signOut,
+  commentCollectionRef
 };
