@@ -23,10 +23,6 @@ const Header = ({ className }: HeaderProps) => {
         <ul>
           <NavList />
         </ul>
-        {/* <div>
-          <InputSalonInfo />
-          <LoginTestButton />
-        </div> */}
       </div>
     </header>
   );

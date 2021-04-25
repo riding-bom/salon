@@ -2,7 +2,7 @@ import { FormEventHandler, MouseEventHandler } from "react";
 
 type buttonProps = {
   children: React.ReactNode;
-  type: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset" | undefined;
   width?: string;
   height?: string;
   className?: string;
@@ -10,6 +10,7 @@ type buttonProps = {
   onSubmit?: FormEventHandler;
   disabled?: boolean;
   label?: string;
+  name?: string;
 };
 
 const Button = ({
@@ -20,6 +21,7 @@ const Button = ({
   onClick,
   onSubmit,
   disabled,
+  name
 }: buttonProps) => {
   return (
     <button
@@ -29,6 +31,7 @@ const Button = ({
       onClick={onClick}
       onSubmit={onSubmit}
       disabled={disabled}
+      name={name}
     >
       {children}
     </button>
@@ -36,7 +39,7 @@ const Button = ({
 };
 
 Button.defaultProps = {
-  type: "button",
+  type: "button"
 };
 
 export default Button;

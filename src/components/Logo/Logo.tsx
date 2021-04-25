@@ -7,6 +7,8 @@ import { ReactComponent as Write } from "essets/Icons/write.svg";
 import { ReactComponent as LogIn } from "essets/Icons/login.svg";
 import { ReactComponent as EmptyHeart } from "essets/Icons/empty-heart.svg";
 import { ReactComponent as FillHeart } from "essets/Icons/fill-heart.svg";
+import { ReactComponent as Menu } from "essets/Icons/menu.svg";
+import { ReactComponent as UserImg } from "essets/Icons/userImg.svg";
 
 type LogoProps = {
   type:
@@ -18,7 +20,9 @@ type LogoProps = {
     | "Write"
     | "LogIn"
     | "EmptyHeart"
-    | "FillHeart";
+    | "FillHeart"
+    | "Menu"
+    | "UserImg";
 };
 
 const Logo = (props: LogoProps) => {
@@ -35,6 +39,10 @@ const Logo = (props: LogoProps) => {
       return <Setting />;
     case "Write":
       return <Write />;
+    case "Menu":
+      return <Menu />;
+    case "UserImg":
+      return <UserImg />;
     case "LogIn":
       return <LogIn />;
     case "EmptyHeart":

@@ -7,7 +7,7 @@ import { ReactComponent as DeleteIcon } from "essets/Icons/delete.svg";
 import { ReactComponent as WriteIcon } from "essets/Icons/write.svg";
 import { createOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch } from "react-router";
-import StyledComment from "containers/Comment/Comment.styled";
+import Comment from "containers/Comment/Comment";
 import StyledButton from "components/Button/Button.styled";
 import LikeButton from "containers/LikeButton/LikeButton";
 import { useEffect, useState } from "react";
@@ -59,7 +59,7 @@ const ReadPost = ({ className }: readPostProps) => {
         style={
           post.backgroundImage !== ""
             ? {
-                backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`,
+                backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`
               }
             : { backgroundColor: `${post.backgroundColor}` }
         }
@@ -87,8 +87,8 @@ const ReadPost = ({ className }: readPostProps) => {
         ))}
         <LikeButton />
       </main>
-      <footer>
-        <StyledComment />
+      <footer className={className}>
+        <Comment />
       </footer>
     </main>
   );
@@ -152,10 +152,10 @@ const StyledReadPost = styled(ReadPost)`
       }
     }
   }
-
   & > footer {
     display: flex;
-    justify-content: center;
+    flex-flow: column;
+    align-items: center;
   }
 `;
 
