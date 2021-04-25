@@ -58,6 +58,14 @@ type combinedState = CombinedState<{
   };
   salonInfo: salonInfo;
   mainPost: postsList;
+  newComment: comment;
 }>;
 
-export type { post, postsList, combinedState, user, salonInfo, postFromFirestore };
+type comment = {
+  id: string;
+  user: string;
+  comment: string;
+  postId: string;
+};
+
+export type { post, postsList, combinedState, user, salonInfo, postFromFirestore, comment };

@@ -3,8 +3,8 @@ import useAuthStateObserver from "customHook/useAuthStateObserver";
 
 const NavList = () => {
   const currentUser = useAuthStateObserver();
-  console.log(currentUser);
-  console.log(currentUser.isAuthed);
+  // console.log(currentUser);
+  // console.log(currentUser.isAuthed);
 
   return (
     <>

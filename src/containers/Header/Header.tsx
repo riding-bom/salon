@@ -25,10 +25,10 @@ const Header = ({ className }: HeaderProps) => {
         <ul>
           <NavList />
         </ul>
-        {/* <div>
+        <div>
           <InputSalonInfo />
           <LoginTestButton />
-        </div> */}
+        </div>
       </div>
     </header>
   );

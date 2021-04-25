@@ -2,9 +2,9 @@ import {
   usersCollectionRef,
   salonInfoCollectionRef,
   mainPostCollectionRef,
-  firestore,
+  firestore
 } from "./firebase";
-import { post, user, salonInfo } from "../constant/type";
+import { post, user, salonInfo, comment } from "../constant/type";
 
 /* posts API-------------------------------------------------------------------------- */
 const postsCollectionRef = firestore.collection("posts");
@@ -26,7 +26,7 @@ const getAllPost = async () => {
 
 const getMainPost = async () => {
   const snapshot = await mainPostCollectionRef.get();
-  const list = snapshot.docs.map((post) => post.data());
+  const list = snapshot.docs.map(post => post.data());
   return list;
 };
 
@@ -58,6 +58,21 @@ const getSalonInfo = async () => {
   return snapshot;
 };
 
+/* comment API-------------------------------------------------------------------------- */
+
+const commentCollectionRef = firestore.collection("comment");
+const commentDocRef = (id: string) => commentCollectionRef.doc(id);
+
+const addComment = async (newComment: comment) => {
+  await commentDocRef(newComment.id + "").set(newComment);
+};
+
+const getAllComment = async () => {
+  const snapshot = await commentCollectionRef.get();
+  const commentList = snapshot.docs.map(comment => comment.data()).sort((a, b) => b.id - a.id);
+  return commentList;
+};
+
 export {
   setUser,
   getUser,
@@ -67,4 +82,6 @@ export {
   deletePost,
   getAllPost,
   getMainPost,
+  addComment,
+  getAllComment
 };

@@ -6,7 +6,7 @@ import { ReactComponent as DeleteIcon } from "essets/Icons/delete.svg";
 import Button from "components/Button/Button";
 import { alertDeletePostOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch } from "react-router";
-import StyledComment from "containers/Comment/Comment.styled";
+import Comment from "containers/Comment/Comment";
 
 type readPostProps = {
   className?: string;
@@ -19,11 +19,11 @@ const ReadPost = ({ className }: readPostProps) => {
   const postsList = useSelector((state: combinedState) => state.postsList);
   const salonInfo = useSelector((state: combinedState) => state.salonInfo);
 
-
   const dispatch = useDispatch();
 
-  const post = postsList.find((post) => post.id + "" === postId) as post;
-  
+  const post = postsList.find(post => post.id + "" === postId) as post;
+  console.log(post.id);
+
   const date = post.date
     .toString()
     .slice(18)
@@ -43,7 +43,7 @@ const ReadPost = ({ className }: readPostProps) => {
         style={
           post.backgroundImage !== ""
             ? {
-                backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`,
+                backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`
               }
             : { backgroundColor: `${post.backgroundColor}` }
         }
@@ -67,8 +67,8 @@ const ReadPost = ({ className }: readPostProps) => {
           <p key={i}>{htmlToText(p)}</p>
         ))}
       </main>
-      <footer>
-        <StyledComment />
+      <footer className={className}>
+        <Comment />
       </footer>
     </main>
   );
@@ -116,10 +116,10 @@ const StyledReadPost = styled(ReadPost)`
     text-indent: 1em;
     line-height: 1.6em;
   }
-
   & > footer {
     display: flex;
-    justify-content: center;
+    flex-flow: column;
+    align-items: center;
   }
 `;
 

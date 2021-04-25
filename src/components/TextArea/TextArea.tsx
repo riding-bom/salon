@@ -25,10 +25,11 @@ const TextArea = ({
 }: TextAreaProps) => {
   return (
     <div className={className}>
-      <textarea name={name} id={id} cols={cols} rows={rows} value={value} onChange={onChange}>
-        {children}
-      </textarea>
-      <label htmlFor={id}>{value ? "" : placeholder}</label>
+      {children}
+      <div className="textAreaContainer">
+        <textarea name={name} id={id} cols={cols} rows={rows} value={value} onChange={onChange} />
+        <label htmlFor={id}>{value ? "" : placeholder}</label>
+      </div>
     </div>
   );
 };
