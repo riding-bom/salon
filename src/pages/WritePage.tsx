@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { combinedState } from "constant/type";
-import { idAction, dateAction } from "redux/reducers/newPost";
+import { idAction, dateAction, resetState } from "redux/reducers/newPost";
 import { addPost } from "fb/API";
 import styled from "styled-components";
 import StyledWriteHeader from "containers/WriteHeader/WriteHeader.styled";
 import StyledTextEditor from "containers/Editor/TextEditor.styled";
 import StyledButton from "components/Button/Button.styled";
 import { createOpenAction } from "redux/reducers/openModal";
+import { useHistory } from "react-router";
 
 type writePageProps = {
   className?: string;
@@ -16,6 +17,7 @@ type writePageProps = {
 const WritePage = ({ className }: writePageProps) => {
   const newPost = useSelector((state: combinedState) => state.newPost);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(idAction());
@@ -27,6 +29,8 @@ const WritePage = ({ className }: writePageProps) => {
     } else {
       dispatch(dateAction(new Date()));
       await addPost(newPost);
+      dispatch(resetState());
+      history.replace(`/${newPost.id}`);
     }
   };
 

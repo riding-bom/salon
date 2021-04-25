@@ -6,9 +6,9 @@ import StyledWriteHeader from "containers/WriteHeader/WriteHeader.styled";
 import StyledTextEditor from "containers/Editor/TextEditor.styled";
 import StyledButton from "components/Button/Button.styled";
 import { createOpenAction } from "redux/reducers/openModal";
-import { useRouteMatch } from "react-router";
-import { useEffect, useState } from "react";
-import { postAction } from "redux/reducers/newPost";
+import { useRouteMatch, useHistory } from "react-router";
+import { useEffect } from "react";
+import { postAction, resetState } from "redux/reducers/newPost";
 
 type UpdatePageProps = {
   className?: string;
@@ -17,22 +17,21 @@ type UpdatePageProps = {
 const UpdatePage = ({ className }: UpdatePageProps) => {
   const newPost = useSelector((state: combinedState) => state.newPost);
   const dispatch = useDispatch();
+  const history = useHistory();
   const match = useRouteMatch();
-  const [post, setPost] = useState({} as post);
 
   const { postId } = match.params as { postId: string };
 
-  const getPostAsync = async () => {
-    const post = await getPost(postId);
-    if (post) {
-      setPost(() => post as post);
-    }
-  };
-
   useEffect(() => {
+    const getPostAsync = async () => {
+      const post = (await getPost(postId)) as post;
+      if (post) {
+        console.log(post);
+        dispatch(postAction(post));
+      }
+    };
+
     getPostAsync();
-    dispatch(postAction(post as post));
-    console.log(newPost);
   }, []);
 
   const onClickSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -40,6 +39,8 @@ const UpdatePage = ({ className }: UpdatePageProps) => {
       dispatch(createOpenAction("isOpenAlertWritePost"));
     } else {
       await addPost(newPost);
+      dispatch(resetState());
+      history.replace(`/${postId}`);
     }
   };
 
@@ -50,7 +51,7 @@ const UpdatePage = ({ className }: UpdatePageProps) => {
   return (
     <section className={className}>
       <StyledWriteHeader className="" Post={newPost} />
-      <StyledTextEditor className="" />
+      <StyledTextEditor className="" defaultContent={newPost.content} />
       <div className="btn-group">
         <StyledButton
           width="150"

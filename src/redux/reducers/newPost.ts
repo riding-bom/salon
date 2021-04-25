@@ -101,7 +101,7 @@ type action = {
 export const newPostReducer = (state = initialState, action: action) => {
   switch (action.type) {
     case UPDATE_POST:
-      return { state: action.payload };
+      return { ...state, ...action.payload as post };
     case UPDATE_ID:
       return { ...state, id: action.payload };
     case UPDATE_TITLE:

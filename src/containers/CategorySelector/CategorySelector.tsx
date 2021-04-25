@@ -5,10 +5,14 @@ import { ChangeEventHandler } from "react";
 
 type CategorySelectProps = {
   className: string;
+  defaultValue: string;
   color?: string;
 };
 
-const CategorySelector = ({ className }: CategorySelectProps) => {
+const CategorySelector = ({
+  className,
+  defaultValue = "All",
+}: CategorySelectProps) => {
   //TODO: 작가별 카테고리 배열을 가져와야함
   const category = ["All", "Novel", "Poem", "Essay"];
 
@@ -36,6 +40,7 @@ const CategorySelector = ({ className }: CategorySelectProps) => {
       id="categorySelect"
       name="category"
       onChange={onChangeCategory}
+      defaultValue={defaultValue}
       optionArray={category}
     />
   );

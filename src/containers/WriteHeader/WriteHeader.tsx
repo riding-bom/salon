@@ -42,9 +42,14 @@ const WriteHeader = ({ className, Post }: writeHeaderProps) => {
       <div className="selector-group">
         <StyledCategorySelector
           className="category-select"
+          defaultValue={Post.category}
           color={oppositeColor}
         />
-        <StyledAccessSelector className="access-select" color={oppositeColor} />
+        <StyledAccessSelector
+          className="access-select"
+          defaultValue={Post.access}
+          color={oppositeColor}
+        />
       </div>
       <div className="background-group">
         {Post.backgroundImage === "" ? (

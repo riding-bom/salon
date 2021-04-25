@@ -5,10 +5,14 @@ import { ChangeEventHandler } from "react";
 
 type AccessSelectProps = {
   className: string;
+  defaultValue: string;
   color?: string;
 };
 
-const AccessSelector = ({ className }: AccessSelectProps) => {
+const AccessSelector = ({
+  className,
+  defaultValue = "public",
+}: AccessSelectProps) => {
   const access = ["public", "charged", "private"];
 
   const dispatch = useDispatch();
@@ -33,6 +37,7 @@ const AccessSelector = ({ className }: AccessSelectProps) => {
       id="accessSelect"
       name="access"
       onChange={onChangeCategory}
+      defaultValue={defaultValue}
       optionArray={access}
     />
   );
