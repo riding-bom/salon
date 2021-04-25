@@ -5,8 +5,8 @@ import {
   signInWithGoogle,
   usersCollectionRef,
 } from "fb/firebase";
-import { signinCloseAction, signupOpenAction } from "redux/reducers/openModal";
-import { getUser, setUser } from "fb/API";
+import { createCloseAction, createOpenAction } from "redux/reducers/openModal";
+import { setUser } from "fb/API";
 import { combinedState, user } from "constant/type";
 import StyledPasswordInput from "containers/PasswordInput/PasswordInput.styled";
 import StyledButton from "components/Button/Button.styled";
@@ -88,7 +88,7 @@ const SignIn = () => {
       <StyledButton
         onClick={async () => {
           await signInWithEmail(email, password);
-          dispatch(signinCloseAction);
+          dispatch(createCloseAction("isOpenNeedSignIn"));
           setInitialState();
         }}
         disabled={!(validateEmail(email) && password !== "")}
@@ -98,7 +98,7 @@ const SignIn = () => {
       <StyledButton
         onClick={async () => {
           await updateUserWithGoogle();
-          dispatch(signinCloseAction);
+          dispatch(createCloseAction("isOpenSignIn"));
           setInitialState();
         }}
       >
@@ -106,8 +106,8 @@ const SignIn = () => {
       </StyledButton>
       <StyledButton
         onClick={() => {
-          dispatch(signinCloseAction);
-          dispatch(signupOpenAction);
+          dispatch(createCloseAction("isOpenNeedSignIn"));
+          dispatch(createOpenAction("isOpenSignUp"));
           setInitialState();
         }}
       >

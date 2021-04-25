@@ -4,7 +4,7 @@ import useAuthStateObserver from "customHook/useAuthStateObserver";
 import { MouseEventHandler } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { signinOpenAction } from "redux/reducers/openModal";
+import { createOpenAction } from "redux/reducers/openModal";
 import { signOut } from "fb/firebase";
 
 const NavList = () => {
@@ -13,7 +13,7 @@ const NavList = () => {
   const currentUser = useAuthStateObserver();
 
   const openSignInModal: MouseEventHandler = () => {
-    dispatch(signinOpenAction);
+    dispatch(createOpenAction("isOpenSignIn"));
   };
   const onSignOut: MouseEventHandler = () => {
     signOut();

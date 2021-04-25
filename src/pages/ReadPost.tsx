@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { combinedState, post } from "constant/type";
 import Title from "components/Title/Title";
 import { ReactComponent as DeleteIcon } from "essets/Icons/delete.svg";
-import { alertDeletePostOpenAction } from "redux/reducers/openModal";
+import { createOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch } from "react-router";
 import StyledComment from "containers/Comment/Comment.styled";
 import StyledButton from "components/Button/Button.styled";
@@ -34,7 +34,7 @@ const ReadPost = ({ className }: readPostProps) => {
   const html = post.content;
 
   const openAlertDialog = () => {
-    dispatch(alertDeletePostOpenAction);
+    dispatch(createOpenAction("isOpenAlertDeletePost"));
   };
 
   return (

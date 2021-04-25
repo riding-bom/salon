@@ -6,10 +6,7 @@ import { setLikePost } from "fb/API";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
-import {
-  alertCancelLikeOpenAction,
-  needSignInOpenAction,
-} from "redux/reducers/openModal";
+import { createOpenAction } from "redux/reducers/openModal";
 
 const LikeButton = () => {
   const match = useRouteMatch();
@@ -33,7 +30,7 @@ const LikeButton = () => {
     isLike ? (
       <StyledButton
         onClick={() => {
-          dispatch(alertCancelLikeOpenAction);
+          dispatch(createOpenAction("isOpenAlertCancelLike"));
         }}
       >
         <Logo type="FillHeart" />
@@ -50,7 +47,7 @@ const LikeButton = () => {
       </StyledButton>
     )
   ) : (
-    <StyledButton onClick={() => dispatch(needSignInOpenAction)}>
+    <StyledButton onClick={() => dispatch(createOpenAction("isOpenSignIn"))}>
       <Logo type="EmptyHeart" />
     </StyledButton>
   );

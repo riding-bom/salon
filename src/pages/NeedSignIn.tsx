@@ -4,8 +4,8 @@ import { combinedState } from "constant/type";
 import ModalDialog from "containers/ModalDialog/ModalDialog";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  everyModalCloseAction,
-  signinOpenAction,
+  createCloseAllAction,
+  createOpenAction,
 } from "redux/reducers/openModal";
 
 const NeedSignIn = () => {
@@ -18,8 +18,8 @@ const NeedSignIn = () => {
       <p>로그인 하시겠습니까?</p>
       <StyledButton
         onClick={() => {
-          dispatch(everyModalCloseAction);
-          dispatch(signinOpenAction);
+          dispatch(createCloseAllAction());
+          dispatch(createOpenAction("isOpenSignIn"));
         }}
       >
         YES

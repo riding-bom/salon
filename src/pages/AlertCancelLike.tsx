@@ -6,7 +6,7 @@ import useAuthStateObserver from "customHook/useAuthStateObserver";
 import { removeLikePost } from "fb/API";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { everyModalCloseAction } from "redux/reducers/openModal";
+import { createCloseAllAction } from "redux/reducers/openModal";
 
 const AlertCancelLike = () => {
   const location = useLocation();
@@ -26,7 +26,7 @@ const AlertCancelLike = () => {
         onClick={async () => {
           if (currentUser.userInfo?.uid && postId)
             await removeLikePost(currentUser.userInfo?.uid, postId);
-          dispatch(everyModalCloseAction);
+          dispatch(createCloseAllAction());
           history.replace(`/${postId}`);
         }}
       >
