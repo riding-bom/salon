@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { combinedState, post } from "constant/type";
@@ -11,7 +12,6 @@ import StyledButton from "components/Button/Button.styled";
 import Logo from "components/Logo/Logo";
 import { setLikePost } from "fb/API";
 import useAuthStateObserver from "customHook/useAuthStateObserver";
-import { MouseEventHandler } from "react";
 
 type readPostProps = {
   className?: string;
@@ -61,9 +61,9 @@ const ReadPost = ({ className }: readPostProps) => {
         <div style={{ color: "white" }}>
           <Title level={1}>
             {post?.title}
-            <StyledButton onClick={openAlertDialog}>
+            <Link to={`/update/${post.id}`}>
               <WriteIcon />
-            </StyledButton>
+            </Link>
             <StyledButton onClick={openAlertDialog}>
               <DeleteIcon />
             </StyledButton>

@@ -18,12 +18,12 @@ import Button from "components/Button/Button";
 
 type writeHeaderProps = {
   className: string;
-  newPost: post;
+  Post: post;
 };
 
-const WriteHeader = ({ className, newPost }: writeHeaderProps) => {
+const WriteHeader = ({ className, Post }: writeHeaderProps) => {
   const dispatch = useDispatch();
-  const oppositeColor = invertColor(newPost.backgroundColor);
+  const oppositeColor = invertColor(Post.backgroundColor);
 
   const onClickResetButton = () => {
     dispatch(resetBackground());
@@ -47,11 +47,11 @@ const WriteHeader = ({ className, newPost }: writeHeaderProps) => {
         <StyledAccessSelector className="access-select" color={oppositeColor} />
       </div>
       <div className="background-group">
-        {newPost.backgroundImage === "" ? (
+        {Post.backgroundImage === "" ? (
           <StyledBackgroundImageUploader
             className="background-image-uploader"
             color={oppositeColor}
-            postId={newPost.id}
+            postId={Post.id}
           />
         ) : (
           <Button
@@ -64,14 +64,14 @@ const WriteHeader = ({ className, newPost }: writeHeaderProps) => {
         )}
         <StyledColorPicker
           className="color-picker"
-          presentColor={newPost.backgroundColor}
+          presentColor={Post.backgroundColor}
         />
       </div>
       <div className="title-group">
         <StyledMainTitleInput
           className="main-title"
           id="title"
-          value={newPost.title}
+          value={Post.title}
           placeHolder="제목을 입력하세요"
           onChange={onChangeTitle}
           color={oppositeColor}
@@ -79,7 +79,7 @@ const WriteHeader = ({ className, newPost }: writeHeaderProps) => {
         <StyledSubTitleInput
           className="sub-title"
           id="SubTitle"
-          value={newPost.subTitle}
+          value={Post.subTitle}
           placeHolder="소제목을 입력하세요"
           onChange={onChangeSubTitle}
           color={oppositeColor}

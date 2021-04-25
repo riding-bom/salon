@@ -8,6 +8,7 @@ import StyledReadPost from "pages/ReadPost";
 import AlertDeletePost from "pages/AlertDeletePost";
 import AlertWritePost from "pages/AlertWritePost";
 import AlertCancelWriter from "pages/AlertCancelWriter";
+import StyledUpdatePage from "pages/UpdatePage";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
           </Route>
           <Route path="/:postId">
             <StyledReadPost />
+          </Route>
+          <Route path="/update/:postId">
+            <StyledUpdatePage />
           </Route>
           <Route path="/" exact>
             <Welcome />

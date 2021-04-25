@@ -1,7 +1,5 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { combinedState } from "constant/type";
-import { idAction, dateAction } from "redux/reducers/newPost";
+import { combinedState, post } from "constant/type";
 import { addPost } from "fb/API";
 import styled from "styled-components";
 import StyledWriteHeader from "containers/WriteHeader/WriteHeader.styled";
@@ -11,25 +9,27 @@ import {
   alertCancelWriterOpenAction,
   alertWritePostOpenAction,
 } from "redux/reducers/openModal";
+import { useRouteMatch } from "react-router";
 
-type writePageProps = {
+type UpdatePageProps = {
   className?: string;
 };
 
-const WritePage = ({ className }: writePageProps) => {
-  const newPost = useSelector((state: combinedState) => state.newPost);
+const UpdatePage = ({ className }: UpdatePageProps) => {
+  const match = useRouteMatch();
+  const { postId } = match.params as { postId: string };
+
+  const postsList = useSelector((state: combinedState) => state.postsList);
+
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(idAction());
-  }, []);
+  const post = postsList.find((post) => post.id + "" === postId) as post;
 
   const onClickSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (newPost.title === "" || newPost.content === "") {
+    if (post.title === "" || post.content === "") {
       dispatch(alertWritePostOpenAction);
     } else {
-      dispatch(dateAction(new Date()));
-      await addPost(newPost);
+      await addPost(post);
     }
   };
 
@@ -39,7 +39,7 @@ const WritePage = ({ className }: writePageProps) => {
 
   return (
     <section className={className}>
-      <StyledWriteHeader className="" Post={newPost} />
+      <StyledWriteHeader className="" Post={post} />
       <StyledTextEditor className="" />
       <div className="btn-group">
         <StyledButton
@@ -63,7 +63,7 @@ const WritePage = ({ className }: writePageProps) => {
   );
 };
 
-const StyledWritePage = styled(WritePage)`
+const StyledUpdatePage = styled(UpdatePage)`
   position: relative;
   background-color: #fff;
   display: flex;
@@ -84,4 +84,4 @@ const StyledWritePage = styled(WritePage)`
   }
 `;
 
-export default StyledWritePage;
+export default StyledUpdatePage;
