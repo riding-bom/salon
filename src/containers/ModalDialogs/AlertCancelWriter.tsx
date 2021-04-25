@@ -3,7 +3,7 @@ import { MouseEventHandler } from "react";
 import { useHistory } from "react-router";
 import { combinedState } from "constant/type";
 import { resetState } from "redux/reducers/newPost";
-import { everyModalCloseAction } from "redux/reducers/openModal";
+import { createCloseAllAction } from "redux/reducers/openModal";
 import Title from "components/Title/Title";
 import Button from "components/Button/Button";
 import ModalDialog from "containers/ModalDialog/ModalDialog";
@@ -19,7 +19,7 @@ const AlertCancelWriter = () => {
 
   const CancelWriter: MouseEventHandler = () => {
     dispatch(resetState());
-    dispatch(everyModalCloseAction);
+    dispatch(createCloseAllAction());
     history.replace("/");
   };
 

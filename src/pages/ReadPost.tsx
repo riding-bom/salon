@@ -1,17 +1,17 @@
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { combinedState, post } from "constant/type";
 import Title from "components/Title/Title";
 import { ReactComponent as DeleteIcon } from "essets/Icons/delete.svg";
 import { ReactComponent as WriteIcon } from "essets/Icons/write.svg";
-import { alertDeletePostOpenAction } from "redux/reducers/openModal";
+import { createOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch } from "react-router";
 import StyledComment from "containers/Comment/Comment.styled";
 import StyledButton from "components/Button/Button.styled";
-import Logo from "components/Logo/Logo";
-import { setLikePost } from "fb/API";
-import useAuthStateObserver from "customHook/useAuthStateObserver";
-import { MouseEventHandler } from "react";
+import LikeButton from "containers/LikeButton/LikeButton";
+import { useEffect, useState } from "react";
+import { getPost } from "fb/API";
 
 type readPostProps = {
   className?: string;
@@ -21,31 +21,37 @@ const ReadPost = ({ className }: readPostProps) => {
   const match = useRouteMatch();
   const { postId } = match.params as { postId: string };
 
-  const postsList = useSelector((state: combinedState) => state.postsList);
   const salonInfo = useSelector((state: combinedState) => state.salonInfo);
 
   const dispatch = useDispatch();
 
-  const post = postsList.find((post) => post.id + "" === postId) as post;
-
-  const date = post.date
-    .toString()
-    .slice(18)
-    .match(/[0-9]+/)
-    ?.toString();
+  const [post, setPost] = useState({} as post);
+  const [date, setDate] = useState("");
+  const [html, setHtml] = useState("");
 
   const { htmlToText } = require("html-to-text");
-  const html = post.content;
 
   const openAlertDialog = () => {
-    dispatch(alertDeletePostOpenAction);
+    dispatch(createOpenAction("isOpenAlertDeletePost"));
   };
 
-  const onSetLikePost = (uid: string, thisPost: post) => {
-    setLikePost(uid, thisPost.id);
-  };
-
-  const currentUser = useAuthStateObserver();
+  useEffect(() => {
+    const getPostAsync = async () => {
+      const post = await getPost(postId);
+      if (post) {
+        setPost(() => post as post);
+        setDate(() =>
+          post.date
+            .toString()
+            .slice(18)
+            .match(/[0-9]+/)
+            ?.toString()
+        );
+        setHtml(() => post.content);
+      }
+    };
+    getPostAsync();
+  }, []);
 
   return (
     <main className={className}>
@@ -61,9 +67,9 @@ const ReadPost = ({ className }: readPostProps) => {
         <div style={{ color: "white" }}>
           <Title level={1}>
             {post?.title}
-            <StyledButton onClick={openAlertDialog}>
+            <Link to={`${match.url}/update`}>
               <WriteIcon />
-            </StyledButton>
+            </Link>
             <StyledButton onClick={openAlertDialog}>
               <DeleteIcon />
             </StyledButton>
@@ -79,16 +85,7 @@ const ReadPost = ({ className }: readPostProps) => {
         {html.split(/<\/p>/).map((p, i) => (
           <p key={i}>{htmlToText(p)}</p>
         ))}
-        {currentUser.isAuthed && (
-          <StyledButton
-            onClick={() =>
-              currentUser.userInfo?.uid &&
-              onSetLikePost(currentUser.userInfo?.uid, post)
-            }
-          >
-            <Logo type="EmptyHeart" />
-          </StyledButton>
-        )}
+        <LikeButton />
       </main>
       <footer>
         <StyledComment />
