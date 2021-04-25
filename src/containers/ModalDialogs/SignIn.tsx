@@ -1,7 +1,11 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signInWithEmail, signInWithGoogle } from "fb/firebase";
-import { signinCloseAction, signupOpenAction } from "redux/reducers/openModal";
+import {
+  signInWithEmail,
+  signInWithGoogle,
+  usersCollectionRef,
+} from "fb/firebase";
+import { createCloseAction, createOpenAction } from "redux/reducers/openModal";
 import { setUser } from "fb/API";
 import { combinedState, user } from "constant/type";
 import StyledPasswordInput from "containers/PasswordInput/PasswordInput.styled";
@@ -16,7 +20,7 @@ const SignIn = () => {
   const isOpenModal = useSelector((state: combinedState) => state.isOpenModal);
   const [state, setState] = useState({
     email: "",
-    password: ""
+    password: "",
   });
   const { email, password } = state;
 
@@ -26,7 +30,7 @@ const SignIn = () => {
     setState(() => {
       return {
         ...state,
-        email: e.target.value
+        email: e.target.value,
       };
     });
   };
@@ -35,7 +39,7 @@ const SignIn = () => {
     setState(() => {
       return {
         ...state,
-        password: e.target.value
+        password: e.target.value,
       };
     });
   };
@@ -44,16 +48,16 @@ const SignIn = () => {
     setState(() => {
       return {
         email: "",
-        password: ""
+        password: "",
       };
     });
   };
 
   const updateUserWithGoogle = async () => {
     const res = await signInWithGoogle();
-    if (res.user !== null) {
-      setUser(res.user as user);
-    }
+    const email = res.user && res.user.email;
+    const snapshot = await usersCollectionRef.where("email", "==", email).get();
+    if (snapshot.empty) setUser(res.user as user);
   };
 
   useEffect(() => {
@@ -65,15 +69,26 @@ const SignIn = () => {
   return isOpenModal.isOpenSignIn ? (
     <ModalDialog>
       <Title level={1}>salon</Title>
-      <StyledInputText id="signInEmail" name="Email" value={email} onChange={setEmail} />
+      <StyledInputText
+        id="signInEmail"
+        name="Email"
+        value={email}
+        onChange={setEmail}
+      />
       {validateEmail(email) || email === "" || (
-        <StyledValidationText>이메일 형식이 맞지 않습니다.</StyledValidationText>
+        <StyledValidationText>
+          이메일 형식이 맞지 않습니다.
+        </StyledValidationText>
       )}
-      <StyledPasswordInput id="signInPassword" value={password} onChange={setPassword} />
+      <StyledPasswordInput
+        id="signInPassword"
+        value={password}
+        onChange={setPassword}
+      />
       <StyledButton
         onClick={async () => {
           await signInWithEmail(email, password);
-          dispatch(signinCloseAction);
+          dispatch(createCloseAction("isOpenNeedSignIn"));
           setInitialState();
         }}
         disabled={!(validateEmail(email) && password !== "")}
@@ -83,7 +98,7 @@ const SignIn = () => {
       <StyledButton
         onClick={async () => {
           await updateUserWithGoogle();
-          dispatch(signinCloseAction);
+          dispatch(createCloseAction("isOpenSignIn"));
           setInitialState();
         }}
       >
@@ -91,8 +106,8 @@ const SignIn = () => {
       </StyledButton>
       <StyledButton
         onClick={() => {
-          dispatch(signinCloseAction);
-          dispatch(signupOpenAction);
+          dispatch(createCloseAction("isOpenNeedSignIn"));
+          dispatch(createOpenAction("isOpenSignUp"));
           setInitialState();
         }}
       >

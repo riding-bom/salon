@@ -3,10 +3,13 @@ import styled from "styled-components";
 import { combinedState, post } from "constant/type";
 import Title from "components/Title/Title";
 import { ReactComponent as DeleteIcon } from "essets/Icons/delete.svg";
-import Button from "components/Button/Button";
-import { alertDeletePostOpenAction } from "redux/reducers/openModal";
+import { createOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch } from "react-router";
 import Comment from "containers/Comment/Comment";
+import StyledButton from "components/Button/Button.styled";
+import LikeButton from "containers/LikeButton/LikeButton";
+import { useEffect, useState } from "react";
+import { getPost } from "fb/API";
 
 type readPostProps = {
   className?: string;
@@ -16,26 +19,37 @@ const ReadPost = ({ className }: readPostProps) => {
   const match = useRouteMatch();
   const { postId } = match.params as { postId: string };
 
-  const postsList = useSelector((state: combinedState) => state.postsList);
   const salonInfo = useSelector((state: combinedState) => state.salonInfo);
 
   const dispatch = useDispatch();
 
-  const post = postsList.find(post => post.id + "" === postId) as post;
-  console.log(post.id);
-
-  const date = post.date
-    .toString()
-    .slice(18)
-    .match(/[0-9]+/)
-    ?.toString();
+  const [post, setPost] = useState({} as post);
+  const [date, setDate] = useState("");
+  const [html, setHtml] = useState("");
 
   const { htmlToText } = require("html-to-text");
-  const html = post.content;
 
   const openAlertDialog = () => {
-    dispatch(alertDeletePostOpenAction);
+    dispatch(createOpenAction("isOpenAlertDeletePost"));
   };
+
+  useEffect(() => {
+    const getPostAsync = async () => {
+      const post = await getPost(postId);
+      if (post) {
+        setPost(() => post as post);
+        setDate(() =>
+          post.date
+            .toString()
+            .slice(18)
+            .match(/[0-9]+/)
+            ?.toString()
+        );
+        setHtml(() => post.content);
+      }
+    };
+    getPostAsync();
+  }, []);
 
   return (
     <main className={className}>
@@ -51,9 +65,9 @@ const ReadPost = ({ className }: readPostProps) => {
         <div style={{ color: "white" }}>
           <Title level={1}>
             {post?.title}
-            <Button onClick={openAlertDialog}>
+            <StyledButton onClick={openAlertDialog}>
               <DeleteIcon />
-            </Button>
+            </StyledButton>
           </Title>
           <Title level={2}>{post?.subTitle}</Title>
           <Title level={3}>
@@ -66,6 +80,7 @@ const ReadPost = ({ className }: readPostProps) => {
         {html.split(/<\/p>/).map((p, i) => (
           <p key={i}>{htmlToText(p)}</p>
         ))}
+        <LikeButton />
       </main>
       <footer className={className}>
         <Comment />
@@ -99,6 +114,11 @@ const StyledReadPost = styled(ReadPost)`
           background-color: transparent;
           border: none;
           margin: 0 5px;
+          box-shadow: none;
+
+          &:hover {
+            background-color: transparent;
+          }
         }
       }
 
@@ -115,6 +135,17 @@ const StyledReadPost = styled(ReadPost)`
     font-size: 1.4rem;
     text-indent: 1em;
     line-height: 1.6em;
+    display: flex;
+    flex-flow: column nowrap;
+
+    & > button {
+      box-shadow: none;
+      align-self: flex-end;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
   }
   & > footer {
     display: flex;

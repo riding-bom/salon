@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import WriteHeader from './WriteHeader'
+import WriteHeader from "./WriteHeader";
 
-const StyledWriteHeader = styled(WriteHeader) `
+const StyledWriteHeader = styled(WriteHeader)`
   position: relative;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
   width: 100vw;
   height: 400px;
-  background-color: ${(props)=>(props.backgroundColor ? props.backgroundColor : '#fff')};
-  background-image: url('${(props) => props.backgroundImage}');
+  background-color: ${(props) =>
+    props.newPost.backgroundColor ? props.newPost.backgroundColor : "#fff"};
+  background-image: url("${(props) => props.newPost.backgroundImage}");
   background-size: cover;
   background-position: 50% 50%;
   border-bottom: 1px solid black;
@@ -52,7 +53,7 @@ const StyledWriteHeader = styled(WriteHeader) `
     left: 20%;
     margin-top: 10rem;
     .sub-title {
-    margin-top: 5rem;
+      margin-top: 5rem;
     }
   }
 `;

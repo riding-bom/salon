@@ -7,9 +7,11 @@ const StyledButton = styled(Button)`
   background-color: white;
   box-shadow: 0 4px 3px 0px gray;
   border: none;
+  padding: 0;
 
   &:hover {
     background-color: #76ecf5;
+    cursor: pointer;
   }
 
   &:disabled {

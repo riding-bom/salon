@@ -1,11 +1,10 @@
 import Welcome from "pages/Welcome";
 import StoreProvider from "redux/store";
-import SignIn from "pages/SignIn";
-import SignUp from "pages/SignUp";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import StyledWriteContainer from "containers/WriteContainer/WriteContainer.styled";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import StyledWritePage from "pages/WritePage";
 import StyledReadPost from "pages/ReadPost";
-import AlertDeletePost from "pages/AlertDeletePost";
+import LikePosts from "pages/LikePosts";
+import ModalDialogs from "pages/ModalDialogs";
 
 function App() {
   return (
@@ -13,7 +12,10 @@ function App() {
       <Router>
         <Switch>
           <Route path="/write">
-            <StyledWriteContainer />
+            <StyledWritePage />
+          </Route>
+          <Route path="/like-posts">
+            <LikePosts />
           </Route>
           <Route path="/:postId">
             <StyledReadPost />
@@ -22,10 +24,8 @@ function App() {
             <Welcome />
           </Route>
         </Switch>
-        <Link to="/write">쓰기</Link>
-        <SignIn />
-        <SignUp />
-        <AlertDeletePost />
+
+        <ModalDialogs />
       </Router>
     </StoreProvider>
   );

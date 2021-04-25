@@ -4,11 +4,25 @@ import { ReactComponent as LogOut } from "essets/Icons/logout.svg";
 import { ReactComponent as Search } from "essets/Icons/search.svg";
 import { ReactComponent as Setting } from "essets/Icons/setting.svg";
 import { ReactComponent as Write } from "essets/Icons/write.svg";
+import { ReactComponent as LogIn } from "essets/Icons/login.svg";
+import { ReactComponent as EmptyHeart } from "essets/Icons/empty-heart.svg";
+import { ReactComponent as FillHeart } from "essets/Icons/fill-heart.svg";
 import { ReactComponent as Menu } from "essets/Icons/menu.svg";
 import { ReactComponent as UserImg } from "essets/Icons/userImg.svg";
 
 type LogoProps = {
-  type: "LightMode" | "DarkMode" | "LogOut" | "Search" | "Setting" | "Write" | "Menu" | "UserImg";
+  type:
+    | "LightMode"
+    | "DarkMode"
+    | "LogOut"
+    | "Search"
+    | "Setting"
+    | "Write"
+    | "LogIn"
+    | "EmptyHeart"
+    | "FillHeart"
+    | "Menu"
+    | "UserImg";
 };
 
 const Logo = (props: LogoProps) => {
@@ -29,6 +43,12 @@ const Logo = (props: LogoProps) => {
       return <Menu />;
     case "UserImg":
       return <UserImg />;
+    case "LogIn":
+      return <LogIn />;
+    case "EmptyHeart":
+      return <EmptyHeart />;
+    case "FillHeart":
+      return <FillHeart />;
     default:
       return <LightMode />;
   }

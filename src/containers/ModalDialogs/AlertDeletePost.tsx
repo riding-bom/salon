@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deletePost as deletePostAsync } from "fb/API";
 import { MouseEventHandler } from "react";
 import { useHistory, useLocation } from "react-router";
-import { alertDeletePostCloseAction } from "redux/reducers/openModal";
+import { createCloseAction } from "redux/reducers/openModal";
 
 const AlertDeletePost = () => {
   const history = useHistory();
@@ -19,7 +19,7 @@ const AlertDeletePost = () => {
 
   const deletePost: MouseEventHandler = async () => {
     postId && (await deletePostAsync(+postId));
-    dispatch(alertDeletePostCloseAction);
+    dispatch(createCloseAction("isOpenAlertDeletePost"));
     history.replace("/");
   };
 

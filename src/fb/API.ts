@@ -1,3 +1,4 @@
+import firebase from "firebase/app";
 import {
   usersCollectionRef,
   salonInfoCollectionRef,
@@ -12,6 +13,11 @@ const postsDocRef = (id: string) => postsCollectionRef.doc(id);
 
 const addPost = async (newPost: post) => {
   await postsDocRef(newPost.id + "").set(newPost);
+};
+
+const getPost = async (postId: string) => {
+  const post = await postsDocRef(postId).get();
+  return post.data();
 };
 
 const deletePost = async (postId: number) => {
@@ -45,6 +51,7 @@ const getUser = async (uid: string) => {
   return res.data();
 };
 
+/* SalonInfo API-------------------------------------------------------------------------- */
 const setSalonInfo = async (salonInfo: salonInfo) => {
   await salonInfoCollectionRef.doc("salonInfoSample").set({
     hostName: salonInfo.hostName,
@@ -73,15 +80,31 @@ const getAllComment = async () => {
   return commentList;
 };
 
+/* like API-------------------------------------------------------------------------- */
+const setLikePost = async (uid: string, postId: string) => {
+  await usersCollectionRef
+    .doc(uid)
+    .update({ likePost: firebase.firestore.FieldValue.arrayUnion(postId) });
+};
+
+const removeLikePost = async (uid: string, postId: string) => {
+  await usersCollectionRef
+    .doc(uid)
+    .update({ likePost: firebase.firestore.FieldValue.arrayRemove(postId) });
+};
+
 export {
   setUser,
   getUser,
   setSalonInfo,
   getSalonInfo,
   addPost,
+  getPost,
   deletePost,
   getAllPost,
   getMainPost,
   addComment,
-  getAllComment
+  getAllComment,
+  setLikePost,
+  removeLikePost
 };
