@@ -15,6 +15,11 @@ const addPost = async (newPost: post) => {
   await postsDocRef(newPost.id + "").set(newPost);
 };
 
+const getPost = async (postId: string) => {
+  const post = await postsDocRef(postId).get();
+  return post.data();
+};
+
 const deletePost = async (postId: number) => {
   await postsDocRef(postId + "").delete();
 };
@@ -81,6 +86,7 @@ export {
   setSalonInfo,
   getSalonInfo,
   addPost,
+  getPost,
   deletePost,
   getAllPost,
   getMainPost,

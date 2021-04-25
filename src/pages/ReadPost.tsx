@@ -8,6 +8,8 @@ import { useRouteMatch } from "react-router";
 import StyledComment from "containers/Comment/Comment.styled";
 import StyledButton from "components/Button/Button.styled";
 import LikeButton from "containers/LikeButton/LikeButton";
+import { useEffect, useState } from "react";
+import { getPost } from "fb/API";
 
 type readPostProps = {
   className?: string;
@@ -17,25 +19,37 @@ const ReadPost = ({ className }: readPostProps) => {
   const match = useRouteMatch();
   const { postId } = match.params as { postId: string };
 
-  const postsList = useSelector((state: combinedState) => state.postsList);
   const salonInfo = useSelector((state: combinedState) => state.salonInfo);
 
   const dispatch = useDispatch();
 
-  const post = postsList.find((post) => post.id + "" === postId) as post;
-
-  const date = post.date
-    .toString()
-    .slice(18)
-    .match(/[0-9]+/)
-    ?.toString();
+  const [post, setPost] = useState({} as post);
+  const [date, setDate] = useState("");
+  const [html, setHtml] = useState("");
 
   const { htmlToText } = require("html-to-text");
-  const html = post.content;
 
   const openAlertDialog = () => {
     dispatch(createOpenAction("isOpenAlertDeletePost"));
   };
+
+  useEffect(() => {
+    const getPostAsync = async () => {
+      const post = await getPost(postId);
+      if (post) {
+        setPost(() => post as post);
+        setDate(() =>
+          post.date
+            .toString()
+            .slice(18)
+            .match(/[0-9]+/)
+            ?.toString()
+        );
+        setHtml(() => post.content);
+      }
+    };
+    getPostAsync();
+  }, []);
 
   return (
     <main className={className}>
