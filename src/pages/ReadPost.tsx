@@ -67,7 +67,7 @@ const ReadPost = ({ className }: readPostProps) => {
         <div style={{ color: "white" }}>
           <Title level={1}>
             {post?.title}
-            <Link to={`/update/${post.id}`}>
+            <Link to={`${match.url}/update`}>
               <WriteIcon />
             </Link>
             <StyledButton onClick={openAlertDialog}>

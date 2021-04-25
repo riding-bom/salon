@@ -1,32 +1,45 @@
 import { useDispatch, useSelector } from "react-redux";
 import { combinedState, post } from "constant/type";
-import { addPost } from "fb/API";
+import { addPost, getPost } from "fb/API";
 import styled from "styled-components";
 import StyledWriteHeader from "containers/WriteHeader/WriteHeader.styled";
 import StyledTextEditor from "containers/Editor/TextEditor.styled";
 import StyledButton from "components/Button/Button.styled";
 import { createOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch } from "react-router";
+import { useEffect, useState } from "react";
+import { postAction } from "redux/reducers/newPost";
 
 type UpdatePageProps = {
   className?: string;
 };
 
 const UpdatePage = ({ className }: UpdatePageProps) => {
+  const newPost = useSelector((state: combinedState) => state.newPost);
+  const dispatch = useDispatch();
   const match = useRouteMatch();
+  const [post, setPost] = useState({} as post);
+
   const { postId } = match.params as { postId: string };
 
-  const postsList = useSelector((state: combinedState) => state.postsList);
+  const getPostAsync = async () => {
+    const post = await getPost(postId);
+    if (post) {
+      setPost(() => post as post);
+    }
+  };
 
-  const dispatch = useDispatch();
-
-  const post = postsList.find((post) => post.id + "" === postId) as post;
+  useEffect(() => {
+    getPostAsync();
+    dispatch(postAction(post as post));
+    console.log(newPost);
+  }, []);
 
   const onClickSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (post.title === "" || post.content === "") {
+    if (newPost.title === "" || newPost.content === "") {
       dispatch(createOpenAction("isOpenAlertWritePost"));
     } else {
-      await addPost(post);
+      await addPost(newPost);
     }
   };
 
@@ -36,7 +49,7 @@ const UpdatePage = ({ className }: UpdatePageProps) => {
 
   return (
     <section className={className}>
-      <StyledWriteHeader className="" Post={post} />
+      <StyledWriteHeader className="" Post={newPost} />
       <StyledTextEditor className="" />
       <div className="btn-group">
         <StyledButton

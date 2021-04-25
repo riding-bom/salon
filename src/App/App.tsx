@@ -18,11 +18,11 @@ function App() {
           <Route path="/like-posts">
             <LikePosts />
           </Route>
+          <Route path="/:postId/update">
+            <StyledUpdatePage />
+          </Route>
           <Route path="/:postId">
             <StyledReadPost />
-          </Route>
-          <Route path="/update/:postId">
-            <StyledUpdatePage />
           </Route>
           <Route path="/" exact>
             <Welcome />
