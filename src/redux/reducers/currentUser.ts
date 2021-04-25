@@ -15,7 +15,7 @@ type action = {
 
 const initialState: state = {
   userInfo: null,
-  isAuthed: false
+  isAuthed: false,
 };
 
 const updateUserAction = (user: any) => {
@@ -25,13 +25,14 @@ const updateUserAction = (user: any) => {
       uid: user.uid,
       displayName: user.displayName,
       email: user.email,
-      photoURL: user.photoURL
-    }
+      photoURL: user.photoURL,
+      likePost: user.likePost,
+    },
   };
 };
 
 const removeUserAction = () => ({
-  type: REMOVE_CURRENT_USER
+  type: REMOVE_CURRENT_USER,
 });
 
 const currentUserReducer = (state = initialState, action: action) => {
@@ -39,12 +40,12 @@ const currentUserReducer = (state = initialState, action: action) => {
     case UPDATE_CURRENT_USER:
       return {
         userInfo: { ...action.payload },
-        isAuthed: true
+        isAuthed: true,
       };
     case REMOVE_CURRENT_USER:
       return {
         userInfo: null,
-        isAuthed: false
+        isAuthed: false,
       };
     default:
       return state;
@@ -52,4 +53,9 @@ const currentUserReducer = (state = initialState, action: action) => {
 };
 
 export default currentUserReducer;
-export { updateUserAction, removeUserAction, UPDATE_CURRENT_USER, REMOVE_CURRENT_USER };
+export {
+  updateUserAction,
+  removeUserAction,
+  UPDATE_CURRENT_USER,
+  REMOVE_CURRENT_USER,
+};

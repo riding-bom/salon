@@ -20,7 +20,7 @@ type user = {
   displayName: string;
   email: string;
   photoURL: string;
-  likePost?: post;
+  likePost?: string[];
 };
 
 type salonInfo = {
@@ -50,6 +50,8 @@ type combinedState = CombinedState<{
     isOpenAlertDeletePost: boolean;
     isOpenAlertWritePost: boolean;
     isOpenAlertCancelWriter: boolean;
+    isOpenNeedSignIn: boolean;
+    isOpenAlertCancelLike: boolean;
   };
   currentUser: {
     userInfo: user | null;

@@ -5,10 +5,7 @@ import styled from "styled-components";
 import StyledWriteHeader from "containers/WriteHeader/WriteHeader.styled";
 import StyledTextEditor from "containers/Editor/TextEditor.styled";
 import StyledButton from "components/Button/Button.styled";
-import {
-  alertCancelWriterOpenAction,
-  alertWritePostOpenAction,
-} from "redux/reducers/openModal";
+import { createOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch } from "react-router";
 
 type UpdatePageProps = {
@@ -27,14 +24,14 @@ const UpdatePage = ({ className }: UpdatePageProps) => {
 
   const onClickSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (post.title === "" || post.content === "") {
-      dispatch(alertWritePostOpenAction);
+      dispatch(createOpenAction("isOpenAlertWritePost"));
     } else {
       await addPost(post);
     }
   };
 
   const onClickCancel = () => {
-    dispatch(alertCancelWriterOpenAction);
+    dispatch(createOpenAction("isOpenAlertCancelWriter"));
   };
 
   return (

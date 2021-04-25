@@ -15,6 +15,11 @@ const addPost = async (newPost: post) => {
   await postsDocRef(newPost.id + "").set(newPost);
 };
 
+const getPost = async (postId: string) => {
+  const post = await postsDocRef(postId).get();
+  return post.data();
+};
+
 const deletePost = async (postId: number) => {
   await postsDocRef(postId + "").delete();
 };
@@ -69,14 +74,22 @@ const setLikePost = async (uid: string, postId: string) => {
     .update({ likePost: firebase.firestore.FieldValue.arrayUnion(postId) });
 };
 
+const removeLikePost = async (uid: string, postId: string) => {
+  await usersCollectionRef
+    .doc(uid)
+    .update({ likePost: firebase.firestore.FieldValue.arrayRemove(postId) });
+};
+
 export {
   setUser,
   getUser,
   setSalonInfo,
   getSalonInfo,
   addPost,
+  getPost,
   deletePost,
   getAllPost,
   getMainPost,
   setLikePost,
+  removeLikePost,
 };
