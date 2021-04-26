@@ -30,8 +30,6 @@ const TextEditor = ({ className, defaultContent }: TextEditorProps) => {
   /* Draft.js-------------------------------------------------------------------------- */
 
   useEffect(() => {
-    console.log(defaultContent);
-
     if (defaultContent) {
       if (rendered.current) return;
       rendered.current = true;
