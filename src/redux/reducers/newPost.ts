@@ -25,6 +25,8 @@ const initialState: post = {
   category: "All",
   backgroundImage: "",
   backgroundColor: "#fff",
+  likeUser: [],
+  commentUser: [],
 };
 
 export const idAction = () => async (
