@@ -12,8 +12,7 @@ const StyledPost = styled(Post)`
   height: 200px;
   font-size: 1.4rem;
   border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  margin: 10px 0;
+  margin-top: 10px 0;
   /* box-shadow: 0 10px 10px 3px rgba(110, 109, 110, 0.24); */
 
   & > * {
