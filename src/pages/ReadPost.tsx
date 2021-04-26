@@ -63,30 +63,37 @@ const ReadPost = ({ className }: readPostProps) => {
         style={
           post.backgroundImage !== ""
             ? {
-                backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`,
+                backgroundImage: `url("${post.backgroundImage}"`,
               }
             : { backgroundColor: `${post.backgroundColor}` }
         }
       >
-        <div style={{ color: "white" }}>
-          <Title level={1}>
-            {post?.title}
-            {isAuthed && (
-              <>
-                <Link to={`${match.url}/update`}>
-                  <WriteIcon />
-                </Link>
-                <StyledButton onClick={openAlertDialog}>
-                  <DeleteIcon />
-                </StyledButton>
-              </>
-            )}
-          </Title>
-          <Title level={2}>{post?.subTitle}</Title>
-          <Title level={3}>
-            {salonInfo?.hostName}
-            {date && new Date(+date * 1000).toDateString()}
-          </Title>
+        <div
+          style={{
+            background:
+              "linear-gradient( rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) )",
+          }}
+        >
+          <div style={{ color: "white" }}>
+            <Title level={1}>
+              {post?.title}
+              {isAuthed && (
+                <>
+                  <Link to={`${match.url}/update`}>
+                    <WriteIcon />
+                  </Link>
+                  <StyledButton onClick={openAlertDialog}>
+                    <DeleteIcon />
+                  </StyledButton>
+                </>
+              )}
+            </Title>
+            <Title level={2}>{post?.subTitle}</Title>
+            <Title level={3}>
+              {salonInfo?.hostName}
+              {date && new Date(+date * 1000).toDateString()}
+            </Title>
+          </div>
         </div>
       </header>
       <main>
@@ -102,40 +109,48 @@ const ReadPost = ({ className }: readPostProps) => {
 
 const StyledReadPost = styled(ReadPost)`
   & > header {
-    /* background-color: tomato; */
+    position: relative;
     background-size: cover;
     background-position: center;
     height: 400px;
     font-size: 1.4rem;
 
     & > div {
-      width: 700px;
-      margin: 0 auto;
-      height: 400px;
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: flex-end;
-      padding: 16px 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
 
-      & > h1 {
-        margin-bottom: 20px;
-        font-size: 3.6rem;
+      & > div {
+        width: 700px;
+        margin: 0 auto;
+        height: 400px;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-end;
+        padding: 16px 0;
 
-        & > button {
-          background-color: transparent;
-          border: none;
-          margin: 0 5px;
-          box-shadow: none;
+        & > h1 {
+          margin-bottom: 20px;
+          font-size: 3.6rem;
 
-          &:hover {
+          & > button {
             background-color: transparent;
+            border: none;
+            margin: 0 5px;
+            box-shadow: none;
+
+            &:hover {
+              background-color: transparent;
+            }
           }
         }
-      }
 
-      & > h2 {
-        margin-bottom: 30px;
-        font-size: 2.4rem;
+        & > h2 {
+          margin-bottom: 30px;
+          font-size: 2.4rem;
+        }
       }
     }
   }
