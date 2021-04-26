@@ -12,6 +12,7 @@ import StyledButton from "components/Button/Button.styled";
 import LikeButton from "containers/LikeButton/LikeButton";
 import { useEffect, useState } from "react";
 import { getPost } from "fb/API";
+import useAuthStateObserver from "customHook/useAuthStateObserver";
 
 type readPostProps = {
   className?: string;
@@ -30,6 +31,8 @@ const ReadPost = ({ className }: readPostProps) => {
   const [html, setHtml] = useState("");
 
   const { htmlToText } = require("html-to-text");
+
+  const { isAuthed } = useAuthStateObserver();
 
   const openAlertDialog = () => {
     dispatch(createOpenAction("isOpenAlertDeletePost"));
@@ -59,7 +62,7 @@ const ReadPost = ({ className }: readPostProps) => {
         style={
           post.backgroundImage !== ""
             ? {
-                backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`
+                backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`,
               }
             : { backgroundColor: `${post.backgroundColor}` }
         }
@@ -67,12 +70,16 @@ const ReadPost = ({ className }: readPostProps) => {
         <div style={{ color: "white" }}>
           <Title level={1}>
             {post?.title}
-            <Link to={`${match.url}/update`}>
-              <WriteIcon />
-            </Link>
-            <StyledButton onClick={openAlertDialog}>
-              <DeleteIcon />
-            </StyledButton>
+            {isAuthed && (
+              <>
+                <Link to={`${match.url}/update`}>
+                  <WriteIcon />
+                </Link>
+                <StyledButton onClick={openAlertDialog}>
+                  <DeleteIcon />
+                </StyledButton>
+              </>
+            )}
           </Title>
           <Title level={2}>{post?.subTitle}</Title>
           <Title level={3}>
