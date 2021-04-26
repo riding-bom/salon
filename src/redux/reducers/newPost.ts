@@ -2,6 +2,7 @@ import { post } from "constant/type";
 import { Dispatch } from "react";
 import { getAllPost } from "fb/API";
 
+const UPDATE_POST = "update-post";
 const UPDATE_ID = "update-id";
 const UPDATE_TITLE = "update-title";
 const UPDATE_SUB_TITLE = "update-sub-title";
@@ -34,6 +35,11 @@ export const idAction = () => async (
   dispatch({ type: UPDATE_ID, payload: maxId + 1 });
   return maxId;
 };
+
+export const postAction = (post: post) => ({
+  type: UPDATE_POST,
+  payload: post,
+});
 
 export const titleAction = (title: string) => ({
   type: UPDATE_TITLE,
@@ -79,21 +85,23 @@ export const backgroundImageAction = (backgroundImage: unknown) => ({
   payload: backgroundImage,
 });
 
-export const resetBackground = () => ({
+export const resetBackgroundAction = () => ({
   type: RESET_BACKGROUND,
 });
 
-export const resetState = () => ({
+export const resetStateAction = () => ({
   type: RESET_STATE,
 });
 
 type action = {
   type: string;
-  payload: "" | Date | "All" | "Poem" | "Novel" | "Essay";
+  payload: post | "" | Date | "All" | "Poem" | "Novel" | "Essay";
 };
 
 export const newPostReducer = (state = initialState, action: action) => {
   switch (action.type) {
+    case UPDATE_POST:
+      return { ...state, ...action.payload as post };
     case UPDATE_ID:
       return { ...state, id: action.payload };
     case UPDATE_TITLE:
@@ -115,7 +123,7 @@ export const newPostReducer = (state = initialState, action: action) => {
     case RESET_BACKGROUND:
       return { ...state, backgroundColor: "#fff", backgroundImage: "", };
     case RESET_STATE:
-      return { ...state, title: "", subTitle: "", content: "", backgroundColor: "#fff", backgroundImage: "", };
+      return { ...state, ...initialState };
     default:
       return state;
   }

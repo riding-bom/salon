@@ -2,7 +2,7 @@ import StyledButton from "components/Button/Button.styled";
 import Logo from "components/Logo/Logo";
 import { combinedState } from "constant/type";
 import useAuthStateObserver from "customHook/useAuthStateObserver";
-import { setLikePost } from "fb/API";
+import { setLikePost, setLikeUserInPostDB } from "fb/API";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
@@ -38,9 +38,11 @@ const LikeButton = () => {
     ) : (
       <StyledButton
         onClick={async () => {
-          currentUser.userInfo?.uid &&
-            (await setLikePost(currentUser.userInfo?.uid, postId));
-          setIsLike(true);
+          if (currentUser.userInfo?.uid) {
+            await setLikePost(currentUser.userInfo?.uid, postId);
+            await setLikeUserInPostDB(currentUser.userInfo?.uid, postId);
+            setIsLike(true);
+          }
         }}
       >
         <Logo type="EmptyHeart" />

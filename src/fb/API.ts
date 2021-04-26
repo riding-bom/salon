@@ -98,6 +98,18 @@ const removeLikePost = async (uid: string, postId: string) => {
     .update({ likePost: firebase.firestore.FieldValue.arrayRemove(postId) });
 };
 
+const setLikeUserInPostDB = async (uid: string, postId: string) => {
+  await postsCollectionRef
+    .doc(postId)
+    .update({ likeUser: firebase.firestore.FieldValue.arrayUnion(uid) });
+};
+
+const removeUserInPostDB = async (uid: string, postId: string) => {
+  await postsCollectionRef
+    .doc(postId)
+    .update({ likeUser: firebase.firestore.FieldValue.arrayRemove(uid) });
+};
+
 export {
   setUser,
   getUser,
@@ -112,5 +124,7 @@ export {
   getAllComment,
   setLikePost,
   removeLikePost,
-  getComment
+  getComment,
+  setLikeUserInPostDB,
+  removeUserInPostDB
 };

@@ -1,36 +1,49 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { combinedState } from "constant/type";
-import { idAction, dateAction, resetStateAction } from "redux/reducers/newPost";
-import { addPost } from "fb/API";
+import { combinedState, post } from "constant/type";
+import { addPost, getPost } from "fb/API";
 import styled from "styled-components";
 import StyledWriteHeader from "containers/WriteHeader/WriteHeader.styled";
 import StyledTextEditor from "containers/Editor/TextEditor.styled";
 import StyledButton from "components/Button/Button.styled";
 import { createOpenAction } from "redux/reducers/openModal";
-import { useHistory } from "react-router";
+import { useRouteMatch, useHistory } from "react-router";
+import { useEffect } from "react";
+import { postAction, resetStateAction } from "redux/reducers/newPost";
 
-type writePageProps = {
+type UpdatePageProps = {
   className?: string;
 };
 
-const WritePage = ({ className }: writePageProps) => {
+const UpdatePage = ({ className }: UpdatePageProps) => {
   const newPost = useSelector((state: combinedState) => state.newPost);
   const dispatch = useDispatch();
   const history = useHistory();
+  const match = useRouteMatch();
+
+  const { postId } = match.params as { postId: string };
 
   useEffect(() => {
-    dispatch(idAction());
+    const getPostAsync = async () => {
+      const post = (await getPost(postId)) as post;
+      if (post) {
+        dispatch(postAction(post));
+      }
+    };
+
+    getPostAsync();
+
+    return () => {
+      dispatch(resetStateAction());
+    };
   }, []);
 
   const onClickSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (newPost.title === "" || newPost.content === "") {
       dispatch(createOpenAction("isOpenAlertWritePost"));
     } else {
-      dispatch(dateAction(new Date()));
       await addPost(newPost);
       dispatch(resetStateAction());
-      history.replace(`/${newPost.id}`);
+      history.replace(`/${postId}`);
     }
   };
 
@@ -41,7 +54,7 @@ const WritePage = ({ className }: writePageProps) => {
   return (
     <section className={className}>
       <StyledWriteHeader className="" Post={newPost} />
-      <StyledTextEditor className="" />
+      <StyledTextEditor className="" defaultContent={newPost.content} />
       <div className="btn-group">
         <StyledButton
           width="150"
@@ -64,7 +77,7 @@ const WritePage = ({ className }: writePageProps) => {
   );
 };
 
-const StyledWritePage = styled(WritePage)`
+const StyledUpdatePage = styled(UpdatePage)`
   position: relative;
   background-color: #fff;
   display: flex;
@@ -85,4 +98,4 @@ const StyledWritePage = styled(WritePage)`
   }
 `;
 
-export default StyledWritePage;
+export default StyledUpdatePage;
