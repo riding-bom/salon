@@ -11,6 +11,8 @@ type post = {
   category: string;
   backgroundImage: string;
   backgroundColor: string;
+  likeUser: string[];
+  commentUser: string[];
 };
 
 type postsList = post[];
@@ -31,7 +33,7 @@ type salonInfo = {
 
 type postFromFirestore = {
   access: string;
-  id: number;
+  id: string;
   title: string;
   subTitle: string;
   date: firebase.firestore.Timestamp;
@@ -39,6 +41,8 @@ type postFromFirestore = {
   category: string;
   backgroundImage: string;
   backgroundColor: string;
+  likeUser: string[];
+  commentUser: string[];
 };
 
 type combinedState = CombinedState<{

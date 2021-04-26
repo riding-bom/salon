@@ -44,8 +44,10 @@ const ListContainer = ({ className }: listContainerProps) => {
             subTitle={post.subTitle}
             summary={post.content}
             date={`${convertToDate(post.date)}`}
-            likeCount={0}
-            commentCount={0}
+            likeCount={post.likeUser ? post.likeUser.length : [].length}
+            commentCount={
+              post.commentUser ? post.commentUser.length : [].length
+            }
           />
         </Link>
       ))}
