@@ -4,11 +4,20 @@ import { combinedState } from "constant/type";
 import StyledCommentList from "containers/CommentList/CommentList.styled";
 import useAuthStateObserver from "customHook/useAuthStateObserver";
 import { addComment } from "fb/API";
-import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from "react";
+import {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
-import { $CombinedState } from "redux";
-import { commentAction, idAction, postIdAction, userAction } from "redux/reducers/newComment";
+import {
+  commentAction,
+  idAction,
+  postIdAction,
+  userAction,
+} from "redux/reducers/newComment";
 
 const placeHolder =
   "좋은 글을 남겨 주신 작가님께 편지를 남겨 보세요. 편지는 작가님과 작성자에게만 공개됩니다.";
@@ -24,7 +33,7 @@ const Comment = () => {
   const dispatch = useDispatch();
 
   const onChangeComment: ChangeEventHandler<HTMLTextAreaElement> = ({
-    target
+    target,
   }: {
     target: HTMLTextAreaElement;
   }) => {
@@ -34,7 +43,7 @@ const Comment = () => {
 
   const newComment = useSelector((state: combinedState) => state.newComment);
 
-  const onClick: MouseEventHandler = target => {
+  const onClick: MouseEventHandler = (target) => {
     // dispatch(idAction("4"));
     addComment(newComment);
   };
@@ -64,7 +73,9 @@ const Comment = () => {
         </StyledTextArea>
       </div>
       <div>
-        <StyledCommentButton onClick={onClick}>Letter to writer</StyledCommentButton>
+        <StyledCommentButton onClick={onClick}>
+          Letter to writer
+        </StyledCommentButton>
       </div>
     </>
   );
