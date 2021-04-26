@@ -12,6 +12,7 @@ import StyledButton from "components/Button/Button.styled";
 import LikeButton from "containers/LikeButton/LikeButton";
 import { useEffect, useState } from "react";
 import { getPost } from "fb/API";
+import StyledFooter from "containers/Footer/Footer.styled";
 
 type readPostProps = {
   className?: string;
@@ -54,43 +55,46 @@ const ReadPost = ({ className }: readPostProps) => {
   }, []);
 
   return (
-    <main className={className}>
-      <header
-        style={
-          post.backgroundImage !== ""
-            ? {
-                backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`
-              }
-            : { backgroundColor: `${post.backgroundColor}` }
-        }
-      >
-        <div style={{ color: "white" }}>
-          <Title level={1}>
-            {post?.title}
-            <Link to={`${match.url}/update`}>
-              <WriteIcon />
-            </Link>
-            <StyledButton onClick={openAlertDialog}>
-              <DeleteIcon />
-            </StyledButton>
-          </Title>
-          <Title level={2}>{post?.subTitle}</Title>
-          <Title level={3}>
-            {salonInfo?.hostName}
-            {date && new Date(+date * 1000).toDateString()}
-          </Title>
-        </div>
-      </header>
-      <main>
-        {html.split(/<\/p>/).map((p, i) => (
-          <p key={i}>{htmlToText(p)}</p>
-        ))}
-        <LikeButton />
+    <>
+      <main className={className}>
+        <header
+          style={
+            post.backgroundImage !== ""
+              ? {
+                  backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`,
+                }
+              : { backgroundColor: `${post.backgroundColor}` }
+          }
+        >
+          <div style={{ color: "white" }}>
+            <Title level={1}>
+              {post?.title}
+              <Link to={`${match.url}/update`}>
+                <WriteIcon />
+              </Link>
+              <StyledButton onClick={openAlertDialog}>
+                <DeleteIcon />
+              </StyledButton>
+            </Title>
+            <Title level={2}>{post?.subTitle}</Title>
+            <Title level={3}>
+              {salonInfo?.hostName}
+              {date && new Date(+date * 1000).toDateString()}
+            </Title>
+          </div>
+        </header>
+        <main>
+          {html.split(/<\/p>/).map((p, i) => (
+            <p key={i}>{htmlToText(p)}</p>
+          ))}
+          <LikeButton />
+        </main>
+        <footer className={className}>
+          <Comment />
+        </footer>
       </main>
-      <footer className={className}>
-        <Comment />
-      </footer>
-    </main>
+      <StyledFooter />
+    </>
   );
 };
 
