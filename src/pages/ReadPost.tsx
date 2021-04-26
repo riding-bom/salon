@@ -13,6 +13,7 @@ import LikeButton from "containers/LikeButton/LikeButton";
 import { useEffect, useState } from "react";
 import { getPost } from "fb/API";
 import useAuthStateObserver from "customHook/useAuthStateObserver";
+import purify from "dompurify";
 
 type readPostProps = {
   className?: string;
@@ -89,9 +90,7 @@ const ReadPost = ({ className }: readPostProps) => {
         </div>
       </header>
       <main>
-        {html.split(/<\/p>/).map((p, i) => (
-          <p key={i}>{htmlToText(p)}</p>
-        ))}
+        <p dangerouslySetInnerHTML={{ __html: purify.sanitize(html) }} />
         <LikeButton />
       </main>
       <footer className={className}>
@@ -146,9 +145,12 @@ const StyledReadPost = styled(ReadPost)`
     margin: 60px auto;
     font-size: 1.4rem;
     text-indent: 1em;
-    line-height: 1.6em;
     display: flex;
     flex-flow: column nowrap;
+
+    & p {
+      line-height: 1.6em;
+    }
 
     & > button {
       box-shadow: none;
