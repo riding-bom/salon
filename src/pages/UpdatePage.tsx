@@ -8,7 +8,7 @@ import StyledButton from "components/Button/Button.styled";
 import { createOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch, useHistory } from "react-router";
 import { useEffect } from "react";
-import { postAction, resetState } from "redux/reducers/newPost";
+import { postAction, resetStateAction } from "redux/reducers/newPost";
 
 type UpdatePageProps = {
   className?: string;
@@ -26,12 +26,15 @@ const UpdatePage = ({ className }: UpdatePageProps) => {
     const getPostAsync = async () => {
       const post = (await getPost(postId)) as post;
       if (post) {
-        console.log(post);
         dispatch(postAction(post));
       }
     };
 
     getPostAsync();
+
+    return () => {
+      dispatch(resetStateAction());
+    };
   }, []);
 
   const onClickSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -39,7 +42,7 @@ const UpdatePage = ({ className }: UpdatePageProps) => {
       dispatch(createOpenAction("isOpenAlertWritePost"));
     } else {
       await addPost(newPost);
-      dispatch(resetState());
+      dispatch(resetStateAction());
       history.replace(`/${postId}`);
     }
   };

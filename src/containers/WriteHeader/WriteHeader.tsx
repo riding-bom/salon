@@ -10,7 +10,7 @@ import { post } from "../../constant/type";
 import {
   titleAction,
   subTitleAction,
-  resetBackground,
+  resetBackgroundAction,
 } from "../../redux/reducers/newPost";
 import invertColor from "modules/calOppositeColor";
 import CancelIcon from "essets/Icons/CancelIcon";
@@ -26,7 +26,7 @@ const WriteHeader = ({ className, Post }: writeHeaderProps) => {
   const oppositeColor = invertColor(Post.backgroundColor);
 
   const onClickResetButton = () => {
-    dispatch(resetBackground());
+    dispatch(resetBackgroundAction());
   };
 
   const onChangeTitle = ({ target }: { target: HTMLInputElement }) => {
