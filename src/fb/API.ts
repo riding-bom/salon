@@ -3,7 +3,7 @@ import {
   usersCollectionRef,
   salonInfoCollectionRef,
   mainPostCollectionRef,
-  firestore
+  firestore,
 } from "./firebase";
 import { post, user, salonInfo, comment } from "../constant/type";
 
@@ -26,13 +26,15 @@ const deletePost = async (postId: number) => {
 
 const getAllPost = async () => {
   const snapshot = await postsCollectionRef.get();
-  const list = snapshot.docs.map(post => post.data()).sort((a, b) => b.id - a.id);
+  const list = snapshot.docs
+    .map((post) => post.data())
+    .sort((a, b) => b.id - a.id);
   return list;
 };
 
 const getMainPost = async () => {
   const snapshot = await mainPostCollectionRef.get();
-  const list = snapshot.docs.map(post => post.data());
+  const list = snapshot.docs.map((post) => post.data());
   return list;
 };
 
@@ -42,7 +44,7 @@ const setUser = async (user: user) => {
     uid: user.uid,
     displayName: user.displayName,
     photoURL: user.photoURL,
-    email: user.email
+    email: user.email,
   });
 };
 
@@ -56,7 +58,7 @@ const setSalonInfo = async (salonInfo: salonInfo) => {
   await salonInfoCollectionRef.doc("salonInfoSample").set({
     hostName: salonInfo.hostName,
     salonIntro: salonInfo.salonIntro,
-    thumbnail: salonInfo.thumbnail
+    thumbnail: salonInfo.thumbnail,
   });
 };
 
@@ -76,7 +78,9 @@ const addComment = async (newComment: comment) => {
 
 const getAllComment = async () => {
   const snapshot = await commentCollectionRef.get();
-  const commentList = snapshot.docs.map(comment => comment.data()).sort((a, b) => b.id - a.id);
+  const commentList = snapshot.docs
+    .map((comment) => comment.data())
+    .sort((a, b) => b.id - a.id);
   return commentList;
 };
 
@@ -93,6 +97,18 @@ const removeLikePost = async (uid: string, postId: string) => {
     .update({ likePost: firebase.firestore.FieldValue.arrayRemove(postId) });
 };
 
+const setLikeUserInPostDB = async (uid: string, postId: string) => {
+  await postsCollectionRef
+    .doc(postId)
+    .update({ likeUser: firebase.firestore.FieldValue.arrayUnion(uid) });
+};
+
+const removeUserInPostDB = async (uid: string, postId: string) => {
+  await postsCollectionRef
+    .doc(postId)
+    .update({ likeUser: firebase.firestore.FieldValue.arrayRemove(uid) });
+};
+
 export {
   setUser,
   getUser,
@@ -106,5 +122,7 @@ export {
   addComment,
   getAllComment,
   setLikePost,
-  removeLikePost
+  removeLikePost,
+  setLikeUserInPostDB,
+  removeUserInPostDB,
 };

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { MouseEventHandler } from "react";
 import { useHistory } from "react-router";
 import { combinedState } from "constant/type";
-import { resetState } from "redux/reducers/newPost";
+import { resetStateAction } from "redux/reducers/newPost";
 import { createCloseAllAction } from "redux/reducers/openModal";
 import Title from "components/Title/Title";
 import Button from "components/Button/Button";
@@ -18,7 +18,7 @@ const AlertCancelWriter = () => {
   );
 
   const CancelWriter: MouseEventHandler = () => {
-    dispatch(resetState());
+    dispatch(resetStateAction());
     dispatch(createCloseAllAction());
     history.replace("/");
   };

@@ -13,6 +13,8 @@ import LikeButton from "containers/LikeButton/LikeButton";
 import { useEffect, useState } from "react";
 import { getPost } from "fb/API";
 import StyledFooter from "containers/Footer/Footer.styled";
+import useAuthStateObserver from "customHook/useAuthStateObserver";
+import purify from "dompurify";
 
 type readPostProps = {
   className?: string;
@@ -31,6 +33,8 @@ const ReadPost = ({ className }: readPostProps) => {
   const [html, setHtml] = useState("");
 
   const { htmlToText } = require("html-to-text");
+
+  const { isAuthed } = useAuthStateObserver();
 
   const openAlertDialog = () => {
     dispatch(createOpenAction("isOpenAlertDeletePost"));
@@ -55,46 +59,43 @@ const ReadPost = ({ className }: readPostProps) => {
   }, []);
 
   return (
-    <>
-      <main className={className}>
-        <header
-          style={
-            post.backgroundImage !== ""
-              ? {
-                  backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`,
-                }
-              : { backgroundColor: `${post.backgroundColor}` }
-          }
-        >
-          <div style={{ color: "white" }}>
-            <Title level={1}>
-              {post?.title}
-              <Link to={`${match.url}/update`}>
-                <WriteIcon />
-              </Link>
-              <StyledButton onClick={openAlertDialog}>
-                <DeleteIcon />
-              </StyledButton>
-            </Title>
-            <Title level={2}>{post?.subTitle}</Title>
-            <Title level={3}>
-              {salonInfo?.hostName}
-              {date && new Date(+date * 1000).toDateString()}
-            </Title>
-          </div>
-        </header>
-        <main>
-          {html.split(/<\/p>/).map((p, i) => (
-            <p key={i}>{htmlToText(p)}</p>
-          ))}
-          <LikeButton />
-        </main>
-        <footer className={className}>
-          <Comment />
-        </footer>
+    <main className={className}>
+      <header
+        style={
+          post.backgroundImage !== ""
+            ? {
+                backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`,
+              }
+            : { backgroundColor: `${post.backgroundColor}` }
+        }
+      >
+        <div style={{ color: "white" }}>
+          <Title level={1}>
+            {post?.title}
+            {isAuthed && (
+              <>
+                <Link to={`${match.url}/update`}>
+                  <WriteIcon />
+                </Link>
+                <StyledButton onClick={openAlertDialog}>
+                  <DeleteIcon />
+                </StyledButton>
+              </>
+            )}
+          </Title>
+          <Title level={2}>{post?.subTitle}</Title>
+          <Title level={3}>
+            {salonInfo?.hostName}
+            {date && new Date(+date * 1000).toDateString()}
+          </Title>
+        </div>
+      </header>
+      <main>
+        <p dangerouslySetInnerHTML={{ __html: purify.sanitize(html) }} />
+        <LikeButton />
       </main>
       <StyledFooter />
-    </>
+    </main>
   );
 };
 
@@ -143,9 +144,12 @@ const StyledReadPost = styled(ReadPost)`
     margin: 60px auto;
     font-size: 1.4rem;
     text-indent: 1em;
-    line-height: 1.6em;
     display: flex;
     flex-flow: column nowrap;
+
+    & p {
+      line-height: 1.6em;
+    }
 
     & > button {
       box-shadow: none;
