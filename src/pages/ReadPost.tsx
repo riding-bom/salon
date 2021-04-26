@@ -12,6 +12,8 @@ import StyledButton from "components/Button/Button.styled";
 import LikeButton from "containers/LikeButton/LikeButton";
 import { useEffect, useState } from "react";
 import { getPost } from "fb/API";
+import useAuthStateObserver from "customHook/useAuthStateObserver";
+import purify from "dompurify";
 
 type readPostProps = {
   className?: string;
@@ -30,6 +32,8 @@ const ReadPost = ({ className }: readPostProps) => {
   const [html, setHtml] = useState("");
 
   const { htmlToText } = require("html-to-text");
+
+  const { isAuthed } = useAuthStateObserver();
 
   const openAlertDialog = () => {
     dispatch(createOpenAction("isOpenAlertDeletePost"));
@@ -59,7 +63,7 @@ const ReadPost = ({ className }: readPostProps) => {
         style={
           post.backgroundImage !== ""
             ? {
-                backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`
+                backgroundImage: `linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5) ), url("${post.backgroundImage}"`,
               }
             : { backgroundColor: `${post.backgroundColor}` }
         }
@@ -67,12 +71,16 @@ const ReadPost = ({ className }: readPostProps) => {
         <div style={{ color: "white" }}>
           <Title level={1}>
             {post?.title}
-            <Link to={`${match.url}/update`}>
-              <WriteIcon />
-            </Link>
-            <StyledButton onClick={openAlertDialog}>
-              <DeleteIcon />
-            </StyledButton>
+            {isAuthed && (
+              <>
+                <Link to={`${match.url}/update`}>
+                  <WriteIcon />
+                </Link>
+                <StyledButton onClick={openAlertDialog}>
+                  <DeleteIcon />
+                </StyledButton>
+              </>
+            )}
           </Title>
           <Title level={2}>{post?.subTitle}</Title>
           <Title level={3}>
@@ -82,9 +90,7 @@ const ReadPost = ({ className }: readPostProps) => {
         </div>
       </header>
       <main>
-        {html.split(/<\/p>/).map((p, i) => (
-          <p key={i}>{htmlToText(p)}</p>
-        ))}
+        <p dangerouslySetInnerHTML={{ __html: purify.sanitize(html) }} />
         <LikeButton />
       </main>
       <footer className={className}>
@@ -139,9 +145,12 @@ const StyledReadPost = styled(ReadPost)`
     margin: 60px auto;
     font-size: 1.4rem;
     text-indent: 1em;
-    line-height: 1.6em;
     display: flex;
     flex-flow: column nowrap;
+
+    & p {
+      line-height: 1.6em;
+    }
 
     & > button {
       box-shadow: none;
