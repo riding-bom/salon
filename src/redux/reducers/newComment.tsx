@@ -1,7 +1,8 @@
 const initialState = {
   id: "",
   user: "",
-  comment: ""
+  comment: "",
+  userUid: ""
 };
 
 type action = {
@@ -10,12 +11,17 @@ type action = {
 };
 
 const UPDATE_ID = "update-id";
+const UPDATE_UID = "update-uId";
 const UPDATE_USER = "update-user";
 const UPDATE_COMMENT = "update-comment";
 const UPDATE_POSTID = "update-postId";
 
 export const idAction = (id: string) => {
   return { type: UPDATE_ID, payload: id };
+};
+
+export const userUidAction = (userUid: string) => {
+  return { type: UPDATE_UID, payload: userUid };
 };
 
 export const userAction = (user: string) => {
@@ -33,6 +39,8 @@ export const postIdAction = (postId: string) => {
 export const newCommentReducer = (state = initialState, action: action) => {
   switch (action.type) {
     case UPDATE_ID:
+      return { ...state, id: action.payload };
+    case UPDATE_UID:
       return { ...state, id: action.payload };
     case UPDATE_USER:
       return { ...state, user: action.payload };

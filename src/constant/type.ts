@@ -64,6 +64,7 @@ type combinedState = CombinedState<{
   salonInfo: salonInfo;
   mainPost: postsList;
   newComment: comment;
+  comment: comment[];
 }>;
 
 type comment = {

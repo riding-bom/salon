@@ -1,19 +1,26 @@
 import StyledCommentButton from "components/Button/CommentButton.styled";
 import StyledTextArea from "components/TextArea/TextArea.styled";
-import { combinedState } from "constant/type";
+import { combinedState, comment } from "constant/type";
 import StyledCommentList from "containers/CommentList/CommentList.styled";
 import useAuthStateObserver from "customHook/useAuthStateObserver";
-import { addComment } from "fb/API";
+import { addComment, getAllComment } from "fb/API";
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
-import { $CombinedState } from "redux";
-import { commentAction, idAction, postIdAction, userAction } from "redux/reducers/newComment";
+import { renderAction } from "redux/reducers/comment";
+import {
+  commentAction,
+  idAction,
+  postIdAction,
+  userAction,
+  userUidAction
+} from "redux/reducers/newComment";
 
 const placeHolder =
   "좋은 글을 남겨 주신 작가님께 편지를 남겨 보세요. 편지는 작가님과 작성자에게만 공개됩니다.";
 
 const Comment = () => {
+  const currentUser = useAuthStateObserver();
   const userName = useAuthStateObserver().userInfo?.displayName;
   const userUid = useAuthStateObserver().userInfo?.uid;
 
@@ -34,20 +41,25 @@ const Comment = () => {
 
   const newComment = useSelector((state: combinedState) => state.newComment);
 
-  const onClick: MouseEventHandler = target => {
-    // dispatch(idAction("4"));
-    addComment(newComment);
+  const onClick: MouseEventHandler = async target => {
+    await addComment(newComment);
+
+    const getCommentInfo = async () => {
+      const commentList = await getAllComment();
+      if (commentList) dispatch(renderAction(commentList as comment[]));
+
+      setComment("");
+    };
+    getCommentInfo();
   };
 
   useEffect(() => {
-    if (userName) dispatch(userAction(userName));
-    if (userUid) dispatch(idAction(userUid));
+    console.log(currentUser);
+    console.log(userName, userUid);
+    userName && dispatch(userAction(userName));
     dispatch(postIdAction(postId));
+    userUid && dispatch(userUidAction(userUid));
   }, []);
-
-  // const onChangeTextArea: ChangeEventHandler<HTMLTextAreaElement> = e => {
-  //   dispatch(commentAction(e.target.value));
-  // };
 
   return (
     <>

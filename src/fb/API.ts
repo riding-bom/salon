@@ -71,7 +71,12 @@ const commentCollectionRef = firestore.collection("comment");
 const commentDocRef = (id: string) => commentCollectionRef.doc(id);
 
 const addComment = async (newComment: comment) => {
-  await commentDocRef(newComment.id + "").set(newComment);
+  commentCollectionRef.doc().set(newComment);
+};
+
+const getComment = async () => {
+  const snapshot = await commentCollectionRef.doc().get();
+  return snapshot;
 };
 
 const getAllComment = async () => {
@@ -106,5 +111,6 @@ export {
   addComment,
   getAllComment,
   setLikePost,
-  removeLikePost
+  removeLikePost,
+  getComment
 };
