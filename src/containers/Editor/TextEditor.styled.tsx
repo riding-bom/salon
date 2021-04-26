@@ -18,17 +18,6 @@ const StyledTextEditor = styled(TextEditor)`
   .editor::-webkit-scrollbar {
     display: none;
   }
-
-  .btn-group {
-    position: fixed;
-    bottom: 15px;
-
-    & > button {
-      border-radius: 15px;
-      border: 1px solid #ccc;
-      margin: 0 10px;
-    }
-  }
 `;
 
 export default StyledTextEditor;

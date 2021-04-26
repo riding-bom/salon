@@ -85,11 +85,11 @@ export const backgroundImageAction = (backgroundImage: unknown) => ({
   payload: backgroundImage,
 });
 
-export const resetBackground = () => ({
+export const resetBackgroundAction = () => ({
   type: RESET_BACKGROUND,
 });
 
-export const resetState = () => ({
+export const resetStateAction = () => ({
   type: RESET_STATE,
 });
 

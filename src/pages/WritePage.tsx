@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { combinedState } from "constant/type";
-import { idAction, dateAction, resetState } from "redux/reducers/newPost";
+import { idAction, dateAction, resetStateAction } from "redux/reducers/newPost";
 import { addPost } from "fb/API";
 import styled from "styled-components";
 import StyledWriteHeader from "containers/WriteHeader/WriteHeader.styled";
@@ -29,7 +29,7 @@ const WritePage = ({ className }: writePageProps) => {
     } else {
       dispatch(dateAction(new Date()));
       await addPost(newPost);
-      dispatch(resetState());
+      dispatch(resetStateAction());
       history.replace(`/${newPost.id}`);
     }
   };
