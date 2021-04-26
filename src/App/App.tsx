@@ -3,6 +3,7 @@ import StoreProvider from "redux/store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import StyledWritePage from "pages/WritePage";
 import StyledReadPost from "pages/ReadPost";
+import StyledUpdatePage from "pages/UpdatePage";
 import LikePosts from "pages/LikePosts";
 import ModalDialogs from "pages/ModalDialogs";
 
@@ -16,6 +17,9 @@ function App() {
           </Route>
           <Route path="/like-posts">
             <LikePosts />
+          </Route>
+          <Route path="/:postId/update">
+            <StyledUpdatePage />
           </Route>
           <Route path="/:postId">
             <StyledReadPost />

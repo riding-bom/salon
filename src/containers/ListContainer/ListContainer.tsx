@@ -36,7 +36,7 @@ const ListContainer = ({ className }: listContainerProps) => {
   return (
     <ul className={className}>
       {renderingList.renderingList.map((post) => (
-        <Link to={`/${post.id}`} key={post.id}>
+        <Link to={`${post.id}`} key={post.id}>
           <StyledPost
             access={post.access}
             thumbnail={post.backgroundImage}

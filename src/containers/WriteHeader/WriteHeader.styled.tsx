@@ -9,8 +9,8 @@ const StyledWriteHeader = styled(WriteHeader)`
   width: 100vw;
   height: 400px;
   background-color: ${(props) =>
-    props.newPost.backgroundColor ? props.newPost.backgroundColor : "#fff"};
-  background-image: url("${(props) => props.newPost.backgroundImage}");
+    props.Post.backgroundColor ? props.Post.backgroundColor : "#fff"};
+  background-image: url("${(props) => props.Post.backgroundImage}");
   background-size: cover;
   background-position: 50% 50%;
   border-bottom: 1px solid black;

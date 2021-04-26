@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { combinedState, post } from "constant/type";
 import Title from "components/Title/Title";
 import { ReactComponent as DeleteIcon } from "essets/Icons/delete.svg";
+import { ReactComponent as WriteIcon } from "essets/Icons/write.svg";
 import { createOpenAction } from "redux/reducers/openModal";
 import { useRouteMatch } from "react-router";
 import Comment from "containers/Comment/Comment";
@@ -65,6 +67,9 @@ const ReadPost = ({ className }: readPostProps) => {
         <div style={{ color: "white" }}>
           <Title level={1}>
             {post?.title}
+            <Link to={`${match.url}/update`}>
+              <WriteIcon />
+            </Link>
             <StyledButton onClick={openAlertDialog}>
               <DeleteIcon />
             </StyledButton>
