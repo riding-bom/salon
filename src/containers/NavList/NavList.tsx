@@ -31,15 +31,16 @@ const NavList = () => {
           <Logo type="FillHeart" />
         </Link>
       </li>
-      <Nav id="welcomPageLogOut" type="LogOut" onClick={onSignOut} />
-    </>
-  ) : (
-    <>
       <li>
         <Link to="/setting">
           <Logo type="Setting" />
         </Link>
       </li>
+
+      <Nav id="welcomPageLogOut" type="LogOut" onClick={onSignOut} />
+    </>
+  ) : (
+    <>
       <Nav id="welcomPageLogIn" type="LogIn" onClick={openSignInModal} />
     </>
   );

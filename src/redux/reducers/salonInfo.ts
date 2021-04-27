@@ -1,7 +1,3 @@
-const CHANGE_NAME = "CHANGE_NAME";
-const SALON_INTRO = "SALON_INTRO";
-const THUMBNAIL = "THUMBNAIL";
-
 type salonAction = {
   type: string;
   payload: string;
@@ -10,35 +6,39 @@ type salonAction = {
 const initialState = {
   hostName: "",
   salonIntro: "",
-  thumbnail: "http://file2.nocutnews.co.kr/newsroom/image/2013/08/24/20130824110338109792.jpg"
+  thumbnail: ""
 };
 
-const changeNameAction = (newName: string) => ({
-  type: CHANGE_NAME,
+const SET_HOST_NAME = "SET_HOST_NAME";
+const SET_SALON_INTRO = "SET_SALON_INTRO";
+const SET_THUMBNAIL = "THUMBNAIL";
+
+const sethostNameAction = (newName: string) => ({
+  type: SET_HOST_NAME,
   payload: newName
 });
-const changeSalonIntroAction = (newSalonIntro: string) => ({
-  type: SALON_INTRO,
+const setSalonIntroAction = (newSalonIntro: string) => ({
+  type: SET_SALON_INTRO,
   payload: newSalonIntro
 });
-const changeThumbnailAction = (newThumbnail: salonAction) => ({
-  type: THUMBNAIL,
+const setThumbnailAction = (newThumbnail: salonAction) => ({
+  type: SET_THUMBNAIL,
   payload: newThumbnail
 });
 
 const salonInfoReducer = (state = initialState, action: salonAction) => {
   switch (action.type) {
-    case CHANGE_NAME:
+    case SET_HOST_NAME:
       return {
         ...state,
         hostName: action.payload
       };
-    case SALON_INTRO:
+    case SET_SALON_INTRO:
       return {
         ...state,
         salonIntro: action.payload
       };
-    case THUMBNAIL:
+    case SET_THUMBNAIL:
       return {
         ...state,
         thumbnail: action.payload
@@ -48,4 +48,4 @@ const salonInfoReducer = (state = initialState, action: salonAction) => {
   }
 };
 
-export { changeNameAction, changeSalonIntroAction, changeThumbnailAction, salonInfoReducer };
+export { sethostNameAction, setSalonIntroAction, setThumbnailAction, salonInfoReducer };
