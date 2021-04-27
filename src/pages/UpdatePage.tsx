@@ -43,7 +43,7 @@ const UpdatePage = ({ className }: UpdatePageProps) => {
     } else {
       await addPost(newPost);
       dispatch(resetStateAction());
-      history.replace(`/${postId}`);
+      history.go(-1);
     }
   };
 
