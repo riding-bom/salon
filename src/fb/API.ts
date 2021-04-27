@@ -3,7 +3,7 @@ import {
   usersCollectionRef,
   salonInfoCollectionRef,
   mainPostCollectionRef,
-  firestore,
+  firestore
 } from "./firebase";
 import { post, user, salonInfo, comment } from "../constant/type";
 
@@ -26,15 +26,13 @@ const deletePost = async (postId: number) => {
 
 const getAllPost = async () => {
   const snapshot = await postsCollectionRef.get();
-  const list = snapshot.docs
-    .map((post) => post.data())
-    .sort((a, b) => b.id - a.id);
+  const list = snapshot.docs.map(post => post.data()).sort((a, b) => b.id - a.id);
   return list;
 };
 
 const getMainPost = async () => {
   const snapshot = await mainPostCollectionRef.get();
-  const list = snapshot.docs.map((post) => post.data());
+  const list = snapshot.docs.map(post => post.data());
   return list;
 };
 
@@ -44,7 +42,7 @@ const setUser = async (user: user) => {
     uid: user.uid,
     displayName: user.displayName,
     photoURL: user.photoURL,
-    email: user.email,
+    email: user.email
   });
 };
 
@@ -58,7 +56,7 @@ const setSalonInfo = async (salonInfo: salonInfo) => {
   await salonInfoCollectionRef.doc("salonInfoSample").set({
     hostName: salonInfo.hostName,
     salonIntro: salonInfo.salonIntro,
-    thumbnail: salonInfo.thumbnail,
+    thumbnail: salonInfo.thumbnail
   });
 };
 
@@ -73,14 +71,17 @@ const commentCollectionRef = firestore.collection("comment");
 const commentDocRef = (id: string) => commentCollectionRef.doc(id);
 
 const addComment = async (newComment: comment) => {
-  await commentDocRef(newComment.id + "").set(newComment);
+  commentCollectionRef.doc().set(newComment);
+};
+
+const getComment = async () => {
+  const snapshot = await commentCollectionRef.doc().get();
+  return snapshot;
 };
 
 const getAllComment = async () => {
   const snapshot = await commentCollectionRef.get();
-  const commentList = snapshot.docs
-    .map((comment) => comment.data())
-    .sort((a, b) => b.id - a.id);
+  const commentList = snapshot.docs.map(comment => comment.data()).sort((a, b) => b.id - a.id);
   return commentList;
 };
 
@@ -123,6 +124,7 @@ export {
   getAllComment,
   setLikePost,
   removeLikePost,
+  getComment,
   setLikeUserInPostDB,
-  removeUserInPostDB,
+  removeUserInPostDB
 };

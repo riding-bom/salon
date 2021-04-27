@@ -31,5 +31,3 @@ const HostName = ({ className }: HostNameProps) => {
   );
 };
 export default HostName;
-
-//<h1 className={className}>{hostName} 님의 살롱</h1>
