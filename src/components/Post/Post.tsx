@@ -9,7 +9,7 @@ type postProps = {
   subTitle?: string;
   summary?: string;
   date?: string;
-  likeCount?: number;
+  likeCount: number;
   commentCount?: number;
 };
 //TODO: access에 따른 render 여부 접근 여부 설정, like, comment 수로 개별 render
