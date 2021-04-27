@@ -71,7 +71,7 @@ const commentCollectionRef = firestore.collection("comment");
 const commentDocRef = (id: string) => commentCollectionRef.doc(id);
 
 const addComment = async (newComment: comment) => {
-  commentCollectionRef.doc().set(newComment);
+  await commentCollectionRef.doc(newComment.id + "").set(newComment);
 };
 
 const getComment = async () => {
@@ -81,8 +81,12 @@ const getComment = async () => {
 
 const getAllComment = async () => {
   const snapshot = await commentCollectionRef.get();
-  const commentList = snapshot.docs.map(comment => comment.data()).sort((a, b) => b.id - a.id);
+  const commentList = snapshot.docs.map(comment => comment.data()).sort((a, b) => a.id - b.id);
   return commentList;
+};
+
+const deleteComment = async (commentId: number) => {
+  await commentCollectionRef.doc(commentId + "").delete();
 };
 
 /* like API-------------------------------------------------------------------------- */
@@ -126,5 +130,6 @@ export {
   removeLikePost,
   getComment,
   setLikeUserInPostDB,
-  removeUserInPostDB
+  removeUserInPostDB,
+  deleteComment
 };

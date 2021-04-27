@@ -17,8 +17,9 @@ import { renderAction } from "redux/reducers/comment";
 import {
   commentAction,
   dateAction,
-  // idAction,
+  idAction,
   postIdAction,
+  resetCommentAction,
   userAction,
   userUidAction
 } from "redux/reducers/newComment";
@@ -51,16 +52,17 @@ const Comment = () => {
 
   const onClick: MouseEventHandler = async target => {
     if (isAuthed) {
-      await addComment(newComment);
-
-      const getCommentInfo = async () => {
-        const commentList = await getAllComment();
-        if (commentList) dispatch(renderAction(commentList as comment[]));
-        // dispatch(dateAction(new Date()));
-
+      if (newComment.comment) {
+        await addComment(newComment);
         setComment("");
-      };
-      getCommentInfo();
+        resetCommentAction && dispatch(resetCommentAction());
+        const getCommentInfo = async () => {
+          const commentList = await getAllComment();
+          if (commentList) dispatch(renderAction(commentList as comment[]));
+          // dispatch(dateAction(new Date()));
+        };
+        getCommentInfo();
+      } else return;
     } else {
       dispatch(createOpenAction("isOpenNeedSignIn"));
     }
@@ -75,11 +77,11 @@ const Comment = () => {
   };
 
   useEffect(() => {
+    dispatch(idAction());
     userName && dispatch(userAction(userName));
     userUid && dispatch(userUidAction(userUid));
-    // dispatch(idAction());
     dispatch(postIdAction(postId));
-  }, [userName, userUid]);
+  }, [userName, userUid, comment]);
 
   return (
     <>
@@ -104,6 +106,3 @@ const Comment = () => {
 };
 
 export default Comment;
-
-// 비로그인 시 댓글 비공개
-// textArea 커서가 갔을 때 로그인 모달 불러오기(needSign > LikeButton.tsx 참조)
