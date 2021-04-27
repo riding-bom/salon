@@ -22,15 +22,15 @@ const CommentList = ({ className }: CommentListProps) => {
 
   useEffect(() => {
     getCommentInfo();
-  }, []);
+  }, [comment]);
 
   if (isAuthed) {
     return (
       <ul className={className}>
-        {comment.map((comment: comment, index) => (
+        {comment.map((comment: comment) => (
           <StyledCommentListItem
-            key={index + ""}
-            id={index + ""}
+            key={comment.id}
+            id={comment.id}
             name={comment.comment}
             user={comment.user}
             // date={comment.date}

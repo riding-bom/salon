@@ -10,7 +10,8 @@ type salonAction = {
 const initialState = {
   hostName: "",
   salonIntro: "",
-  thumbnail: "http://file2.nocutnews.co.kr/newsroom/image/2013/08/24/20130824110338109792.jpg"
+  thumbnail:
+    "https://firebasestorage.googleapis.com/v0/b/salon-riding-bom.appspot.com/o/profile%2FAvata.png?alt=media&token=0081c4d6-e4b9-41a3-a68b-6d6498df6c3e"
 };
 
 const changeNameAction = (newName: string) => ({
