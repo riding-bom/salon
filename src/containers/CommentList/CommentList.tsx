@@ -1,5 +1,6 @@
 import { combinedState, comment } from "constant/type";
 import StyledCommentListItem from "containers/CommentListItem/CommentListItem.styled";
+import useAuthStateObserver from "customHook/useAuthStateObserver";
 import { getAllComment } from "fb/API";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,8 +11,8 @@ type CommentListProps = {
 };
 
 const CommentList = ({ className }: CommentListProps) => {
+  const isAuthed = useAuthStateObserver().isAuthed;
   const comment = useSelector((state: combinedState) => state.comment);
-
   const dispatch = useDispatch();
 
   const getCommentInfo = async () => {
@@ -23,18 +24,23 @@ const CommentList = ({ className }: CommentListProps) => {
     getCommentInfo();
   }, []);
 
-  return (
-    <ul className={className}>
-      {comment.map((comment: comment, index) => (
-        <StyledCommentListItem
-          key={index + ""}
-          id={index + ""}
-          name={comment.comment}
-          user={comment.user}
-        />
-      ))}
-    </ul>
-  );
+  if (isAuthed) {
+    return (
+      <ul className={className}>
+        {comment.map((comment: comment, index) => (
+          <StyledCommentListItem
+            key={index + ""}
+            id={index + ""}
+            name={comment.comment}
+            user={comment.user}
+            // date={comment.date}
+          />
+        ))}
+      </ul>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default CommentList;

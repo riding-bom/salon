@@ -7,10 +7,11 @@ type action = {
 
 const initialState = [
   {
-    id: "",
+    // id: "",
     user: "",
     comment: "",
-    userUid: ""
+    userUid: "",
+    date: new Date()
   }
 ];
 

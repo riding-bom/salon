@@ -72,6 +72,7 @@ type comment = {
   user: string;
   comment: string;
   postId: string;
+  date: Date;
 };
 
 export type { post, postsList, combinedState, user, salonInfo, postFromFirestore, comment };
