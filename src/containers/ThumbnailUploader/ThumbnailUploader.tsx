@@ -14,7 +14,7 @@ type thumbnailUploaderProps = {
 
 const ThumbnailUploader = ({
   className,
-  thumbnail = "http://file2.nocutnews.co.kr/newsroom/image/2013/08/24/20130824110338109792.jpg",
+  thumbnail,
 }: thumbnailUploaderProps) => {
   const dispatch = useDispatch();
   const fileInput = useRef<HTMLInputElement>(null);

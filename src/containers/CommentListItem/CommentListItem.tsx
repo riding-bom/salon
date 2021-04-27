@@ -1,6 +1,8 @@
 import StyledCommentMenuButton from "components/Button/CommentMenuButton.styled";
 import List from "components/List/List";
 import Logo from "components/Logo/Logo";
+import { deleteComment } from "fb/API";
+import { MouseEventHandler } from "react";
 
 type CommentListItemProps = {
   id: string;
@@ -11,6 +13,11 @@ type CommentListItemProps = {
 };
 
 const CommentListItem = ({ id, name, className, user, date }: CommentListItemProps) => {
+  const onClick: MouseEventHandler<HTMLButtonElement> = e => {
+    const currentCommentId = e.currentTarget.parentElement?.parentElement?.id;
+    if (currentCommentId) deleteComment(+currentCommentId);
+  };
+
   return (
     <List id={id} className={className}>
       <div>
@@ -19,9 +26,13 @@ const CommentListItem = ({ id, name, className, user, date }: CommentListItemPro
         <span>{date}</span>
       </div>
       {name}
-      <StyledCommentMenuButton type="button" className={className}>
-        <Logo type="Menu" />
-      </StyledCommentMenuButton>
+      <div>
+        <StyledCommentMenuButton type="button" className={className} onClick={onClick}>
+          <Logo type="Write" />
+          <Logo type="Delete" />
+          <Logo type="Menu" />
+        </StyledCommentMenuButton>
+      </div>
     </List>
   );
 };

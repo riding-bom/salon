@@ -6,7 +6,8 @@ type salonAction = {
 const initialState = {
   hostName: "",
   salonIntro: "",
-  thumbnail: ""
+  thumbnail:
+    "https://firebasestorage.googleapis.com/v0/b/salon-riding-bom.appspot.com/o/profile%2FAvata.png?alt=media&token=0081c4d6-e4b9-41a3-a68b-6d6498df6c3e"
 };
 
 const SET_HOST_NAME = "SET_HOST_NAME";

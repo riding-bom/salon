@@ -1,9 +1,8 @@
 import { getAllComment } from "fb/API";
 import { Dispatch } from "react";
-import { useDispatch } from "react-redux";
 
 const initialState = {
-  // id: "",
+  id: "",
   user: "",
   comment: "",
   userUid: "",
@@ -17,21 +16,19 @@ type action = {
 
 // const dispatch = useDispatch;
 
-// const UPDATE_ID = "update-id";
+const UPDATE_ID = "update-id";
 const UPDATE_UID = "update-uId";
 const UPDATE_USER = "update-user";
 const UPDATE_COMMENT = "update-comment";
 const UPDATE_POSTID = "update-postId";
 const UPDATE_DATE = "update-date";
+const RESET = "reset-comment";
 
-// export const idAction = () => async (dispatch: Dispatch<{ type: string; payload: number }>) => {
-//   const comments = await getAllComment();
-//   console.log(comments);
-//   const maxId = comments.length ? Math.max(...comments.map(comment => comment.id)) : 0;
-//   console.log(maxId);
-//   dispatch({ type: UPDATE_ID, payload: maxId + 1 });
-//   return maxId;
-// };
+export const idAction = () => async (dispatch: Dispatch<{ type: string; payload: number }>) => {
+  const comments = await getAllComment();
+  const maxId = comments.length ? Math.max(...comments.map(comment => +comment.id)) : 0;
+  dispatch({ type: UPDATE_ID, payload: maxId + 1 });
+};
 
 export const userUidAction = (userUid: string) => {
   return { type: UPDATE_UID, payload: userUid };
@@ -53,10 +50,14 @@ export const dateAction = (date: Date) => {
   return { type: UPDATE_DATE, payload: date };
 };
 
+export const resetCommentAction = () => {
+  return { type: RESET };
+};
+
 export const newCommentReducer = (state = initialState, action: action) => {
   switch (action.type) {
-    // case UPDATE_ID:
-    //   return { ...state, id: action.payload };
+    case UPDATE_ID:
+      return { ...state, id: action.payload };
     case UPDATE_UID:
       return { ...state, userUid: action.payload };
     case UPDATE_USER:
@@ -67,6 +68,8 @@ export const newCommentReducer = (state = initialState, action: action) => {
       return { ...state, postId: action.payload };
     case UPDATE_DATE:
       return { ...state, date: action.payload };
+    case RESET:
+      return { ...state, comment: "" };
     default:
       return state;
   }
