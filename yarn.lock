@@ -2063,6 +2063,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/dompurify@^2.2.1":
+  "integrity" "sha512-3JwbEeRVQ3n6+JgBW/hCdkydRk9/vWT+UEglcXEJqLJEcUganDH37zlfLznxPKTZZfDqA9K229l1qN458ubcOQ=="
+  "resolved" "https://registry.npmjs.org/@types/dompurify/-/dompurify-2.2.1.tgz"
+  "version" "2.2.1"
+  dependencies:
+    "@types/trusted-types" "*"
+
 "@types/draft-js@*", "@types/draft-js@^0.11.1":
   "integrity" "sha512-jV4LAXYdVvS0ahIROZehkKqHgfLxaDBl3fzfEVqho8NxFAtEaObdIiu7FpPUu/Y97PlJVxGajar7aSikQqz9sQ=="
   "resolved" "https://registry.npmjs.org/@types/draft-js/-/draft-js-0.11.1.tgz"
@@ -2128,6 +2135,13 @@
   "integrity" "sha512-giAlZwstKbmvMk1OO7WXSj4OZ0keXAcl2TQq4LWHiiPH2ByaH7WeUzng+Qej8UPxxv+8lRTuouo0iaNDBuzIBA=="
   "resolved" "https://registry.npmjs.org/@types/html-minifier-terser/-/html-minifier-terser-5.1.1.tgz"
   "version" "5.1.1"
+
+"@types/html-to-draftjs@^1.4.0":
+  "integrity" "sha512-w7Te62TAk2xkl+f/PRepVfaVbsArRYRACqH7Rv9H97gKqglQye3Cf8EArsKuSsN7vW6/zf1kTCsm/jnSR0gDQA=="
+  "resolved" "https://registry.npmjs.org/@types/html-to-draftjs/-/html-to-draftjs-1.4.0.tgz"
+  "version" "1.4.0"
+  dependencies:
+    "@types/draft-js" "*"
 
 "@types/html-to-text@^6.0.0":
   "integrity" "sha512-MkE9pBbP8kXm6ReXDf2VbmWA0bC1svBzM0c76OdawqlUf2peGGsoHoLn/gv/Ldq/Sl9QJhbEQAj0qtQCkHWtEA=="
@@ -2368,6 +2382,11 @@
   "version" "5.9.5"
   dependencies:
     "@types/jest" "*"
+
+"@types/trusted-types@*":
+  "integrity" "sha512-I8MnZqNXsOLHsU111oHbn3khtvKMi5Bn4qVFsIWSJcCP1KKDiXX5AEw8UPk0nSopeC+Hvxt6yAy1/a5PailFqg=="
+  "resolved" "https://registry.npmjs.org/@types/trusted-types/-/trusted-types-2.0.0.tgz"
+  "version" "2.0.0"
 
 "@types/uglify-js@*":
   "integrity" "sha512-EGkrJD5Uy+Pg0NUR8uA4bJ5WMfljyad0G+784vLCNUkD+QwOJXUbBYExXfVGf7YtyzdQp3L/XMYcliB987kL5Q=="
@@ -4903,6 +4922,11 @@
   "version" "4.2.0"
   dependencies:
     "domelementtype" "^2.2.0"
+
+"dompurify@^2.2.7":
+  "integrity" "sha512-jdtDffdGNY+C76jvodNTu9jt5yYj59vuTUyx+wXdzcSwAGTYZDAQkQ7Iwx9zcGrA4ixC1syU4H3RZROqRxokxg=="
+  "resolved" "https://registry.npmjs.org/dompurify/-/dompurify-2.2.7.tgz"
+  "version" "2.2.7"
 
 "domutils@^1.5.1", "domutils@^1.7.0":
   "integrity" "sha512-Lgd2XcJ/NjEw+7tFvfKxOzCYKZsdct5lczQ2ZaQY8Djz7pfAD3Gbp8ySJWtreII/vDlMVmxwa6pHmdxIYgttDg=="
@@ -7581,11 +7605,6 @@
     "import-local" "^3.0.2"
     "jest-cli" "^26.6.0"
 
-"jquery@>=1.8.0":
-  "integrity" "sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw=="
-  "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.0.tgz"
-  "version" "3.6.0"
-
 "js-tokens@^3.0.0 || ^4.0.0", "js-tokens@^4.0.0":
   "integrity" "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
   "resolved" "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -10145,7 +10164,7 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react-dom@^17.0.2":
+"react-dom@^17.0.2":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -10318,7 +10337,7 @@
     "lodash.debounce" "^4.0.8"
     "resize-observer-polyfill" "^1.5.0"
 
-"react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react@^17.0.2":
+"react@^17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

@@ -9,6 +9,7 @@ import { ReactComponent as EmptyHeart } from "essets/Icons/empty-heart.svg";
 import { ReactComponent as FillHeart } from "essets/Icons/fill-heart.svg";
 import { ReactComponent as Menu } from "essets/Icons/menu.svg";
 import { ReactComponent as UserImg } from "essets/Icons/userImg.svg";
+import { ReactComponent as Delete } from "essets/Icons/delete.svg";
 
 type LogoProps = {
   type:
@@ -22,7 +23,8 @@ type LogoProps = {
     | "EmptyHeart"
     | "FillHeart"
     | "Menu"
-    | "UserImg";
+    | "UserImg"
+    | "Delete";
 };
 
 const Logo = (props: LogoProps) => {
@@ -49,6 +51,8 @@ const Logo = (props: LogoProps) => {
       return <EmptyHeart />;
     case "FillHeart":
       return <FillHeart />;
+    case "Delete":
+      return <Delete />;
     default:
       return <LightMode />;
   }

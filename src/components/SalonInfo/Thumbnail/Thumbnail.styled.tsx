@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Thumbnail from './Thumbnail';
+import styled from "styled-components";
+import Thumbnail from "./Thumbnail";
 
 const StyledThumbnail = styled(Thumbnail)`
   width: 150px;
