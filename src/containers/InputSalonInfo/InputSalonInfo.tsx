@@ -1,39 +1,146 @@
-import Button from "components/Button/Button.styled";
+import { ChangeEventHandler, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeNameAction, changeSalonIntroAction } from "redux/reducers/salonInfo";
-import { setSalonInfo, getSalonInfo } from "../../fb/API";
-import { ChangeEventHandler } from "react";
+import styled from "styled-components";
 import { combinedState } from "constant/type";
+import { setSalonInfo, getSalonInfo } from "../../fb/API";
+import {
+  sethostNameAction,
+  setSalonIntroAction,
+} from "redux/reducers/salonInfo";
+import Title from "components/Title/Title";
 import InputText from "components/InputText/InputText";
+import StyledThumbnailUploader from "containers/ThumbnailUploader/ThumbnailUploader";
+import StyledButton from "components/Button/Button.styled";
+import { createOpenAction } from "redux/reducers/openModal";
+import { useHistory } from "react-router";
 
-const InputSalonInfo = () => {
+type inputSalonInfoProps = {
+  className?: string;
+};
+
+const InputSalonInfo = ({ className }: inputSalonInfoProps) => {
   const salonInfo = useSelector((state: combinedState) => state.salonInfo);
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
-  const onChangeHostName: ChangeEventHandler<HTMLInputElement> = e => {
-    dispatch(changeNameAction(e.target.value));
+  const onChangeHostName: ChangeEventHandler<HTMLInputElement> = (e) => {
+    dispatch(sethostNameAction(e.target.value));
   };
-  const onChangeSalonIntro: ChangeEventHandler<HTMLInputElement> = e => {
-    dispatch(changeSalonIntroAction(e.target.value));
+  const onChangeSalonIntro: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    dispatch(setSalonIntroAction(e.target.value));
   };
 
-  getSalonInfo();
+  const onClickInfoSubmit = () => {
+    if (!salonInfo.hostName) {
+      dispatch(createOpenAction("isOpenAlertInfoPost"));
+    } else {
+      setSalonInfo(salonInfo);
+      history.replace("/");
+    }
+  };
+
+  useEffect(() => {
+    getSalonInfo();
+  }, []);
+
   return (
-    <>
-      <InputText id="salonInfoHostName" name="작가의 이름" onChange={onChangeHostName} />
-      <InputText id="salonInfoIntro" name="작가의 소개글" onChange={onChangeSalonIntro} />
-      <Button
-        onClick={() => {
-          setSalonInfo(salonInfo);
-        }}
-        type="submit"
-        width="50"
-      >
-        등록
-      </Button>
-    </>
+    <main className={className}>
+      <Title level={3} className="title" children="Salon Info Setting" />
+
+      <StyledThumbnailUploader thumbnail={salonInfo.thumbnail} />
+
+      <InputText
+        id="salonInfoHostName"
+        value={salonInfo.hostName}
+        name="작가의 이름"
+        onChange={onChangeHostName}
+      />
+
+      <div className="textAreaContainer">
+        <textarea
+          id="salonInfoIntro"
+          cols={60}
+          rows={8}
+          value={salonInfo.salonIntro}
+          onChange={onChangeSalonIntro}
+        />
+        <label htmlFor="salonInfoIntro">
+          {salonInfo.salonIntro ? "" : "작가의 소개글"}
+        </label>
+      </div>
+
+      <StyledButton
+        onClick={onClickInfoSubmit}
+        width="200"
+        label="info-submit"
+        children="UPLOAD"
+      />
+    </main>
   );
 };
 
-export default InputSalonInfo;
+const StyledInputSalonInfo = styled(InputSalonInfo)`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid #ccc;
+  width: 50%;
+  margin-top: 1rem;
+
+  & > * {
+    margin: 2rem auto;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  form {
+    position: relative;
+    width: 400px;
+
+    & > input {
+      box-sizing: border-box;
+      width: 100%;
+      height: 25px;
+      margin: 0;
+      border: none;
+      border-bottom: 1px solid black;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    & > label {
+      position: absolute;
+      top: 2px;
+      left: 35%;
+      color: lightgray;
+      padding: 0;
+      margin: 0;
+      font-size: 2rem;
+    }
+  }
+
+  .textAreaContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & > textarea {
+      border: 1px solid lightgray;
+      resize: none;
+      margin-top: 22px;
+    }
+    & > label {
+      position: absolute;
+      top: 2.7rem;
+      left: 0.5rem;
+      color: lightgray;
+      font-size: 1.4rem;
+    }
+  }
+`;
+
+export default StyledInputSalonInfo;

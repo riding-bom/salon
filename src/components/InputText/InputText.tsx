@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, FormEvent, FormEventHandler } from "react";
 
 type inputTextProps = {
   id: string;
@@ -8,6 +8,7 @@ type inputTextProps = {
   className?: string;
   value?: string;
   onChange?: ChangeEventHandler;
+  onSubmit?: FormEventHandler;
 };
 
 const InputText = ({
@@ -18,9 +19,10 @@ const InputText = ({
   type,
   value,
   onChange,
+  onSubmit,
 }: inputTextProps) => {
   return (
-    <form className={className}>
+    <form className={className} onSubmit={onSubmit}>
       <input
         type={type}
         id={id}
@@ -36,6 +38,7 @@ const InputText = ({
 
 InputText.defaultProps = {
   type: "text",
+  onSubmit: (e: FormEvent) => e.preventDefault(),
 };
 
 export default InputText;

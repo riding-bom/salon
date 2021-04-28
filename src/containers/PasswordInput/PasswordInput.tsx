@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import StyledInputText from "components/InputText/InputText.styled";
 import { ReactComponent as VisibleIcon } from "essets/Icons/visible.svg";
 import { ReactComponent as UnvisibleIcon } from "essets/Icons/unvisible.svg";
@@ -9,9 +9,16 @@ type passwordInputProps = {
   value?: string;
   onChange?: ChangeEventHandler;
   className?: string;
+  onSubmit?: FormEventHandler;
 };
 
-const PasswordInput = ({ id, value, onChange, className }: passwordInputProps) => {
+const PasswordInput = ({
+  id,
+  value,
+  onChange,
+  className,
+  onSubmit,
+}: passwordInputProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
@@ -22,6 +29,7 @@ const PasswordInput = ({ id, value, onChange, className }: passwordInputProps) =
         name="Password"
         value={value}
         onChange={onChange}
+        onSubmit={onSubmit}
       />
       {isVisible ? (
         <StyledButton onClick={() => setIsVisible(false)}>

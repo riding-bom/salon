@@ -41,7 +41,7 @@ const WritePage = ({ className }: writePageProps) => {
   return (
     <section className={className}>
       <StyledWriteHeader className="" Post={newPost} />
-      <StyledTextEditor className="" />
+      <StyledTextEditor className="" defaultContent={newPost.content} />
       <div className="btn-group">
         <StyledButton
           width="150"
@@ -74,13 +74,14 @@ const StyledWritePage = styled(WritePage)`
   overflow-x: hidden;
 
   .btn-group {
-    position: fixed;
-    bottom: 15px;
+    position: absolute;
+    bottom: 50px;
 
     & > button {
       border-radius: 15px;
       border: 1px solid #ccc;
       margin: 0 10px;
+      background-color: #fff;
     }
   }
 `;

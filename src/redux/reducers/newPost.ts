@@ -17,7 +17,7 @@ const RESET_STATE = "reset-state";
 
 const initialState: post = {
   access: "public",
-  id: "0",
+  id: "",
   title: "",
   subTitle: "",
   date: new Date(),

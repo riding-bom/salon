@@ -21,7 +21,7 @@ const TextArea = ({
   placeholder,
   onChange,
   className,
-  onFocus
+  onFocus,
 }: TextAreaProps) => {
   return (
     <div className="textAreaContainer">

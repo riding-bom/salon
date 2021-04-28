@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   signInWithEmail,
@@ -22,9 +22,23 @@ const SignIn = () => {
     email: "",
     password: "",
   });
+  const [wrongIdOrPassword, setWrongIdOrPassword] = useState(false);
   const { email, password } = state;
 
   const dispatch = useDispatch();
+
+  const onSubmit: FormEventHandler = async (e) => {
+    console.log(e);
+    e.preventDefault();
+
+    try {
+      await signInWithEmail(email, password);
+      dispatch(createCloseAction("isOpenNeedSignIn"));
+      setInitialState();
+    } catch (e) {
+      setWrongIdOrPassword(() => true);
+    }
+  };
 
   const setEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setState(() => {
@@ -51,6 +65,7 @@ const SignIn = () => {
         password: "",
       };
     });
+    setWrongIdOrPassword(() => false);
   };
 
   const updateUserWithGoogle = async () => {
@@ -74,6 +89,7 @@ const SignIn = () => {
         name="Email"
         value={email}
         onChange={setEmail}
+        onSubmit={onSubmit}
       />
       {validateEmail(email) || email === "" || (
         <StyledValidationText>
@@ -84,17 +100,29 @@ const SignIn = () => {
         id="signInPassword"
         value={password}
         onChange={setPassword}
+        onSubmit={onSubmit}
       />
       <StyledButton
         onClick={async () => {
-          await signInWithEmail(email, password);
-          dispatch(createCloseAction("isOpenNeedSignIn"));
-          setInitialState();
+          try {
+            await signInWithEmail(email, password);
+            dispatch(createCloseAction("isOpenNeedSignIn"));
+            setInitialState();
+          } catch (e) {
+            setWrongIdOrPassword(() => true);
+          }
         }}
         disabled={!(validateEmail(email) && password !== "")}
       >
         SIGNIN
       </StyledButton>
+      {wrongIdOrPassword && (
+        <StyledValidationText>
+          <span style={{ display: "block", margin: "10px" }}>
+            아이디 혹은 비밀번호가 틀렸습니다.
+          </span>
+        </StyledValidationText>
+      )}
       <StyledButton
         onClick={async () => {
           await updateUserWithGoogle();
