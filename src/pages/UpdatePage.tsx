@@ -43,7 +43,7 @@ const UpdatePage = ({ className }: UpdatePageProps) => {
     } else {
       await addPost(newPost);
       dispatch(resetStateAction());
-      history.replace(`/${postId}`);
+      history.go(-1);
     }
   };
 
@@ -87,13 +87,14 @@ const StyledUpdatePage = styled(UpdatePage)`
   overflow-x: hidden;
 
   .btn-group {
-    position: fixed;
-    bottom: 15px;
+    position: absolute;
+    bottom: 50px;
 
     & > button {
       border-radius: 15px;
       border: 1px solid #ccc;
       margin: 0 10px;
+      background-color: #fff;
     }
   }
 `;
