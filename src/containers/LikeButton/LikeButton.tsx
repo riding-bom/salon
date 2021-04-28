@@ -49,7 +49,9 @@ const LikeButton = () => {
       </StyledButton>
     )
   ) : (
-    <StyledButton onClick={() => dispatch(createOpenAction("isOpenSignIn"))}>
+    <StyledButton
+      onClick={() => dispatch(createOpenAction("isOpenNeedSignIn"))}
+    >
       <Logo type="EmptyHeart" />
     </StyledButton>
   );
