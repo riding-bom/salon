@@ -7,9 +7,10 @@ import {
   sethostNameAction,
   setSalonIntroAction,
 } from "redux/reducers/salonInfo";
+import StyledThumbnailUploader from "containers/ThumbnailUploader/ThumbnailUploader";
 import Title from "components/Title/Title";
 import InputText from "components/InputText/InputText";
-import StyledThumbnailUploader from "containers/ThumbnailUploader/ThumbnailUploader";
+import TextArea from "components/TextArea/TextArea";
 import StyledButton from "components/Button/Button.styled";
 import { createOpenAction } from "redux/reducers/openModal";
 import { useHistory } from "react-router";
@@ -56,18 +57,13 @@ const InfoSettingPage = ({ className }: infoSettingPageProps) => {
         onChange={onChangeHostName}
       />
 
-      <div className="textAreaContainer">
-        <textarea
-          id="salonInfoIntro"
-          cols={60}
-          rows={8}
-          value={salonInfo.salonIntro}
-          onChange={onChangeSalonIntro}
-        />
-        <label htmlFor="salonInfoIntro">
-          {salonInfo.salonIntro ? "" : "작가의 소개글"}
-        </label>
-      </div>
+      <TextArea
+        id="salonInfoIntro"
+        cols={60}
+        rows={8}
+        value={salonInfo.salonIntro}
+        onChange={onChangeSalonIntro}
+      />
 
       <StyledButton
         onClick={onClickInfoSubmit}
