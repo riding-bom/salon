@@ -5,6 +5,7 @@ import { combinedState } from "constant/type";
 import { getAllPostAsync } from "redux/reducers/postsList";
 import StyledPost from "components/Post/Post.styled";
 import { POSTS_PER_PAGE } from "constant/constant";
+import { createCloseAction, createOpenAction } from "redux/reducers/openModal";
 
 type listContainerProps = {
   className?: string;
@@ -24,7 +25,12 @@ const ListContainer = ({ className }: listContainerProps) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllPostAsync());
+    const setList = async () => {
+      dispatch(createOpenAction("isOpenSpinner"));
+      await dispatch(getAllPostAsync());
+      dispatch(createCloseAction("isOpenSpinner"));
+    };
+    setList();
   }, []);
 
   const convertToDate = (timestamp: Date) => {

@@ -12,6 +12,9 @@ const StyledModal = styled(Modal)`
   right: 0;
   backdrop-filter: blur(5px);
   z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default StyledModal;
