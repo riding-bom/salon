@@ -1,7 +1,8 @@
 import StyledCommentButton from "components/Button/CommentButton.styled";
-import StyledTextArea from "components/TextArea/TextArea.styled";
 import { combinedState, comment } from "constant/type";
 import StyledCommentList from "containers/CommentList/CommentList.styled";
+import CommentTextArea from "containers/CommentTextArea/CommentTextArea";
+import StyledCommentTextArea from "containers/CommentTextArea/CommentTextArea.styled";
 import useAuthStateObserver from "customHook/useAuthStateObserver";
 import { addComment, getAllComment } from "fb/API";
 import {
@@ -86,7 +87,7 @@ const Comment = () => {
   return (
     <>
       <div>
-        <StyledTextArea
+        <StyledCommentTextArea
           cols={85}
           rows={8}
           id={"comment"}
@@ -96,7 +97,7 @@ const Comment = () => {
           onFocus={onFocus}
         >
           <StyledCommentList />
-        </StyledTextArea>
+        </StyledCommentTextArea>
       </div>
       <div>
         <StyledCommentButton onClick={onClick}>Letter to writer</StyledCommentButton>

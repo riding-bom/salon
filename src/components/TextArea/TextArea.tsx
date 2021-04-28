@@ -10,7 +10,6 @@ type TextAreaProps = {
   placeholder?: string;
   onChange: ChangeEventHandler<HTMLTextAreaElement>;
   onFocus?: FocusEventHandler;
-  children?: React.ReactNode;
 };
 
 const TextArea = ({
@@ -18,7 +17,6 @@ const TextArea = ({
   id,
   cols,
   rows,
-  children,
   value,
   placeholder,
   onChange,
@@ -26,20 +24,17 @@ const TextArea = ({
   onFocus,
 }: TextAreaProps) => {
   return (
-    <div className={className}>
-      {children}
-      <div className="textAreaContainer">
-        <textarea
-          name={name}
-          id={id}
-          cols={cols}
-          rows={rows}
-          value={value}
-          onChange={onChange}
-          onFocus={onFocus}
-        />
-        <label htmlFor={id}>{value ? "" : placeholder}</label>
-      </div>
+    <div className="textAreaContainer">
+      <textarea
+        name={name}
+        id={id}
+        cols={cols}
+        rows={rows}
+        value={value}
+        onChange={onChange}
+        onFocus={onFocus}
+      />
+      <label htmlFor={id}>{value ? "" : placeholder}</label>
     </div>
   );
 };
