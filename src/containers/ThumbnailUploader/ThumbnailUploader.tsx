@@ -47,6 +47,7 @@ const ThumbnailUploader = ({
       <ImageUploader
         className="thumbnail-uploader"
         onChange={fileSelectedHandler}
+        ref={fileInput}
       />
       <StyledButton
         className="thumbnail-select-button"
