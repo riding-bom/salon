@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import TextArea from "./TextArea";
+import CommentTextArea from "./CommentTextArea";
 
-const StyledTextArea = styled(TextArea)`
+const StyledCommentTextArea = styled(CommentTextArea)`
   position: relative;
   border-top: 1px solid lightgray;
 
@@ -26,4 +26,4 @@ const StyledTextArea = styled(TextArea)`
   }
 `;
 
-export default StyledTextArea;
+export default StyledCommentTextArea;

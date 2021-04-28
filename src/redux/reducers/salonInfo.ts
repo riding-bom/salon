@@ -11,7 +11,7 @@ const initialState = {
   hostName: "",
   salonIntro: "",
   thumbnail:
-    "https://firebasestorage.googleapis.com/v0/b/salon-riding-bom.appspot.com/o/profile%2FAvata.png?alt=media&token=0081c4d6-e4b9-41a3-a68b-6d6498df6c3e"
+    "https://console.firebase.google.com/project/salon-riding-bom/storage/salon-riding-bom.appspot.com/files~2Fimages"
 };
 
 const changeNameAction = (newName: string) => ({
