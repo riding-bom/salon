@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 import { combinedState } from "constant/type";
 import { getAllPostAsync } from "redux/reducers/postsList";
 import StyledPost from "components/Post/Post.styled";
@@ -43,23 +44,28 @@ const ListContainer = ({ className }: listContainerProps) => {
   return (
     <ul className={className}>
       {currentList.map((post) => (
-        <Link to={`${post.id}`} key={post.id}>
-          <StyledPost
-            access={post.access}
-            thumbnail={post.backgroundImage}
-            title={post.title}
-            subTitle={post.subTitle}
-            summary={post.content}
-            date={`${convertToDate(post.date)}`}
-            likeCount={post.likeUser ? post.likeUser.length : [].length}
-            commentCount={
-              post.commentUser ? post.commentUser.length : [].length
-            }
-          />
-        </Link>
+        <StyledPost
+          id={post.id}
+          key={post.id}
+          access={post.access}
+          thumbnail={post.backgroundImage}
+          title={post.title}
+          subTitle={post.subTitle}
+          summary={post.content}
+          date={`${convertToDate(post.date)}`}
+          likeCount={post.likeUser ? post.likeUser.length : [].length}
+          commentCount={post.commentUser ? post.commentUser.length : [].length}
+        />
       ))}
     </ul>
   );
 };
 
-export default ListContainer;
+const StyledListContainer = styled(ListContainer)`
+  background-color: inherit;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+`;
+
+export default StyledListContainer;
