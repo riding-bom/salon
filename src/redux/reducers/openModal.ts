@@ -5,31 +5,33 @@ const initialState = {
   isOpenAlertWritePost: false,
   isOpenAlertCancelWriter: false,
   isOpenNeedSignIn: false,
-  isOpenAlertCancelLike: false
+  isOpenAlertCancelLike: false,
+  isOpenSpinner: false,
 };
 
 type action = {
   type:
-  | "isOpenSignIn"
-  | "isOpenSignUp"
-  | "isOpenAlertDeletePost"
-  | "isOpenAlertWritePost"
-  | "isOpenAlertInfoPost"
-  | "isOpenAlertCancelWriter"
-  | "isOpenNeedSignIn"
-  | "isOpenAlertCancelLike"
-  | "every-modal-close";
+    | "isOpenSignIn"
+    | "isOpenSignUp"
+    | "isOpenAlertDeletePost"
+    | "isOpenAlertWritePost"
+    | "isOpenAlertCancelWriter"
+    | "isOpenNeedSignIn"
+    | "isOpenAlertCancelLike"
+    | "isOpenAlertInfoPost"
+    | "isOpenSpinner"
+    | "every-modal-close";
   payload: boolean;
 };
 
 const createOpenAction = (dialogName: action["type"]) => ({
   type: dialogName,
-  payload: true
+  payload: true,
 });
 
 const createCloseAction = (dialogName: action["type"]) => ({
   type: dialogName,
-  payload: false
+  payload: false,
 });
 
 const createCloseAllAction = () => ({ type: "every-modal-close" });
@@ -40,7 +42,7 @@ const openModal = (state = initialState, action: action) => {
   } else {
     return {
       ...state,
-      [action.type]: action.payload
+      [action.type]: action.payload,
     };
   }
 };

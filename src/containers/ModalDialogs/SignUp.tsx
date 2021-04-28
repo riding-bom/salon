@@ -1,9 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createCloseAction,
-  createCloseAllAction,
-} from "redux/reducers/openModal";
+import { createCloseAllAction } from "redux/reducers/openModal";
 import { combinedState } from "constant/type";
 import { signUpWithEmail } from "fb/firebase";
 import { setUser } from "fb/API";

@@ -1,4 +1,5 @@
 import AlertInfoPost from "containers/ModalDialogs/AlertInfoPost";
+import Spinner from "containers/ModalDialogs/Spinner";
 import AlertCancelLike from "../containers/ModalDialogs/AlertCancelLike";
 import AlertCancelWriter from "../containers/ModalDialogs/AlertCancelWriter";
 import AlertDeletePost from "../containers/ModalDialogs/AlertDeletePost";
@@ -18,6 +19,7 @@ const ModalDialogs = () => {
       <NeedSignIn />
       <SignIn />
       <SignUp />
+      <Spinner />
     </>
   );
 };
