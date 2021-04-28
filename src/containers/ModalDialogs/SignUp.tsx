@@ -1,6 +1,9 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createCloseAction } from "redux/reducers/openModal";
+import {
+  createCloseAction,
+  createCloseAllAction,
+} from "redux/reducers/openModal";
 import { combinedState } from "constant/type";
 import { signUpWithEmail } from "fb/firebase";
 import { setUser } from "fb/API";
@@ -24,6 +27,8 @@ const SignUp = () => {
     displayName: "",
   });
   const { email, password, displayName, passwordCheck } = state;
+
+  const [isUsedEmail, setIsUsedEmail] = useState(false);
 
   const setEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setState(() => {
@@ -70,6 +75,7 @@ const SignUp = () => {
         displayName: "",
       };
     });
+    setIsUsedEmail(() => false);
   };
 
   const updateUserWithEmail = async () => {
@@ -94,6 +100,15 @@ const SignUp = () => {
         name="Email"
         value={email}
         onChange={setEmail}
+        onSubmit={async (e) => {
+          e.preventDefault();
+          try {
+            await updateUserWithEmail();
+          } catch {
+            setIsUsedEmail(() => true);
+          }
+          dispatch(createCloseAllAction());
+        }}
       />
       {validateEmail(email) || email === "" || (
         <StyledValidationText>
@@ -104,6 +119,15 @@ const SignUp = () => {
         id="signUpPassword"
         value={password}
         onChange={setPassword}
+        onSubmit={async (e) => {
+          e.preventDefault();
+          try {
+            await updateUserWithEmail();
+          } catch {
+            setIsUsedEmail(() => true);
+          }
+          dispatch(createCloseAllAction());
+        }}
       />
       {validatePassword(password) || password === "" || (
         <StyledValidationText>
@@ -114,6 +138,15 @@ const SignUp = () => {
         id="signUpCheckPassword"
         value={passwordCheck}
         onChange={setPasswordCheck}
+        onSubmit={async (e) => {
+          e.preventDefault();
+          try {
+            await updateUserWithEmail();
+          } catch {
+            setIsUsedEmail(() => true);
+          }
+          dispatch(createCloseAllAction());
+        }}
       />
       {password !== passwordCheck && passwordCheck !== "" && (
         <StyledValidationText>비밀번호가 다릅니다.</StyledValidationText>
@@ -123,11 +156,24 @@ const SignUp = () => {
         name="Nickname"
         value={displayName}
         onChange={setNickname}
+        onSubmit={async (e) => {
+          e.preventDefault();
+          try {
+            await updateUserWithEmail();
+            dispatch(createCloseAllAction());
+          } catch {
+            setIsUsedEmail(() => true);
+          }
+        }}
       />
       <StyledButton
         onClick={async () => {
-          updateUserWithEmail();
-          dispatch(createCloseAction("isOpenSignUp"));
+          try {
+            await updateUserWithEmail();
+            dispatch(createCloseAllAction());
+          } catch {
+            setIsUsedEmail(() => true);
+          }
         }}
         disabled={
           !(
@@ -139,6 +185,13 @@ const SignUp = () => {
       >
         SIGNUP
       </StyledButton>
+      {isUsedEmail && (
+        <StyledValidationText>
+          <span style={{ display: "block", margin: "10px" }}>
+            이미 사용 중인 이메일입니다.
+          </span>
+        </StyledValidationText>
+      )}
     </ModalDialog>
   ) : null;
 };

@@ -7,6 +7,7 @@ import StyledUpdatePage from "pages/UpdatePage";
 import LikePosts from "pages/LikePosts";
 import ModalDialogs from "pages/ModalDialogs";
 import StyledSettingPage from "pages/SettingPage";
+import Board from "pages/Board";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route path="/like-posts">
             <LikePosts />
+          </Route>
+          <Route path="/board/:id">
+            <Board />
           </Route>
           <Route path="/:postId/update">
             <StyledUpdatePage />

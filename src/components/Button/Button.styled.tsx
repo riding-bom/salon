@@ -10,7 +10,7 @@ const StyledButton = styled(Button)`
   padding: 0;
 
   &:hover {
-    background-color: #76ecf5;
+    background-color: #808080;
     cursor: pointer;
   }
 

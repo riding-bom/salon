@@ -8,11 +8,12 @@ import {
 } from "redux/reducers/renderingList";
 
 const useCreatePaginationFunc = () => {
-  const dispatch = useDispatch();
   const renderingList = useSelector(
     (state: combinedState) => state.renderingList
   );
   const postsList = useSelector((state: combinedState) => state.postsList);
+
+  const dispatch = useDispatch();
 
   const renderPage: MouseEventHandler<HTMLButtonElement> = (e) => {
     if (e.currentTarget.textContent) {

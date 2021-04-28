@@ -1,10 +1,9 @@
-import StyledButton from "components/Button/Button.styled";
 import { POSTS_PER_PAGE } from "constant/constant";
-import { combinedState, postsList } from "constant/type";
-import useCreatePaginationFunc from "customHook/useCreatePaginationFunc";
+import { postsList } from "constant/type";
 import { getAllPost } from "fb/API";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { MouseEventHandler, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, NavLink, useRouteMatch } from "react-router-dom";
 import { setAllPost } from "redux/reducers/postsList";
 import { setRenderingListAction } from "redux/reducers/renderingList";
 
@@ -13,13 +12,18 @@ type paginationProps = {
 };
 
 const Pagination = ({ className }: paginationProps) => {
+  const match = useRouteMatch();
+  const { id: currentPage } = match.params as { id: string };
+
   const [pages, setPages] = useState(0);
 
-  const renderingList = useSelector(
-    (state: combinedState) => state.renderingList
-  );
-
   const dispatch = useDispatch();
+
+  const preventDefault: MouseEventHandler = (e) => {
+    const target = e.target as Element;
+
+    target.classList.contains("active") && e.preventDefault();
+  };
 
   useEffect(() => {
     const getAllpost = async () => {
@@ -32,32 +36,29 @@ const Pagination = ({ className }: paginationProps) => {
       setPages(() => listNum);
       dispatch(setAllPost(list as postsList));
 
-      const start = renderingList.currentPage * POSTS_PER_PAGE - POSTS_PER_PAGE;
-      const end = renderingList.currentPage * POSTS_PER_PAGE;
+      const start = +currentPage * POSTS_PER_PAGE - POSTS_PER_PAGE;
+      const end = +currentPage * POSTS_PER_PAGE;
 
       dispatch(setRenderingListAction((list as postsList).slice(start, end)));
     };
     getAllpost();
-  }, []);
-
-  const [renderPage, renderPrePage, renderNextPage] = useCreatePaginationFunc();
+  }, [currentPage]);
 
   return (
     <ul className={className}>
-      <StyledButton onClick={renderPrePage}>{"<"}</StyledButton>
+      {+currentPage > 1 && <Link to={`/board/${+currentPage - 1}`}>{"<"}</Link>}
       {Array.from({ length: pages }, (v, i) => {
         return (
           <li key={i} id={i + ""}>
-            <StyledButton
-              onClick={renderPage}
-              disabled={i + 1 === renderingList.currentPage}
-            >
+            <NavLink to={`/board/${i + 1}`} onClick={preventDefault}>
               {i + 1}
-            </StyledButton>
+            </NavLink>
           </li>
         );
       })}
-      <StyledButton onClick={renderNextPage}>{">"}</StyledButton>
+      {+currentPage < pages && (
+        <Link to={`/board/${+currentPage + 1}`}>{">"}</Link>
+      )}
     </ul>
   );
 };
