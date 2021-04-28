@@ -6,11 +6,8 @@ const StyledDialog = styled(Dialog)`
   width: 400px;
   height: 500px;
   background-color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   padding: 50px;
+  position: relative;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;

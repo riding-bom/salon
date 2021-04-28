@@ -56,6 +56,7 @@ type combinedState = CombinedState<{
     isOpenAlertCancelWriter: boolean;
     isOpenNeedSignIn: boolean;
     isOpenAlertCancelLike: boolean;
+    isOpenSpinner: boolean;
   };
   currentUser: {
     userInfo: user | null;
@@ -79,4 +80,12 @@ type comment = {
   date: Date;
 };
 
-export type { post, postsList, combinedState, user, salonInfo, postFromFirestore, comment };
+export type {
+  post,
+  postsList,
+  combinedState,
+  user,
+  salonInfo,
+  postFromFirestore,
+  comment,
+};
