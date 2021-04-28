@@ -53,6 +53,7 @@ type combinedState = CombinedState<{
     isOpenSignUp: boolean;
     isOpenAlertDeletePost: boolean;
     isOpenAlertWritePost: boolean;
+    isOpenAlertInfoPost: boolean;
     isOpenAlertCancelWriter: boolean;
     isOpenNeedSignIn: boolean;
     isOpenAlertCancelLike: boolean;

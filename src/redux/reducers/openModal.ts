@@ -10,14 +10,15 @@ const initialState = {
 
 type action = {
   type:
-    | "isOpenSignIn"
-    | "isOpenSignUp"
-    | "isOpenAlertDeletePost"
-    | "isOpenAlertWritePost"
-    | "isOpenAlertCancelWriter"
-    | "isOpenNeedSignIn"
-    | "isOpenAlertCancelLike"
-    | "every-modal-close";
+  | "isOpenSignIn"
+  | "isOpenSignUp"
+  | "isOpenAlertDeletePost"
+  | "isOpenAlertWritePost"
+  | "isOpenAlertInfoPost"
+  | "isOpenAlertCancelWriter"
+  | "isOpenNeedSignIn"
+  | "isOpenAlertCancelLike"
+  | "every-modal-close";
   payload: boolean;
 };
 

@@ -11,6 +11,8 @@ import Title from "components/Title/Title";
 import InputText from "components/InputText/InputText";
 import StyledThumbnailUploader from "containers/ThumbnailUploader/ThumbnailUploader";
 import StyledButton from "components/Button/Button.styled";
+import { createOpenAction } from "redux/reducers/openModal";
+import { useHistory } from "react-router";
 
 type inputSalonInfoProps = {
   className?: string;
@@ -18,7 +20,7 @@ type inputSalonInfoProps = {
 
 const InputSalonInfo = ({ className }: inputSalonInfoProps) => {
   const salonInfo = useSelector((state: combinedState) => state.salonInfo);
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const onChangeHostName: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -28,13 +30,22 @@ const InputSalonInfo = ({ className }: inputSalonInfoProps) => {
     dispatch(setSalonIntroAction(e.target.value));
   };
 
+  const onClickInfoSubmit = () => {
+    if (!salonInfo.hostName) {
+      dispatch(createOpenAction("isOpenAlertInfoPost"));
+    } else {
+      setSalonInfo(salonInfo);
+      history.replace("/");
+    }
+  };
+
   useEffect(() => {
     getSalonInfo();
   }, []);
 
   return (
     <main className={className}>
-      <Title level={3} className="title" children="작가 소개 설정" />
+      <Title level={3} className="title" children="Salon Info Setting" />
 
       <StyledThumbnailUploader thumbnail={salonInfo.thumbnail} />
 
@@ -59,9 +70,7 @@ const InputSalonInfo = ({ className }: inputSalonInfoProps) => {
       </div>
 
       <StyledButton
-        onClick={() => {
-          setSalonInfo(salonInfo);
-        }}
+        onClick={onClickInfoSubmit}
         width="200"
         label="info-submit"
         children="UPLOAD"
@@ -77,8 +86,11 @@ const StyledInputSalonInfo = styled(InputSalonInfo)`
   align-items: center;
   border: 1px solid #ccc;
   width: 50%;
-  height: 500px;
-  margin-top: 100px;
+  margin-top: 1rem;
+
+  & > * {
+    margin: 2rem auto;
+  }
 
   .title {
     font-size: 3rem;

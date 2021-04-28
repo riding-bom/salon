@@ -1,3 +1,4 @@
+import AlertInfoPost from "containers/ModalDialogs/AlertInfoPost";
 import AlertCancelLike from "../containers/ModalDialogs/AlertCancelLike";
 import AlertCancelWriter from "../containers/ModalDialogs/AlertCancelWriter";
 import AlertDeletePost from "../containers/ModalDialogs/AlertDeletePost";
@@ -13,6 +14,7 @@ const ModalDialogs = () => {
       <AlertCancelWriter />
       <AlertDeletePost />
       <AlertWritePost />
+      <AlertInfoPost />
       <NeedSignIn />
       <SignIn />
       <SignUp />
