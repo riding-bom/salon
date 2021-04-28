@@ -5,9 +5,7 @@ import StyledLikeList from "containers/LikeList/LikeList.styled";
 const LikePost = () => {
   return (
     <>
-      <StyledHeader />
       <StyledLikeList />
-      <StyledFooter />
     </>
   );
 };

@@ -10,7 +10,6 @@ const Welcome = () => {
 
   return (
     <>
-      <StyledHeader />
       <StyledCarousel />
       <StyledListContainer />
       <MoreReadButton
@@ -20,7 +19,6 @@ const Welcome = () => {
       >
         더 보기
       </MoreReadButton>
-      <StyledFooter />
     </>
   );
 };

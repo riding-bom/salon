@@ -6,10 +6,8 @@ import StyledPagination from "containers/Pagination/Pagination.styled";
 const Board = () => {
   return (
     <>
-      <StyledHeader />
       <StyledListContainer />
       <StyledPagination />
-      <StyledFooter />
     </>
   );
 };
