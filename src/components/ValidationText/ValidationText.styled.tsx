@@ -6,7 +6,7 @@ const StyledValidationText = styled(ValidationText)`
   margin: 0;
   padding: 0;
   font-size: 1.2rem;
-  height: 0;
+  /* height: 0; */
 `;
 
 export default StyledValidationText;
