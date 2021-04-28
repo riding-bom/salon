@@ -6,6 +6,7 @@ const StyledTextEditor = styled(TextEditor)`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  margin-bottom: 100px;
 
   .editor {
     min-height: 500px;

@@ -15,7 +15,7 @@ const StyledSubTitleInput = styled(TitleInput)`
     width: ${(props) => (props.width ? props.width + "px" : "100%")};
     font-size: 2.4rem;
     border: 0px;
-    color: ${(props) => props.color ? props.color : "black"}
+    color: ${(props) => (props.color ? props.color : "black")};
   }
 
   & label {

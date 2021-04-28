@@ -52,17 +52,17 @@ const getUser = async (uid: string) => {
 };
 
 /* SalonInfo API-------------------------------------------------------------------------- */
+const getSalonInfo = async () => {
+  const snapshot = await salonInfoCollectionRef.doc("salonInfoSample").get();
+  return snapshot;
+};
+
 const setSalonInfo = async (salonInfo: salonInfo) => {
   await salonInfoCollectionRef.doc("salonInfoSample").set({
     hostName: salonInfo.hostName,
     salonIntro: salonInfo.salonIntro,
     thumbnail: salonInfo.thumbnail
   });
-};
-
-const getSalonInfo = async () => {
-  const snapshot = await salonInfoCollectionRef.doc("salonInfoSample").get();
-  return snapshot;
 };
 
 /* comment API-------------------------------------------------------------------------- */

@@ -20,7 +20,7 @@ const AlertCancelWriter = () => {
   const CancelWriter: MouseEventHandler = () => {
     dispatch(resetStateAction());
     dispatch(createCloseAllAction());
-    history.replace("/");
+    history.go(-1);
   };
 
   return isOpenAlertCancelWriter ? (
