@@ -1,7 +1,5 @@
 import MoreReadButton from "components/Button/MoreReadButton.styled";
 import StyledCarousel from "containers/Carousel/Carousel.styled";
-import StyledFooter from "containers/Footer/Footer.styled";
-import StyledHeader from "containers/Header/Header.styled";
 import StyledListContainer from "containers/ListContainer/ListContainer";
 import { useHistory } from "react-router";
 

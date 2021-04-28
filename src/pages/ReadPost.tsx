@@ -11,7 +11,6 @@ import StyledButton from "components/Button/Button.styled";
 import LikeButton from "containers/LikeButton/LikeButton";
 import { useEffect, useState } from "react";
 import { getPost } from "fb/API";
-import StyledFooter from "containers/Footer/Footer.styled";
 import useAuthStateObserver from "customHook/useAuthStateObserver";
 import purify from "dompurify";
 import Logo from "components/Logo/Logo";
@@ -101,7 +100,9 @@ const ReadPost = ({ className }: readPostProps) => {
         <p dangerouslySetInnerHTML={{ __html: purify.sanitize(html) }} />
         <LikeButton />
       </main>
-      <StyledFooter />
+      <footer>
+        <Comment />
+      </footer>
     </main>
   );
 };
