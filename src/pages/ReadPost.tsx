@@ -64,15 +64,14 @@ const ReadPost = ({ className }: readPostProps) => {
         style={
           post.backgroundImage !== ""
             ? {
-                backgroundImage: `url("${post.backgroundImage}"`,
+                backgroundImage: `url("${post.backgroundImage}"`
               }
             : { backgroundColor: `${post.backgroundColor}` }
         }
       >
         <div
           style={{
-            background:
-              "linear-gradient( rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) )",
+            background: "linear-gradient( rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) )"
           }}
         >
           <div style={{ color: "white" }}>
@@ -101,6 +100,9 @@ const ReadPost = ({ className }: readPostProps) => {
         <p dangerouslySetInnerHTML={{ __html: purify.sanitize(html) }} />
         <LikeButton />
       </main>
+      <footer>
+        <Comment />
+      </footer>
       <StyledFooter />
     </main>
   );

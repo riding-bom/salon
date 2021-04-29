@@ -13,6 +13,7 @@ type CommentListProps = {
 const CommentList = ({ className }: CommentListProps) => {
   const isAuthed = useAuthStateObserver().isAuthed;
   const comment = useSelector((state: combinedState) => state.comment);
+  const openModal = useSelector((state: combinedState) => state.isOpenModal);
   const dispatch = useDispatch();
 
   const getCommentInfo = async () => {
@@ -21,8 +22,9 @@ const CommentList = ({ className }: CommentListProps) => {
   };
 
   useEffect(() => {
+    console.log(comment.length);
     getCommentInfo();
-  }, [comment]);
+  }, []);
 
   if (isAuthed) {
     return (
