@@ -74,19 +74,27 @@ const addComment = async (newComment: comment) => {
   await commentCollectionRef.doc(newComment.id + "").set(newComment);
 };
 
-const getComment = async () => {
-  const snapshot = await commentCollectionRef.doc().get();
-  return snapshot;
-};
+// const getComment = async () => {
+//   const snapshot = await commentCollectionRef.doc().get();
+//   return snapshot;
+// };
 
-const getAllComment = async () => {
-  const snapshot = await commentCollectionRef.get();
+const getAllComment = async (postId: string) => {
+  const snapshot = await commentCollectionRef.where("postId", "==", postId).get();
   const commentList = snapshot.docs.map(comment => comment.data()).sort((a, b) => a.id - b.id);
+  // post별로 댓글 가져오기 where를 사용하여 렌더 where("postId", "==", postId).get();
   return commentList;
 };
 
 const deleteComment = async (commentId: number) => {
   await commentCollectionRef.doc(commentId + "").delete();
+};
+
+const getMaxId = async () => {
+  const snapshot = await commentCollectionRef.orderBy("id", "desc").limit(1).get();
+  // maxId를 확인할 경우 orderBy("id", "desc").limit(1).get() -> 콜렉션에서 id를 기준으로 작은 것부터 큰 순으로
+  // 정렬 후 그 중 1개만 get를 한다.
+  return snapshot;
 };
 
 /* like API-------------------------------------------------------------------------- */
@@ -128,7 +136,8 @@ export {
   getAllComment,
   setLikePost,
   removeLikePost,
-  getComment,
+  // getComment,
+  getMaxId,
   setLikeUserInPostDB,
   removeUserInPostDB,
   deleteComment

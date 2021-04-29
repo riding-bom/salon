@@ -1,4 +1,4 @@
-import { getAllComment } from "fb/API";
+import { getAllComment, getMaxId } from "fb/API";
 import { Dispatch } from "react";
 
 const initialState = {
@@ -26,8 +26,9 @@ const RESET = "reset-comment";
 const DELETE_ID = "delete-id";
 
 export const idAction = () => async (dispatch: Dispatch<{ type: string; payload: number }>) => {
-  const comments = await getAllComment();
-  const maxId = comments.length ? Math.max(...comments.map(comment => +comment.id)) : 0;
+  const snapshot = await getMaxId();
+  const maxId = snapshot.size ? snapshot.docs.map(post => post.data())[0].id : 0;
+  // const maxId = comments.length ? Math.max(...comments.map(comment => +comment.id)) : 0;
   dispatch({ type: UPDATE_ID, payload: maxId + 1 });
 };
 
