@@ -3,10 +3,7 @@ import WriteHeader from "./WriteHeader";
 
 const StyledWriteHeader = styled(WriteHeader)`
   position: relative;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-around;
-  width: 100vw;
+  width: 800px;
   height: 400px;
   background-color: ${(props) =>
     props.Post.backgroundColor ? props.Post.backgroundColor : "#fff"};
@@ -18,13 +15,13 @@ const StyledWriteHeader = styled(WriteHeader)`
   .selector-group {
     position: absolute;
     top: 5rem;
-    left: 20%;
+    left: 0;
   }
 
   .background-group {
     position: absolute;
     top: 5rem;
-    right: 30%;
+    right: 0;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
@@ -50,7 +47,7 @@ const StyledWriteHeader = styled(WriteHeader)`
   .title-group {
     position: absolute;
     top: 10rem;
-    left: 20%;
+    left: 0;
     margin-top: 10rem;
     .sub-title {
       margin-top: 5rem;

@@ -31,8 +31,6 @@ const ReadPost = ({ className }: readPostProps) => {
   const [date, setDate] = useState("");
   const [html, setHtml] = useState("");
 
-  const { htmlToText } = require("html-to-text");
-
   const { isAuthed } = useAuthStateObserver();
 
   const openAlertDialog = () => {

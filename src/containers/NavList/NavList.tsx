@@ -22,6 +22,9 @@ const NavList = () => {
   return currentUser.isAuthed ? (
     <>
       <li>
+        <span>{currentUser.userInfo?.displayName} 님</span>
+      </li>
+      <li>
         <Link to="/">
           <Logo type="Home" />
         </Link>

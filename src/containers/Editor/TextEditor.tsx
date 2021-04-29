@@ -51,10 +51,10 @@ const TextEditor = ({ className, defaultContent }: TextEditorProps) => {
     []
   );
 
-  const onEditorStateChange = useCallback((editorState: EditorState) => {
+  const onEditorStateChange = (editorState: EditorState) => {
     setEditorState(editorState);
     dispatch(contentAction(TextToHtml(editorState)));
-  }, []);
+  };
 
   const uploadImageCallBack = (file: object) => {
     return new Promise((resolve, reject) => {
