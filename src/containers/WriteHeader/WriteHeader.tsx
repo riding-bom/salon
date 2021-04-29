@@ -38,59 +38,61 @@ const WriteHeader = ({ className, Post }: writeHeaderProps) => {
   };
 
   return (
-    <div className={className}>
-      <div className="selector-group">
-        <StyledCategorySelector
-          className="category-select"
-          defaultValue={Post.category}
-          color={oppositeColor}
-        />
-        <StyledAccessSelector
-          className="access-select"
-          defaultValue={Post.access}
-          color={oppositeColor}
-        />
-      </div>
-      <div className="background-group">
-        {Post.backgroundImage === "" ? (
-          <StyledBackgroundImageUploader
-            className="background-image-uploader"
+    <section className={className}>
+      <div>
+        <div className="selector-group">
+          <StyledCategorySelector
+            className="category-select"
+            defaultValue={Post.category}
             color={oppositeColor}
-            postId={Post.id}
           />
-        ) : (
-          <Button
-            className="background-reset"
-            type="button"
-            children={<CancelIcon color={oppositeColor} />}
-            label="background-reset-button"
-            onClick={onClickResetButton}
+          <StyledAccessSelector
+            className="access-select"
+            defaultValue={Post.access}
+            color={oppositeColor}
           />
-        )}
-        <StyledColorPicker
-          className="color-picker"
-          presentColor={Post.backgroundColor}
-        />
+        </div>
+        <div className="background-group">
+          {Post.backgroundImage === "" ? (
+            <StyledBackgroundImageUploader
+              className="background-image-uploader"
+              color={oppositeColor}
+              postId={Post.id}
+            />
+          ) : (
+            <Button
+              className="background-reset"
+              type="button"
+              children={<CancelIcon color={oppositeColor} />}
+              label="background-reset-button"
+              onClick={onClickResetButton}
+            />
+          )}
+          <StyledColorPicker
+            className="color-picker"
+            presentColor={Post.backgroundColor}
+          />
+        </div>
+        <div className="title-group">
+          <StyledMainTitleInput
+            className="main-title"
+            id="title"
+            value={Post.title}
+            placeHolder="제목을 입력하세요"
+            onChange={onChangeTitle}
+            color={oppositeColor}
+          />
+          <StyledSubTitleInput
+            className="sub-title"
+            id="SubTitle"
+            value={Post.subTitle}
+            placeHolder="소제목을 입력하세요"
+            onChange={onChangeSubTitle}
+            color={oppositeColor}
+          />
+        </div>
       </div>
-      <div className="title-group">
-        <StyledMainTitleInput
-          className="main-title"
-          id="title"
-          value={Post.title}
-          placeHolder="제목을 입력하세요"
-          onChange={onChangeTitle}
-          color={oppositeColor}
-        />
-        <StyledSubTitleInput
-          className="sub-title"
-          id="SubTitle"
-          value={Post.subTitle}
-          placeHolder="소제목을 입력하세요"
-          onChange={onChangeSubTitle}
-          color={oppositeColor}
-        />
-      </div>
-    </div>
+    </section>
   );
 };
 
