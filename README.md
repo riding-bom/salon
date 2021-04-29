@@ -12,7 +12,7 @@
 - [@bg_shorthand](https://github.com/bg_shorthand)
 
 
-## Design
+## DESIGN
 - [Figma](https://www.figma.com/file/7EPhST0Bh7yQenQAg3QZe7/salon?node-id=6%3A314)
 ---
 
