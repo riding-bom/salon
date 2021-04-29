@@ -3,6 +3,9 @@ import List from "components/List/List";
 import Logo from "components/Logo/Logo";
 import { deleteComment } from "fb/API";
 import { MouseEventHandler } from "react";
+import { useDispatch } from "react-redux";
+import { deleteIdAction } from "redux/reducers/newComment";
+import { createOpenAction } from "redux/reducers/openModal";
 
 type CommentListItemProps = {
   id: string;
@@ -13,9 +16,17 @@ type CommentListItemProps = {
 };
 
 const CommentListItem = ({ id, name, className, user, date }: CommentListItemProps) => {
-  const onClick: MouseEventHandler<HTMLButtonElement> = e => {
-    const currentCommentId = e.currentTarget.parentElement?.parentElement?.id;
-    if (currentCommentId) deleteComment(+currentCommentId);
+  // const onClick: MouseEventHandler<HTMLButtonElement> = e => {
+  //   const currentCommentId = e.currentTarget.parentElement?.parentElement?.id;
+  //   if (currentCommentId) deleteComment(+currentCommentId);
+  // };
+
+  const dispatch = useDispatch();
+
+  const openAlertDialog: MouseEventHandler<HTMLButtonElement> = e => {
+    const commentId = e.currentTarget.parentElement?.parentElement?.id;
+    if (commentId) dispatch(deleteIdAction(+commentId));
+    dispatch(createOpenAction("isOpenAlertDeleteComment"));
   };
 
   return (
@@ -27,7 +38,7 @@ const CommentListItem = ({ id, name, className, user, date }: CommentListItemPro
       </div>
       {name}
       <div>
-        <StyledCommentMenuButton type="button" className={className} onClick={onClick}>
+        <StyledCommentMenuButton type="button" className={className} onClick={openAlertDialog}>
           <Logo type="Write" />
           <Logo type="Delete" />
           <Logo type="Menu" />

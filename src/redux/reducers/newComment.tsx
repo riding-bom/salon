@@ -23,6 +23,7 @@ const UPDATE_COMMENT = "update-comment";
 const UPDATE_POSTID = "update-postId";
 const UPDATE_DATE = "update-date";
 const RESET = "reset-comment";
+const DELETE_ID = "delete-id";
 
 export const idAction = () => async (dispatch: Dispatch<{ type: string; payload: number }>) => {
   const comments = await getAllComment();
@@ -54,6 +55,10 @@ export const resetCommentAction = () => {
   return { type: RESET };
 };
 
+export const deleteIdAction = (commentId: number) => {
+  return { type: DELETE_ID, payload: commentId };
+};
+
 export const newCommentReducer = (state = initialState, action: action) => {
   switch (action.type) {
     case UPDATE_ID:
@@ -70,6 +75,8 @@ export const newCommentReducer = (state = initialState, action: action) => {
       return { ...state, date: action.payload };
     case RESET:
       return { ...state, comment: "" };
+    case DELETE_ID:
+      return { ...state, id: action.payload };
     default:
       return state;
   }
