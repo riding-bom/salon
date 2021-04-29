@@ -29,7 +29,7 @@
 
 ## BACK-END
 
-- FIREBASE(Authenticcation, Firesotre, Storage)
+- FIREBASE(Authentication, Firestore, Storage)
 
 ## BUILD TOOL
 
