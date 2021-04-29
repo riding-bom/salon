@@ -25,24 +25,22 @@
 - HTML5
 - CSS3
 - JAVASCRIPT
-- TYPESCRIPT
+- REACT with TYPESCRIPT
 
 ## BACK-END
 
 - FIREBASE(Authenticcation, Firesotre, Storage)
 
-## VCM
-
-- GIT/GITHUB
-
-## BUNDLER
+## BUILD TOOL
 
 - CRA(Webpack, Babel)
 
+## STATE-MANAGEMENT
+
+- REDUX(React-Redux, Redux-thunk)
+
 ## LIBRARY
 
-- REACT
-- REDUX(React-Redux, Redux-thunk)
 - ROUTER(React-Router)
 - STYLED-COMPONENT
 - STYLED-RESET
@@ -51,8 +49,10 @@
 - REACT-COLOR
 - REACT-SLICK
 
-## DESIGN-TOOL
+## OTHER-TOOLS
 
+- GIT
+- GITHUB
 - Figma
 
 ---
