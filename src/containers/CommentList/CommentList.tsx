@@ -4,6 +4,7 @@ import useAuthStateObserver from "customHook/useAuthStateObserver";
 import { getAllComment } from "fb/API";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouteMatch } from "react-router";
 import { renderAction } from "redux/reducers/comment";
 
 type CommentListProps = {
@@ -11,13 +12,15 @@ type CommentListProps = {
 };
 
 const CommentList = ({ className }: CommentListProps) => {
+  const match = useRouteMatch();
+  const { postId } = match.params as { postId: string };
+
   const isAuthed = useAuthStateObserver().isAuthed;
   const comment = useSelector((state: combinedState) => state.comment);
-  const openModal = useSelector((state: combinedState) => state.isOpenModal);
   const dispatch = useDispatch();
 
   const getCommentInfo = async () => {
-    const commentList = await getAllComment();
+    const commentList = await getAllComment(postId);
     if (commentList) dispatch(renderAction(commentList as comment[]));
   };
 
