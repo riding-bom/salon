@@ -47,20 +47,18 @@ const LikeList = ({ className }: likeList) => {
   return (
     <ul className={className}>
       {likePosts.map((post) => (
-        <Link to={`/${post.id}`} key={post.id}>
-          <StyledPost
-            access={post.access}
-            thumbnail={post.backgroundImage}
-            title={post.title}
-            subTitle={post.subTitle}
-            summary={post.content}
-            date={`${convertToDate(post.date)}`}
-            likeCount={post.likeUser ? post.likeUser.length : [].length}
-            commentCount={
-              post.commentUser ? post.commentUser.length : [].length
-            }
-          />
-        </Link>
+        <StyledPost
+          id={post.id}
+          key={post.id}
+          access={post.access}
+          thumbnail={post.backgroundImage}
+          title={post.title}
+          subTitle={post.subTitle}
+          summary={post.content}
+          date={`${convertToDate(post.date)}`}
+          likeCount={post.likeUser ? post.likeUser.length : [].length}
+          commentCount={post.commentUser ? post.commentUser.length : [].length}
+        />
       ))}
     </ul>
   );
