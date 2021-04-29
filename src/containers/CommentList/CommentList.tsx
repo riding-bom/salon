@@ -20,13 +20,15 @@ const CommentList = ({ className }: CommentListProps) => {
   const dispatch = useDispatch();
 
   const getCommentInfo = async () => {
-    const commentList = await getAllComment(postId);
+    const commentList = await getAllComment(postId + "");
     if (commentList) dispatch(renderAction(commentList as comment[]));
   };
 
   useEffect(() => {
-    console.log(comment.length);
     getCommentInfo();
+    return () => {
+      getCommentInfo();
+    };
   }, []);
 
   if (isAuthed) {

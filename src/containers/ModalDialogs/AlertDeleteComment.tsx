@@ -3,28 +3,29 @@ import Title from "components/Title/Title";
 import { combinedState, comment } from "constant/type";
 import ModalDialog from "containers/ModalDialog/ModalDialog";
 import { deleteComment, getAllComment } from "fb/API";
-import { MouseEventHandler, useEffect } from "react";
+import { MouseEventHandler } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouteMatch } from "react-router";
+import { useLocation } from "react-router";
 import { renderAction } from "redux/reducers/comment";
-import { createCloseAction, createOpenAction } from "redux/reducers/openModal";
+import { createCloseAction } from "redux/reducers/openModal";
 
 const AlertDeleteComment = () => {
-  const match = useRouteMatch();
-  const { postId } = match.params as { postId: string };
+  const location = useLocation();
+
+  const postId = location.pathname.match(/[0-9]+/)?.toString();
 
   const dispatch = useDispatch();
 
-  const { isOpenAlertDeleteComment } = useSelector((state: combinedState) => state.isOpenModal);
+  const { isOpenAlertDeleteComment } = useSelector(
+    (state: combinedState) => state.isOpenModal
+  );
   const commentId = useSelector((state: combinedState) => state.newComment);
 
-  const onClick: MouseEventHandler<HTMLButtonElement> = async e => {
-    dispatch(createOpenAction("isOpenSpinner"));
+  const onClick: MouseEventHandler<HTMLButtonElement> = async (e) => {
     if (commentId.id) await deleteComment(+commentId.id);
-    const commentList = await getAllComment(postId);
+    const commentList = await getAllComment(postId + "");
     if (commentList) dispatch(renderAction(commentList as comment[]));
     dispatch(createCloseAction("isOpenAlertDeleteComment"));
-    dispatch(createCloseAction("isOpenSpinner"));
   };
 
   return isOpenAlertDeleteComment ? (
