@@ -2,15 +2,20 @@ import styled from "styled-components";
 import WriteHeader from "./WriteHeader";
 
 const StyledWriteHeader = styled(WriteHeader)`
-  position: relative;
-  width: 800px;
+  width: 100vw;
   height: 400px;
   background-color: ${(props) =>
     props.Post.backgroundColor ? props.Post.backgroundColor : "#fff"};
   background-image: url("${(props) => props.Post.backgroundImage}");
   background-size: cover;
   background-position: 50% 50%;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #ccc;
+
+  & > div {
+    position: relative;
+    width: 800px;
+    margin: 0 auto;
+  }
 
   .selector-group {
     position: absolute;
