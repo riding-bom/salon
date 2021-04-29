@@ -3,22 +3,26 @@ import Post from "./Post";
 
 const StyledPost = styled(Post)`
   background-color: #fff;
-  color: black;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  align-items: center;
   width: 700px;
   height: 200px;
-  font-size: 1.4rem;
-  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   margin-top: 10px 0;
-  /* box-shadow: 0 10px 10px 3px rgba(110, 109, 110, 0.24); */
 
-  & > * {
-    padding: 5px;
-    margin: 0;
-    cursor: pointer;
+  a {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.4rem;
+    color: black;
+    text-decoration: none;
+
+    & > * {
+      width: 464px;
+      padding: 5px;
+      margin: 0;
+      cursor: pointer;
+    }
   }
 
   .post-summary {
@@ -27,11 +31,6 @@ const StyledPost = styled(Post)`
     align-items: flex-start;
     justify-content: space-around;
     height: 200px;
-
-    & > * {
-      /* margin-top: 2rem; */
-      width: 464px;
-    }
 
     .title,
     .subTitle {
