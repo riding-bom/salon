@@ -2,23 +2,24 @@ import { ChangeEventHandler, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { combinedState } from "constant/type";
-import { setSalonInfo, getSalonInfo } from "../../fb/API";
+import { setSalonInfo, getSalonInfo } from "../fb/API";
 import {
   sethostNameAction,
   setSalonIntroAction,
 } from "redux/reducers/salonInfo";
+import StyledThumbnailUploader from "containers/ThumbnailUploader/ThumbnailUploader";
 import Title from "components/Title/Title";
 import InputText from "components/InputText/InputText";
-import StyledThumbnailUploader from "containers/ThumbnailUploader/ThumbnailUploader";
+import TextArea from "components/TextArea/TextArea";
 import StyledButton from "components/Button/Button.styled";
 import { createOpenAction } from "redux/reducers/openModal";
 import { useHistory } from "react-router";
 
-type inputSalonInfoProps = {
+type infoSettingPageProps = {
   className?: string;
 };
 
-const InputSalonInfo = ({ className }: inputSalonInfoProps) => {
+const InfoSettingPage = ({ className }: infoSettingPageProps) => {
   const salonInfo = useSelector((state: combinedState) => state.salonInfo);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -56,18 +57,13 @@ const InputSalonInfo = ({ className }: inputSalonInfoProps) => {
         onChange={onChangeHostName}
       />
 
-      <div className="textAreaContainer">
-        <textarea
-          id="salonInfoIntro"
-          cols={60}
-          rows={8}
-          value={salonInfo.salonIntro}
-          onChange={onChangeSalonIntro}
-        />
-        <label htmlFor="salonInfoIntro">
-          {salonInfo.salonIntro ? "" : "작가의 소개글"}
-        </label>
-      </div>
+      <TextArea
+        id="salonInfoIntro"
+        cols={60}
+        rows={8}
+        value={salonInfo.salonIntro}
+        onChange={onChangeSalonIntro}
+      />
 
       <StyledButton
         onClick={onClickInfoSubmit}
@@ -79,14 +75,14 @@ const InputSalonInfo = ({ className }: inputSalonInfoProps) => {
   );
 };
 
-const StyledInputSalonInfo = styled(InputSalonInfo)`
+const StyledInfoSettingPage = styled(InfoSettingPage)`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
   align-items: center;
   border: 1px solid #ccc;
   width: 50%;
-  margin-top: 1rem;
+  margin: 1rem auto 0 auto;
 
   & > * {
     margin: 2rem auto;
@@ -143,4 +139,4 @@ const StyledInputSalonInfo = styled(InputSalonInfo)`
   }
 `;
 
-export default StyledInputSalonInfo;
+export default StyledInfoSettingPage;

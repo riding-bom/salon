@@ -1,7 +1,8 @@
 import StyledCommentButton from "components/Button/CommentButton.styled";
-import StyledTextArea from "components/TextArea/TextArea.styled";
 import { combinedState, comment } from "constant/type";
 import StyledCommentList from "containers/CommentList/CommentList.styled";
+import CommentTextArea from "containers/CommentTextArea/CommentTextArea";
+import StyledCommentTextArea from "containers/CommentTextArea/CommentTextArea.styled";
 import useAuthStateObserver from "customHook/useAuthStateObserver";
 import { addComment, getAllComment } from "fb/API";
 import {
@@ -9,7 +10,7 @@ import {
   FocusEventHandler,
   MouseEventHandler,
   useEffect,
-  useState
+  useState,
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
@@ -21,7 +22,7 @@ import {
   postIdAction,
   resetCommentAction,
   userAction,
-  userUidAction
+  userUidAction,
 } from "redux/reducers/newComment";
 import { createOpenAction } from "redux/reducers/openModal";
 
@@ -40,7 +41,7 @@ const Comment = () => {
   const dispatch = useDispatch();
 
   const onChangeComment: ChangeEventHandler<HTMLTextAreaElement> = ({
-    target
+    target,
   }: {
     target: HTMLTextAreaElement;
   }) => {
@@ -50,7 +51,7 @@ const Comment = () => {
 
   const newComment = useSelector((state: combinedState) => state.newComment);
 
-  const onClick: MouseEventHandler = async target => {
+  const onClick: MouseEventHandler = async (target) => {
     if (isAuthed) {
       if (newComment.comment) {
         await addComment(newComment);
@@ -86,7 +87,7 @@ const Comment = () => {
   return (
     <>
       <div>
-        <StyledTextArea
+        <StyledCommentTextArea
           cols={85}
           rows={8}
           id={"comment"}
@@ -96,10 +97,12 @@ const Comment = () => {
           onFocus={onFocus}
         >
           <StyledCommentList />
-        </StyledTextArea>
+        </StyledCommentTextArea>
       </div>
       <div>
-        <StyledCommentButton onClick={onClick}>Letter to writer</StyledCommentButton>
+        <StyledCommentButton onClick={onClick}>
+          Letter to writer
+        </StyledCommentButton>
       </div>
     </>
   );

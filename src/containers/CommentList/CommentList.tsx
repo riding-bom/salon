@@ -22,7 +22,7 @@ const CommentList = ({ className }: CommentListProps) => {
 
   useEffect(() => {
     getCommentInfo();
-  }, [comment]);
+  }, []);
 
   if (isAuthed) {
     return (

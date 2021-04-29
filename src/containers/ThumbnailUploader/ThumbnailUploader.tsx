@@ -2,7 +2,7 @@ import { ChangeEventHandler, useRef } from "react";
 import { useDispatch } from "react-redux";
 import firebaseUpload from "modules/firebaseUpload";
 import { setThumbnailAction } from "redux/reducers/salonInfo";
-import StyledThumbnail from "components/SalonInfo/Thumbnail/Thumbnail.styled";
+import Thumbnail from "components/Thumbnail/Thumbnail";
 import ImageUploader from "components/ImageUploader/ImageUploader";
 import styled from "styled-components";
 import StyledButton from "components/Button/Button.styled";
@@ -43,14 +43,18 @@ const ThumbnailUploader = ({
 
   return (
     <div className={className} title="배경 이미지 선택">
-      <StyledThumbnail thumbnail={thumbnail} alt="Salon Thumbnail" />
+      <Thumbnail
+        className="info-setting__thumbnail"
+        thumbnail={thumbnail}
+        alt="Salon Thumbnail"
+      />
       <ImageUploader
-        className="thumbnail-uploader"
+        className="info-setting__thumbnail-uploader"
         onChange={fileSelectedHandler}
         ref={fileInput}
       />
       <StyledButton
-        className="thumbnail-select-button"
+        className="info-setting__upload-button"
         label="thumbnail-select"
         onClick={onSelectHandler}
         children="Select ThumbNail"
@@ -69,7 +73,13 @@ const StyledThumbnailUploader = styled(ThumbnailUploader)`
     margin-top: 1rem;
   }
 
-  .thumbnail-uploader {
+  .info-setting__thumbnail {
+    width: 150px;
+    height: 160px;
+    border-radius: 50%;
+  }
+
+  .info-setting__thumbnail-uploader {
     display: none;
   }
 `;
