@@ -11,9 +11,11 @@
 - [@yhun940731](https://github.com/yhun940731)
 - [@bg_shorthand](https://github.com/bg_shorthand)
 
-
 ## DESIGN
 - [Figma](https://www.figma.com/file/7EPhST0Bh7yQenQAg3QZe7/salon?node-id=6%3A314)
+
+## DEPLOY
+- [Salon](https://salon-riding-bom.web.app/)
 ---
 
 # STACK
@@ -156,8 +158,8 @@
 2. 게시글 수정 페이지
 3. 게시글 리스트 컨테이너
 4. 블로그 정보 설정 페이지
-5. 서브 헤더 디자인
-6. 헤더 조건부 스타일 적용
+5. 서브 헤더 UI
+6. 헤더 컨테이너 조건부 렌더링
 
 ## bg-shorthand
 
