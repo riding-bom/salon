@@ -16,6 +16,9 @@
 
 ## DEPLOY
 - [Salon](https://salon-riding-bom.web.app/)
+
+## PRESENTATION
+[Slides](https://slides.com/nyong/deck-b287e9)
 ---
 
 # STACK
