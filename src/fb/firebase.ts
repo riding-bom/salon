@@ -4,12 +4,12 @@ import "firebase/firestore";
 import "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCa1LZW0o-mjNVo0J2AOKo-M2BZxaoxlLU",
-  authDomain: "salon-riding-bom.firebaseapp.com",
-  projectId: "salon-riding-bom",
-  storageBucket: "salon-riding-bom.appspot.com",
-  messagingSenderId: "52085397565",
-  appId: "1:52085397565:web:dcd2a0a121541d7739b254"
+  apiKey: process.env.REACT_APP_APIKEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_PORJECTID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_APPID,
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -59,5 +59,5 @@ export {
   signUpWithEmail,
   signInWithEmail,
   signOut,
-  commentCollectionRef
+  commentCollectionRef,
 };
