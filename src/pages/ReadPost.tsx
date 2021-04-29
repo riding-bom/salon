@@ -11,7 +11,6 @@ import StyledButton from "components/Button/Button.styled";
 import LikeButton from "containers/LikeButton/LikeButton";
 import { useEffect, useState } from "react";
 import { getPost } from "fb/API";
-import StyledFooter from "containers/Footer/Footer.styled";
 import useAuthStateObserver from "customHook/useAuthStateObserver";
 import purify from "dompurify";
 import Logo from "components/Logo/Logo";
@@ -31,8 +30,6 @@ const ReadPost = ({ className }: readPostProps) => {
   const [post, setPost] = useState({} as post);
   const [date, setDate] = useState("");
   const [html, setHtml] = useState("");
-
-  const { htmlToText } = require("html-to-text");
 
   const { isAuthed } = useAuthStateObserver();
 
@@ -103,7 +100,6 @@ const ReadPost = ({ className }: readPostProps) => {
       <footer>
         <Comment />
       </footer>
-      <StyledFooter />
     </main>
   );
 };

@@ -22,6 +22,14 @@ const NavList = () => {
   return currentUser.isAuthed ? (
     <>
       <li>
+        <span>{currentUser.userInfo?.displayName} 님</span>
+      </li>
+      <li>
+        <Link to="/">
+          <Logo type="Home" />
+        </Link>
+      </li>
+      <li>
         <Link to="/write">
           <Logo type="Write" />
         </Link>
@@ -41,6 +49,12 @@ const NavList = () => {
     </>
   ) : (
     <>
+      <li>
+        <Link to="/">
+          <Logo type="Home" />
+        </Link>
+      </li>
+
       <Nav id="welcomPageLogIn" type="LogIn" onClick={openSignInModal} />
     </>
   );

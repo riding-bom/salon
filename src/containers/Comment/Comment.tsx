@@ -10,7 +10,7 @@ import {
   FocusEventHandler,
   MouseEventHandler,
   useEffect,
-  useState
+  useState,
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
@@ -22,7 +22,7 @@ import {
   postIdAction,
   resetCommentAction,
   userAction,
-  userUidAction
+  userUidAction,
 } from "redux/reducers/newComment";
 import { createOpenAction } from "redux/reducers/openModal";
 
@@ -41,7 +41,7 @@ const Comment = () => {
   const dispatch = useDispatch();
 
   const onChangeComment: ChangeEventHandler<HTMLTextAreaElement> = ({
-    target
+    target,
   }: {
     target: HTMLTextAreaElement;
   }) => {
@@ -51,7 +51,7 @@ const Comment = () => {
 
   const newComment = useSelector((state: combinedState) => state.newComment);
 
-  const onClick: MouseEventHandler = async target => {
+  const onClick: MouseEventHandler = async (target) => {
     if (isAuthed) {
       if (newComment.comment) {
         await addComment(newComment);
@@ -100,7 +100,9 @@ const Comment = () => {
         </StyledCommentTextArea>
       </div>
       <div>
-        <StyledCommentButton onClick={onClick}>Letter to writer</StyledCommentButton>
+        <StyledCommentButton onClick={onClick}>
+          Letter to writer
+        </StyledCommentButton>
       </div>
     </>
   );

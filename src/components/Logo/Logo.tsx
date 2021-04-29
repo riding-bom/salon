@@ -1,3 +1,4 @@
+import { ReactComponent as Home } from "essets/Icons/home.svg";
 import { ReactComponent as LightMode } from "essets/Icons/light-mode.svg";
 import { ReactComponent as DarkMode } from "essets/Icons/dark-mode.svg";
 import { ReactComponent as LogOut } from "essets/Icons/logout.svg";
@@ -13,6 +14,7 @@ import { ReactComponent as Delete } from "essets/Icons/delete.svg";
 
 type LogoProps = {
   type:
+    | "Home"
     | "LightMode"
     | "DarkMode"
     | "LogOut"
@@ -29,6 +31,8 @@ type LogoProps = {
 
 const Logo = (props: LogoProps) => {
   switch (props.type) {
+    case "Home":
+      return <Home />;
     case "LightMode":
       return <LightMode />;
     case "DarkMode":

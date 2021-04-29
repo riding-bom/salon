@@ -7,10 +7,9 @@ import {
   setSalonIntroAction,
   setThumbnailAction,
 } from "redux/reducers/salonInfo";
-import StyledHostName from "components/SalonInfo/HostName/HostName.styled";
-import StyledSalonInfo from "components/SalonInfo/SalonIntro/SalonInfo.styled";
-import StyledThumbnail from "components/SalonInfo/Thumbnail/Thumbnail.styled";
+import Title from "components/Title/Title";
 import NavList from "containers/NavList/NavList";
+import Thumbnail from "components/Thumbnail/Thumbnail";
 
 type HeaderProps = {
   className?: string;
@@ -37,13 +36,18 @@ const Header = ({ className }: HeaderProps) => {
   return (
     <header className={className}>
       <div>
-        <StyledThumbnail
+        <Thumbnail
+          className="header__thumbnail"
           thumbnail={salonInfo.thumbnail}
           alt="Salon Thumbnail"
         />
         <div>
-          <StyledHostName hostName={salonInfo.hostName} />
-          <StyledSalonInfo salonIntro={salonInfo.salonIntro} />
+          <Title
+            level={1}
+            className="header__hostname"
+            children={`${salonInfo.hostName}님의 살롱`}
+          />
+          <span className="header__salonIntro">{salonInfo.salonIntro}</span>
         </div>
         <ul>
           <NavList />

@@ -1,21 +1,25 @@
 import Welcome from "pages/Welcome";
 import StoreProvider from "redux/store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import StyledHeader from "containers/Header/Header.styled";
 import StyledWritePage from "pages/WritePage";
 import StyledReadPost from "pages/ReadPost";
 import StyledUpdatePage from "pages/UpdatePage";
 import LikePosts from "pages/LikePosts";
+import StyledFooter from "containers/Footer/Footer.styled";
 import ModalDialogs from "pages/ModalDialogs";
-import StyledSettingPage from "pages/SettingPage";
+
 import Board from "pages/Board";
+import StyledInfoSettingPage from "pages/InfoSettingPage";
 
 function App() {
   return (
     <StoreProvider>
       <Router>
+        <StyledHeader />
         <Switch>
           <Route path="/setting">
-            <StyledSettingPage />
+            <StyledInfoSettingPage />
           </Route>
           <Route path="/write">
             <StyledWritePage />
@@ -36,7 +40,7 @@ function App() {
             <Welcome />
           </Route>
         </Switch>
-
+        <StyledFooter />
         <ModalDialogs />
       </Router>
     </StoreProvider>

@@ -7,7 +7,7 @@ const initialState = {
   hostName: "",
   salonIntro: "",
   thumbnail:
-    "https://console.firebase.google.com/project/salon-riding-bom/storage/salon-riding-bom.appspot.com/files~2Fimages"
+    "https://firebasestorage.googleapis.com/v0/b/salon-riding-bom.appspot.com/o/images%2FAvata.png?alt=media&token=54367a89-e83c-4adc-bada-ac0994c55f0e"
 };
 
 const SET_HOST_NAME = "SET_HOST_NAME";
