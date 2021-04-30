@@ -3,7 +3,6 @@
 개인 문학 블로그 개발 프로젝트
 
 1. REACT, TYPESCRIPT를 활용한 개인 문학 블로그 개발.
-2.
 
 ## TEAM RIDING BOM
 
